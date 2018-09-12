@@ -1,0 +1,95 @@
+@import '../../../../variables';
+.question{
+    width: 95%;
+margin: 10px;
+border-bottom: solid thin #45a29e;
+padding: 5px;
+}
+.question__text{
+    margin: 5px 0px;
+    color: white;
+}
+.main-holder{
+overflow-y: scroll;
+width: 75%;
+
+}
+
+.button{
+    border-radius: 6px;
+    outline: none;
+    box-shadow: 1px 1px 2px;
+   padding: 5px;
+   margin: 5px;
+
+}
+.remove{
+    border-radius: 6px;
+    outline: none;
+    box-shadow: 1px 1px 2px;
+   padding: 5px;
+   margin: 5px;
+}
+.remove:hover{
+    border-color: red;
+    background-color: red;
+    cursor: pointer;
+}
+.margin{
+    margin: 0px 10px;
+}
+.center{
+    text-align: center;
+}
+.textarea {
+    resize: none;
+    width: 100%;
+    border-radius: 6px;
+    margin-top: 3px;
+    box-shadow: 1px 4px 10px
+  }
+  .question-input{
+      width: 2rem;
+      font-size: 1rem;
+   text-align: right;
+      outline: none;
+      border: none;
+      background: none;
+      color: black;
+  }
+.button-scale{
+    width: 100%;
+    display: flex;
+
+    box-shadow: 1px 1px 2px;
+}
+.button-scale__button{
+    width: 10%;
+    outline: none;
+    border: none;
+    
+}
+.button-scale__button:hover,.button:hover{
+    cursor: pointer;
+    background: #0238BF;
+    border-color: #0238BF
+}
+.active{
+    background: #0238BF;
+}
+
+  .grade{
+    white-space:nowrap;
+  }
+
+  .question-top{
+display: flex;
+justify-content: space-between;
+align-items: center;
+  }
+
+@media screen and (min-width: 1100px){
+    .main-holder{
+        width: 100%;
+    }
+}

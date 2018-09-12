@@ -1,0 +1,50 @@
+@import "../../../variables";
+
+
+//table styling
+thead{
+  background: #056571;
+  color: white
+}
+tbody{
+  background: #e7dfdd;
+}
+.table {
+  width: 100%;
+
+  text-align: center;
+  border-collapse: collapse;
+  
+}
+.tablecontainer{
+  width: 75%;
+  overflow-y: scroll;
+  max-height:70% ;
+}
+.questiontable{
+  width: 100%;
+
+  border-collapse: collapse;
+}
+td{
+  height: 100%;
+    white-space: nowrap;
+}
+tr {
+  border-bottom: solid thin $modalOverlay;
+}
+.colbg {
+  background: #acacac;
+}
+.position-title{
+  text-align: left;
+}
+.list-main-container{
+  padding: 3vw 2vw;
+display: flex;
+justify-content: center;
+}
+.list-container{
+  
+width: 85%;
+}

@@ -1,0 +1,181 @@
+@import "../variables";
+/* general universal styles */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-family: $primaryFont;
+  
+}
+
+a{
+  color: #02336C;
+}
+.App {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:  #1f2833;
+
+  
+}
+.app-name {
+  text-decoration: none;
+  font-family: $boldFontItalic;
+  color: white;
+  margin: 0;
+  letter-spacing: 3px;
+  padding: 0px 1vw;
+  text-align: center
+}
+.main-container {
+  height: 95%;
+
+}
+
+.main {
+  display: flex;
+  height: 100%;
+}
+.main-left {
+width: 350px;
+background: #056571;
+}
+.main-right {
+display: flex;
+flex-direction: column;
+ width: 100%;
+
+}
+
+.main-right-top {
+  width: 100%;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2vw;
+}
+
+.main-right-top__left {
+  display: flex;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+.main-right-top__right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.main-right-bottom{
+  height: 95%;
+  padding: 0px 2vw 2vw;
+}
+//nav styles
+.sub-nav {
+  display: flex;
+  justify-content: center;
+  background: #0b0c10;
+}
+.horizontal-nav-link {
+  text-decoration: none;
+  color: $navFontColor;
+  font-family: $semiBoldFont;
+  text-align: center;
+  white-space: nowrap;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+}
+.horizontal-nav-link:hover,
+.vertical-nav-link:hover {
+  background: $navHover;
+}
+.vertical-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0b0c10;
+}
+.vertical-nav-link {
+  text-decoration: none;
+  color: $navFontColor;
+  font-family: $semiBoldFont;
+  padding: 10px;
+  width: 100%;
+  white-space: nowrap;
+}
+.nav-bg {
+  background: #3a3a3a;
+}
+.main-left-link {
+  display: flex;
+  width: 100%;
+}
+.table-link {
+  display: flex;
+  width: 100%;
+  height: 100%;
+font-family: $semiBoldFont;
+  text-decoration: none;
+  padding: 5px 20px;
+}
+.table-link:hover {
+  background: #dadada;
+  font-family: $semiBoldFontItalic;
+}
+//form styles
+
+.input-field {
+  width: 100%; 
+  border-radius: 5px;
+  outline: none;
+  border: #acacac solid thin;
+  margin: 4px 0px 10px;
+  font-size: 1rem;
+  color: black;
+  padding: 4px;
+}
+.input-field:focus {
+  border: blue thin solid;
+}
+.form-button {
+  font-family: $boldFont;
+  height: 40px;
+border-radius: 6px;
+outline: none;
+  width: 110px;
+  border: #66fcf1 solid thin;
+  background: rgba(0,0,0,0);
+  color:white;
+  box-shadow: #66fcf1 1px 1px 3px
+}
+.form-button:hover{
+  cursor: pointer;
+  
+}
+
+/* Universal Classes */
+.active-link {
+  background: $activeLinkBg;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+.general-message-container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.general-message {
+  font-family: $boldFont;
+}
+.title{
+  margin: 0;
+  color: white
+}
+// universal table styles

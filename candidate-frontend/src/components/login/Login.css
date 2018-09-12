@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url("/src/assets/typograpgy/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Poppins-Italic';
+  src: url("/src/assets/typograpgy/Poppins-Italic.ttf");
+}
+
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url("/src/assets/typograpgy/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: 'Poppins-SemiBoldItalic';
+  src: url("/src/assets/typograpgy/Poppins-SemiBoldItalic.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("/src/assets/typograpgy/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-BoldItalic";
+  src: url("/src/assets/typograpgy/Poppins-BoldItalic.ttf");
+}
+
+.login-form {
+  background: #0b0c10;
+  padding: 2vw 4vw;
+  border-radius: 12px;
+  width: 50%;
+  -webkit-box-shadow: 3px 4px 11px;
+          box-shadow: 3px 4px 11px;
+}
+
+.login-form-end {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.login-form-label {
+  font-family: "Poppins-SemiBold";
+  color: white;
+  text-align: left;
+  font-size: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.error-message {
+  color: red;
+  font-family: "Poppins-Bold";
+}
+
+@media screen and (max-width: 600px) {
+  .login-form {
+    width: 95%;
+  }
+}
+/*# sourceMappingURL=Login.css.map */

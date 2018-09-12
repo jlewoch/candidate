@@ -1,0 +1,40 @@
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('/src/assets/typograpgy/Poppins-Regular.ttf');
+}
+@font-face {
+  font-family: 'Poppins-Italic';
+  src: url('/src/assets/typograpgy/Poppins-Italic.ttf');
+}
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url('/src/assets/typograpgy/Poppins-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'Poppins-SemiBoldItalic';
+  src: url('/src/assets/typograpgy/Poppins-SemiBoldItalic.ttf');
+}
+ 
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("/src/assets/typograpgy/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-BoldItalic";
+  src: url("/src/assets/typograpgy/Poppins-BoldItalic.ttf");
+}
+
+$primaryFont: 'Poppins-Regular';
+$semiBoldFont: 'Poppins-SemiBold';
+$boldFont: 'Poppins-Bold';
+$primaryFontItalic: 'Poppins-RegularItalic';
+$semiBoldFontItalic: 'Poppins-SemiBoldItalic';
+$boldFontItalic: 'Poppins-BoldItalic';
+$modalOverlay:  rgba(0,0,0,.6);
+$activeLinkBg: rgba(255,255,255,.05);
+$navBackground: #3a3a3a;
+$navFontColor:#ffffff;
+$inputText: #000000;
+$navHover: #595959;

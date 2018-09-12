@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url("/src/assets/typograpgy/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Poppins-Italic';
+  src: url("/src/assets/typograpgy/Poppins-Italic.ttf");
+}
+
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url("/src/assets/typograpgy/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: 'Poppins-SemiBoldItalic';
+  src: url("/src/assets/typograpgy/Poppins-SemiBoldItalic.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("/src/assets/typograpgy/Poppins-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-BoldItalic";
+  src: url("/src/assets/typograpgy/Poppins-BoldItalic.ttf");
+}
+
+.dashboard {
+  padding: 4vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 95%;
+}
+
+.dashboard-section {
+  width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=Dashboard.css.map */
