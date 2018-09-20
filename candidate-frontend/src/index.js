@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './containers/App';
+import App from './main';
+import store from './store'
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import {Provider} from 'react-redux'
+import { add } from './store/steps/actions';
+
+store.dispatch(add({hi:3}))
+console.log(store.getState())
 ReactDOM.render(
-    <Provider>
+    <Provider store={store}>
     <Router>
     <App />
     </Router>
