@@ -2,7 +2,7 @@ import * as types from './actionTypes';
 import { createReducer } from 'redux-act';
 
 const steps = createReducer({
-    [types.ADD_STEP]: (state, payload)=>  ('added step'),
+    [types.ADD_STEP]: (state, payload)=>  ({...state, ...payload}),
     
     [types.GET_STEPS]: (state, payload)=>  ({...state,...payload.map(stepState=> ({...stepState, visible: true}))}),
     
