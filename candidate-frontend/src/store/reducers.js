@@ -8,7 +8,12 @@ import authentication from './authentication/reducer'
 
 
 const reducers = combineReducers({
-steps
+steps,
+users,
+positions,
+authentication,
+questions,
+grading
 })
 
 export default reducers;

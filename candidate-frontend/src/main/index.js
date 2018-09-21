@@ -6,7 +6,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 // import NavBar from "../components/navBar/NavBar";
 // import Positions from "../components/positions/Positions";
 // import Admin from "../components/admin/Admin";
-// import Login from "../components/login/Login";
+import {Login} from "../components/login";
 // import PositionsList from "../components/positions/positionsList/PositionsList";
 // import Grading from "../components/candidate/grading/Grading";
 // import Results from "../components/candidate/results/Results";
@@ -91,24 +91,7 @@ class App extends Component {
   // } 
 
   render() {
-    // const {
-    //   userinfo,
-    //   usernameInput,
-    //   passwordInput,
-    //   failed,
-    //   steps
-    // } = this.state;
-    // if (!userinfo) {
-    //   return (
-    //     <Login
-    //       failed={failed}
-    //       passwordInput={passwordInput}
-    //       usernameInput={usernameInput}
-    //       onChange={this.onChange}
-    //       login={this.login}
-    //     />
-    //   );
-    // }
+  
     return (
       <div className="App">
        

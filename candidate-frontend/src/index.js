@@ -3,17 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './main';
 import store from './store'
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
 import {Provider} from 'react-redux'
-import { add } from './store/steps/actions';
+import { ConnectedRouter} from 'connected-react-router'
 
-store.dispatch(add({hi:3}))
-console.log(store.getState())
 ReactDOM.render(
     <Provider store={store}>
-    <Router>
+    <ConnectedRouter history={history}>
     <App />
-    </Router>
+    </ConnectedRouter>
     </Provider>
     , document.getElementById('root'));
 registerServiceWorker();
