@@ -1,11 +1,11 @@
-export const get = (url) => fetch(url,{
+export const get = (url) => fetch(`http://localhost:9000/db/${url}`,{
     headers:{
         'Content-Type': 'application/json',
         authToken: localStorage.getItem("session")
     }
-}).then(res=>res.json())
+}).then(res=>res.json()).then(data=>data)
 
-export const put = (url) => fetch(url,{
+export const update = (url) => fetch(`http://localhost:9000/db/${url}`,{
     method: 'PUT',
     headers:{
         'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ export const put = (url) => fetch(url,{
     }
 }).then(res=>res.json())
 
-export const post = (url) => fetch(url,{
+export const post = (url) => fetch(`http://localhost:9000/db/${url}`,{
     method: 'POST',
     headers:{
         'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export const post = (url) => fetch(url,{
     }
 }).then(res=>res.json())
 
-export const del = (url) => fetch(url,{
+export const remove = (url) => fetch(`http://localhost:9000/db/${url}`,{
     method: 'DELETE',
     headers:{
         'Content-Type': 'application/json',

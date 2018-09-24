@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
-import {createAction} from 'redux-act';
+import {createAction,} from 'redux-act';
 
+export const recieveGetSteps = createAction(types.RECIEVE_GET_STEPS)
 export const addStep = createAction(types.ADD_STEP)
 export const getSteps = createAction(types.GET_STEPS)
 export const deleteStep = createAction(types.DELETE_STEP)

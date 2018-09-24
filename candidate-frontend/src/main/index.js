@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router";
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NavBar from "../components/navBar/NavBar";
 // import Positions from "../components/positions/Positions";
@@ -100,7 +100,7 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;
 // {userinfo ? <NavBar userinfo={userinfo} /> : null}
 
 // <Switch>

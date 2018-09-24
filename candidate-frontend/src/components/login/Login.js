@@ -7,7 +7,6 @@ const Login = ({
   authentication,
   login
 }) => {
-  console.log(authentication, login);
   
   return (
     <Modal>
