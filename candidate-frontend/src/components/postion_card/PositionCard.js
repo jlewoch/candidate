@@ -1,7 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
+import styled from 'styled-components';
 const PositionCard = ({title}) => {
+
+    const statusContainer = styled.div`
+    display:flex;
+    padding:10px;
+    `
+    const cardSection = styled.div`
+    display: flex;
+    align-items: center;
+    justify-conternt: center;
+    `
 
     return (
         <div>
@@ -24,11 +33,6 @@ const PositionCard = ({title}) => {
            
         </div>
     );
-};
-
-PositionCard.propTypes = {
-    title: PropTypes.string.isRequired,
-    opened: propTypes.date.isRequired,
 };
 
 export default PositionCard;
