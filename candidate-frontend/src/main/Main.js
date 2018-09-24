@@ -1,11 +1,10 @@
 import React from 'react';
-import {  } from 'rou';
+import { Route, Switch } from 'react-router';
+import MainNav from '../components/main_nav/MainNav'
 const Main = () => {
     return (
         <div>
-            <Switch>
-            
-            </Switch>
+        <MainNav />
         </div>
     );
 };

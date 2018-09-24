@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import DashOpenJobs from "./dashboardOpenJobs/DashOpenJobs";
-import "./Dashboard.css";
 class Dashboard extends Component {
   constructor(props) {
     super(props);

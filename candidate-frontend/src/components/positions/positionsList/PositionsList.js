@@ -1,74 +1,69 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-class PositionsList extends Component {
-constructor(props) {
-    super(props);
-    this.state = {
-        positions:[],
-    }
-}
-getPositions = () => {
-    fetch("https://candidate-application.herokuapp.com/db/positions/list",{
-        method:'GET',
-        signal:this.AbortController.signal,
-        headers:{
-          authToken: localStorage.getItem('session')
-        }
-      })
-      .then(result => result.json())
-      .then(data => {
-        this.setState({
-          positions: data,
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  };
-  componentWillUnmount() {
-    this.AbortController.abort()
-  }
-  
-  componentDidMount() {
-    this.AbortController = new window.AbortController()
-    localStorage.setItem('lastVisited', this.props.location.pathname)
-   
-      this.getPositions()
-  }
-  
-    render() {
-        const {positions} = this.state;
-        if (positions.length < 1) {
-            return(null)
-          }
-        return ( <div className='list-main-container'>
-        <div className='list-container'>
-            <table className="table">
-            <thead>
-            <tr>
-            <th>Title</th>
-            <th>Opening Date</th>
-            <th>Closing Date</th>
-            <th>Priority</th>
-            </tr>
-            </thead>
-            <tbody>
-                {positions.map(position=>{
-                    return(
-                        <tr key={position.id}>
-                        <td><Link className='table-link' to={`/positions/${position.id}/applicants`}>{position.title}</Link></td>
-                        <td>{new Date(position.openingDate).toDateString()}</td>
-                        <td>{new Date(position.closingDate).toDateString()}</td>
-                        <td>{position.priority}</td>
-                        </tr>
-                    )
-                })}
-                </tbody>
-            </table>
-            </div>
-            </div>
-        );
-    }
-}
+import React from 'react';
+import styled from 'styled-components';
+import PositionCard from './postion_card/PositionCard';
+const positions = [
+    {
+        id: 1,
+        title: "Technical Specialist",
+        openingDate: "2018-08-10T04:00:00.000Z",
+        closingDate: "2018-08-22T04:00:00.000Z",
+        priority: "HIGH",
+        assignedTo:'Jake Lewochko',
+        totalApplications: 36,
+        location: 'Toronto, ON'  
 
-export default withRouter(PositionsList);
+    },
+    {
+        id: 2,
+        title: "Technical analyst",
+        openingDate: "2018-08-10T04:00:00.000Z",
+        closingDate: "2018-08-22T04:00:00.000Z",
+        priority: "Future",
+        assignedTo:'Jake Lewochko',
+        totalApplications: 36,
+        location: 'Toronto, ON'
+
+    },
+    {
+        id: 3,
+        title: "accounting",
+        openingDate: "2018-08-10T04:00:00.000Z",
+        closingDate: "2018-08-22T04:00:00.000Z",
+        priority: "Future",
+        assignedTo:'Jake Lewochko',
+        totalApplications: 36,
+        location: 'Toronto, ON'    
+
+    },
+    {
+        id: 4,
+        title: "manager",
+        openingDate: "2018-08-10T04:00:00.000Z",
+        closingDate: "2018-08-22T04:00:00.000Z",
+        priority: "Normal",
+        assignedTo:'Jake Lewochko',
+        totalApplications: 36,
+        location: 'Toronto, ON'    
+    }
+]
+const PositionsList = () => {
+
+    const PositionSection = styled.div`
+    background: #f1f1f1;
+    padding: 1rem;
+    `
+
+    return (
+        <PositionSection>
+            {positions.map(position=> (<PositionCard 
+                title={position.title}
+                opened={position.openingDate}
+                total={position.totalApplications}
+                assigned={position.assignedTo}
+                location={position.location}
+                />))}
+        </PositionSection>
+    );
+};
+
+export default PositionsList;
