@@ -8,7 +8,7 @@ const NavLink = ({children}) => {
     font-size: .9rem;
     :hover{
         cursor: pointer;
-        color: blue;
+        color: #55B1C3;
     }
     `
   return <Navlink>

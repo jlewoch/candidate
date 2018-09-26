@@ -12,11 +12,12 @@ const Menu = ({ name, image }) => {
     }
     `
   const ProfilePic = styled.img.attrs({
-    src: 'https://fyf.tac-cdn.net/images/products/large/BF52-11KM.jpg'
+    src: require('./1.jpg')
   })`
         border-radius: 50%;
         height: 25px;
         background:black;
+        margin:3px;
         
     `
   const Name = styled.p`
@@ -56,7 +57,7 @@ const Menu = ({ name, image }) => {
         <Arrow
           height='20px'
           width='15px'
-          stroke='blue'
+          stroke='#55B1C3'
           strokeWidth='2'
           fill='none'
         >

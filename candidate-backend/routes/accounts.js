@@ -5,7 +5,9 @@ const objects = require('../services/objects');
 const bcrypt = require('bcrypt');
 
 router
-.route('/')
+.route('/').get((req,res)=>{
+    knex.select('*').from('Accounts').then(data=>res.json(data)).catch(err=>res.json(err))
+})
     .post((req,res)=>{
    const temp = objects.createEmployee(req.body,new Date(), req.token.user)
     knex('Employees').insert(temp).returning('*').then(data=> {

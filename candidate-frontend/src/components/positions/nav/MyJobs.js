@@ -1,8 +1,14 @@
 import React from 'react';
 import NavLink from '../../../shared_components/nav_link/NavLink';
-const PositionsNav = () => {
+const MyJobs = () => {
+
+    const Container = styled.nav`
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid thin lightgray;
+    `
     return (
-        <div>
+        <Container>
             <NavLink>
             Active
             </NavLink>
@@ -12,8 +18,8 @@ const PositionsNav = () => {
             <NavLink>
             Closed
             </NavLink>
-        </div>
+        </Container>
     );
 };
 
-export default PositionsNav;
+export default MyJobs;

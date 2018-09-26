@@ -19,7 +19,7 @@ router.route('/admin').get((req, res)=>{
         knex('QuestionEvaluations').insert(temp).then(data=> res.status(200)).catch(err=>console.log(err))
     })
 
-router.route('/list').get((req, res)=>{
+router.route('/').get((req, res)=>{
     knex('Positions').select('id', 'title','openingDate','closingDate', 'priority').where({resolved: 0}).then(data=>res.json(data)).catch(err=>console.log(err))
 
 })

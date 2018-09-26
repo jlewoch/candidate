@@ -8,6 +8,7 @@ const MainNav = () => {
     display: flex;
     justify-content: space-between;
     border-bottom: solid thin lightgray;
+    height: 5%;
     `
     const LeftSide = styled.div`
     display: flex;

@@ -14,7 +14,7 @@ export const rootReducer = combineReducers({
   positions,
   authentication,
   questions,
-  grading
+  grading,
 })
 
 export function * rootSaga () {

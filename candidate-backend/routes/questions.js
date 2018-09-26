@@ -4,7 +4,7 @@ const knex = require("../knex/knex.js");
 const dbServices = require("../services/databaseServices");
 const objects = require('../services/objects');
 router
-  .route("/admin")
+  .route("/")
   .get((req, res) => {
     knex
       .select("*")
