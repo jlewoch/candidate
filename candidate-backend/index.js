@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 //        }
 //     }
 // })
-
+const test = require('./services/database/accounts');
 
 app.use('/db/session', require('./routes/session'))
 app.use('/db/questions', require('./routes/questions'))

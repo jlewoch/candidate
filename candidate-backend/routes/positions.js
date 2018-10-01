@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const knex = require('../knex/knex.js');
 const objects = require('../services/objects');
-router.route('/admin').get((req, res)=>{
+router.route('/').get((req, res)=>{
     knex.select('*').from('Positions').where().then(data=> res.json(data)).catch(err=>console.log(err))
 }).put((req,res)=>{
     const {positionId, updatedInfo} = req.body
