@@ -14,43 +14,43 @@ function * callRequestGetQuestions () {
   yield put(actions.getQuestionsComplete)
 }
 
-function * callRequestDeleteQuestions () {
-  yield put(actions.deleteQuestionsRequest())
+function * callRequestDeleteQuestion () {
+  yield put(actions.deleteQuestionRequest())
   try {
     const questions = yield call(remove, 'questions')
-    yield put(actions.deleteQuestionsSuccess(questions))
+    yield put(actions.deleteQuestionSuccess(questions))
   } catch (error) {
-    yield put(actions.deleteQuestionsFailed(error))
+    yield put(actions.deleteQuestionFailed(error))
   }
-  yield put(actions.deleteQuestionsComplete)
+  yield put(actions.deleteQuestionComplete)
 }
-function * callRequestAddQuestions () {
-  yield put(actions.addQuestionsRequest())
+function * callRequestAddQuestion () {
+  yield put(actions.addQuestionRequest())
   try {
     const questions = yield call(push, 'questions')
-    yield put(actions.addQuestionsSuccess(questions))
+    yield put(actions.addQuestionSuccess(questions))
   } catch (error) {
-    yield put(actions.addQuestionsFailed(error))
+    yield put(actions.addQuestionFailed(error))
   }
-  yield put(actions.addQuestionsComplete)
+  yield put(actions.addQuestionComplete)
 }
-function * callRequestUpdateQuestions () {
-  yield put(actions.updateQuestionsRequest())
+function * callRequestUpdateQuestion () {
+  yield put(actions.updateQuestionRequest())
   try {
     const questions = yield call(update, 'questions')
-    yield put(actions.updateQuestionsSuccess(questions))
+    yield put(actions.updateQuestionSuccess(questions))
   } catch (error) {
-    yield put(actions.updateQuestionsFailed(error))
+    yield put(actions.updateQuestionFailed(error))
   }
-  yield put(actions.updateQuestionsComplete)
+  yield put(actions.updateQuestionComplete)
 }
 export const requestQuestionsSaga = function * () {
   yield takeEvery(types.GET_QUESTIONS_REQUEST, () => callRequestGetQuestions())
   yield takeEvery(types.DELETE_QUESTION_REQUEST, () =>
-    callRequestDeleteQuestions()
+    callRequestDeleteQuestion()
   )
-  yield takeEvery(types.ADD_QUESTION_REQUEST, () => callRequestAddQuestions())
+  yield takeEvery(types.ADD_QUESTION_REQUEST, () => callRequestAddQuestion())
   yield takeEvery(types.UPDATE_QUESTION_REQUEST, () =>
-    callRequestUpdateQuestions()
+    callRequestUpdateQuestion()
   )
 }

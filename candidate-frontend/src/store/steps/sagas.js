@@ -14,43 +14,43 @@ function * callRequestGetSteps () {
   yield put(actions.getStepsComplete)
 }
 
-function * callRequestDeleteSteps () {
-  yield put(actions.deleteStepsRequest())
+function * callRequestDeleteStep () {
+  yield put(actions.deleteStepRequest())
   try {
     const steps = yield call(remove, 'steps')
-    yield put(actions.deleteStepsSuccess(steps))
+    yield put(actions.deleteStepSuccess(steps))
   } catch (error) {
-    yield put(actions.deleteStepsFailed(error))
+    yield put(actions.deleteStepFailed(error))
   }
-  yield put(actions.deleteStepsComplete)
+  yield put(actions.deleteStepComplete)
 }
-function * callRequestAddSteps () {
-  yield put(actions.addStepsRequest())
+function * callRequestAddStep () {
+  yield put(actions.addStepRequest())
   try {
     const steps = yield call(push, 'steps')
-    yield put(actions.addStepsSuccess(steps))
+    yield put(actions.addStepSuccess(steps))
   } catch (error) {
-    yield put(actions.addStepsFailed(error))
+    yield put(actions.addStepFailed(error))
   }
-  yield put(actions.addStepsComplete)
+  yield put(actions.addStepComplete)
 }
-function * callRequestUpdateSteps () {
-  yield put(actions.updateStepsRequest())
+function * callRequestUpdateStep () {
+  yield put(actions.updateStepRequest())
   try {
     const steps = yield call(update, 'steps')
-    yield put(actions.updateStepsSuccess(steps))
+    yield put(actions.updateStepSuccess(steps))
   } catch (error) {
-    yield put(actions.updateStepsFailed(error))
+    yield put(actions.updateStepFailed(error))
   }
-  yield put(actions.updateStepsComplete)
+  yield put(actions.updateStepComplete)
 }
 export const requestStepsSaga = function * () {
   yield takeEvery(types.GET_STEPS_REQUEST, () => callRequestGetSteps())
   yield takeEvery(types.DELETE_STEP_REQUEST, () =>
-    callRequestDeleteSteps()
+    callRequestDeleteStep()
   )
-  yield takeEvery(types.ADD_STEP_REQUEST, () => callRequestAddSteps())
+  yield takeEvery(types.ADD_STEP_REQUEST, () => callRequestAddStep())
   yield takeEvery(types.UPDATE_STEP_REQUEST, () =>
-    callRequestUpdateSteps()
+    callRequestUpdateStep()
   )
 }

@@ -10,8 +10,8 @@ const Main = () => {
     `
     return (
         <MainDiv>
-        <MainNav />
-        <Positions />
+        <MainNav/>
+            <Positions />
         </MainDiv>
     );
 };

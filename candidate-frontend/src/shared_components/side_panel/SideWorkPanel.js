@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-
+import anime from 'animejs'
 class SideWorkPanel extends Component {
   constructor (props) {
     super(props)
@@ -10,10 +10,32 @@ class SideWorkPanel extends Component {
   }
 
   toggle = () => {
+    this.animation()
     this.setState({ open: !this.state.open })
+
+  }
+  animation = () => {
+    console.log(this.state.open);
+    
+    if (this.state.open) {
+      anime({
+        targets: '#bar',
+        translateX: 0,
+        duration: 1000,
+        easing: 'easeInOutQuad'
+      })
+    } else {
+      anime({
+        targets: '#bar',
+        translateX: -285,
+        duration: 1000,
+        easing: 'easeInOutQuad'
+      })
+    }
   }
   render () {
     const { open } = this.state
+
 
     const Toggle = styled.div.attrs({
       onClick: () => this.toggle
@@ -37,20 +59,13 @@ class SideWorkPanel extends Component {
       transform: ${open ? '' : 'rotate(180deg)'}
     
     `
-    const Container = styled.div`
-    display:flex;
-    height: 100%;
-    width: 300px;
-    transition: all 5s;
-    transform:${open ? '' : 'translate(-285px)'}
-     `
     const WorkPanel = styled.div`
     width: 285px;
     overflowY: scroll;
     background: #f1f1f1;
     `
     return (
-      <Container>
+      <div style={{ display:'flex', height: '100%', width: '300px'}} id="bar">
 
         <WorkPanel>
           {this.props.children}
@@ -67,7 +82,8 @@ class SideWorkPanel extends Component {
 
           </Arrow>
         </Toggle>
-      </Container>
+      </div>
+
     )
   }
 }

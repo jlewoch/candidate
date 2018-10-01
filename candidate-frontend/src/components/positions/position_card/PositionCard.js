@@ -1,25 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import '../../../../variables.scss'
-const PositionCard = ({id, status ='NEW', title, opened, total, location, assigned }) => {
+const PositionCard = ({
+  status = 'NEW',
+  title,
+  opened,
+  total,
+  location,
+  assigned
+}) => {
   const Container = styled.div.attrs({
-    id:{id},
-    draggable: true
+    draggable:true,
+    ondragstart:(e)=> console.log(e)
   })`
-    diplay:flex;
-    flex-direction: column;
-    box-shadow: #9e9e9e 2px 3px 9px;
-    margin: 1rem;
-    transition: .2s; 
-    background: white;
-    border-radius: 12px;
-    :hover {
-      cursor: pointer;
-      transform: scale(1.02);
-
-    }
-`
-
+        diplay:flex;
+        flex-direction: column;
+        box-shadow: #9e9e9e 2px 3px 9px;
+        margin: 1rem;
+        transition: .2s; 
+        background: white;
+        border-radius: 12px;
+        :hover {
+          cursor: pointer;
+          transform: scale(1.02);
+    
+        }
+    `
   const StatusContainer = styled.div`
     display:flex;
     padding:10px;
@@ -48,13 +53,11 @@ const PositionCard = ({id, status ='NEW', title, opened, total, location, assign
     margin:0;
     font-weight: normal;
  `
- const Status = styled.p`
+  const Status = styled.p`
  margin: 0;
  font-size: .75rem;
  font-weight: bold;
  `
- opened = new Date(opened).toDateString()
- 
   return (
     <Container>
       <StatusContainer>

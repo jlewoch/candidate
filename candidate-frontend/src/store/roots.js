@@ -7,6 +7,9 @@ import positions from './positions/reducer'
 import questions from './questions/reducer'
 import grading from './grading/reducer'
 import authentication from './authentication/reducer'
+import applicants from './applicants/reducer';
+import applications from './applications/reducer';
+
 
 export const rootReducer = combineReducers({
   steps,
@@ -15,6 +18,8 @@ export const rootReducer = combineReducers({
   authentication,
   questions,
   grading,
+  applicants,
+  applications
 })
 
 export function * rootSaga () {

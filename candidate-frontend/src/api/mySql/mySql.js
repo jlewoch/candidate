@@ -13,7 +13,7 @@ export const update = (url) => fetch(`http://localhost:9000/db/${url}`,{
     }
 }).then(res=>res.json()).then(data=>data)
 
-export const post = (url) => fetch(`http://localhost:9000/db/${url}`,{
+export const push = (url) => fetch(`http://localhost:9000/db/${url}`,{
     method: 'POST',
     headers:{
         'Content-Type': 'application/json',

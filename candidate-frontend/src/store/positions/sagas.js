@@ -14,43 +14,43 @@ function * callRequestGetPositions () {
   yield put(actions.getPositionsComplete)
 }
 
-function * callRequestDeletePositions () {
-  yield put(actions.deletePositionsRequest())
+function * callRequestDeletePosition () {
+  yield put(actions.deletePositionRequest())
   try {
     const positions = yield call(remove, 'positions')
-    yield put(actions.deletePositionsSuccess(positions))
+    yield put(actions.deletePositionSuccess(positions))
   } catch (error) {
-    yield put(actions.deletePositionsFailed(error))
+    yield put(actions.deletePositionFailed(error))
   }
-  yield put(actions.deletePositionsComplete)
+  yield put(actions.deletePositionComplete)
 }
-function * callRequestAddPositions () {
-  yield put(actions.addPositionsRequest())
+function * callRequestAddPosition () {
+  yield put(actions.addPositionRequest())
   try {
     const positions = yield call(push, 'positions')
-    yield put(actions.addPositionsSuccess(positions))
+    yield put(actions.addPositionSuccess(positions))
   } catch (error) {
-    yield put(actions.addPositionsFailed(error))
+    yield put(actions.addPositionFailed(error))
   }
-  yield put(actions.addPositionsComplete)
+  yield put(actions.addPositionComplete)
 }
-function * callRequestUpdatePositions () {
-  yield put(actions.updatePositionsRequest())
+function * callRequestUpdatePosition () {
+  yield put(actions.updatePositionRequest())
   try {
     const positions = yield call(update, 'positions')
-    yield put(actions.updatePositionsSuccess(positions))
+    yield put(actions.updatePositionSuccess(positions))
   } catch (error) {
-    yield put(actions.updatePositionsFailed(error))
+    yield put(actions.updatePositionFailed(error))
   }
-  yield put(actions.updatePositionsComplete)
+  yield put(actions.updatePositionComplete)
 }
 export const requestPositionsSaga = function * () {
   yield takeEvery(types.GET_POSITIONS_REQUEST, () => callRequestGetPositions())
   yield takeEvery(types.DELETE_POSITION_REQUEST, () =>
-    callRequestDeletePositions()
+    callRequestDeletePosition()
   )
-  yield takeEvery(types.ADD_POSITION_REQUEST, () => callRequestAddPositions())
+  yield takeEvery(types.ADD_POSITION_REQUEST, () => callRequestAddPosition())
   yield takeEvery(types.UPDATE_POSITION_REQUEST, () =>
-    callRequestUpdatePositions()
+    callRequestUpdatePosition()
   )
 }
