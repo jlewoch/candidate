@@ -8,24 +8,24 @@ const jwt = require('jsonwebtoken');
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
 
-    if(req.url === '/db/login') next()
-    else {
-       const sessionToken = req.headers.authtoken.split(' ')[0]
+//     if(req.url === '/db/login') next()
+//     else {
+//        const sessionToken = req.headers.authtoken.split(' ')[0]
        
-       if (sessionToken) {
-           if (jwt.verify(sessionToken, process.env.KEY)) {
-            req.token = jwt.decode(sessionToken)
-            next()
-           } else {
-            res.sendStatus(401)
-           }
-       } else {
-        res.sendStatus(400)
-       }
-    }
-})
+//        if (sessionToken) {
+//            if (jwt.verify(sessionToken, process.env.KEY)) {
+//             req.token = jwt.decode(sessionToken)
+//             next()
+//            } else {
+//             res.sendStatus(401)
+//            }
+//        } else {
+//         res.sendStatus(400)
+//        }
+//     }
+// })
 
 
 app.use('/db/session', require('./routes/session'))
