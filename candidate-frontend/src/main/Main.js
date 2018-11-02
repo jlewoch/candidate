@@ -1,19 +1,20 @@
-import React from 'react';
-import { Route, Switch } from 'react-router';
-import styled from 'styled-components';
-import SideWorkPanel from '../shared_components/side_panel/SideWorkPanel';
-import Positions from '../components/positions/Positions';
-import { MainNav } from '../components/main_nav';
-const Main = () => {
-    const MainDiv = styled.div`
-    height: 100%;
-    `
-    return (
-        <MainDiv>
-        <MainNav/>
-            <Positions />
-        </MainDiv>
-    );
-};
+import React from 'react'
+import { Route, Switch } from 'react-router'
+import styled from 'styled-components'
 
-export default Main;
+import ApplicantCard
+  from '../components/applicants/applicant_card/ApplicantCard'
+import ApplicantProgress
+  from '../components/applicants/applicant_progress/ApplicantProgress'
+const Main = () => {
+  const MainDiv = styled.div`
+
+    `
+  return (
+    <MainDiv>
+      <ApplicantProgress />
+    </MainDiv>
+  )
+}
+
+export default Main

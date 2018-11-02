@@ -1,0 +1,29 @@
+.applicant-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.applicant-card-summary {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.applicant-card-details {
+    transition: 1s all;
+}
+
+.applicant-card:hover {
+    cursor: pointer;
+}
+
+.applicant-card-details.show {
+    max-height: 30px;
+}
+
+.applicant-card-details.hide {
+    max-height: 0;
+}
