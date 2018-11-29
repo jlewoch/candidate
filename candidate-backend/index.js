@@ -26,7 +26,11 @@ app.use(bodyParser.json())
 //        }
 //     }
 // })
+<<<<<<< HEAD
+const test = require('./services/database/accounts');
+=======
 
 app.use('/db', require('./routes/session'))
+>>>>>>> c18083fd976e6a59c2fae9c0a866f94c0bf20f5d
 
 app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))
