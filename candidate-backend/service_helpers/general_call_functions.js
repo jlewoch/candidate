@@ -1,10 +1,4 @@
-const express = require('express')
-const router = express.Router()
 const knex = require('../db/knex/knex')
-const objects = require('../services/objects')
-const bcrypt = require('bcrypt')
-
-router
 
 const all = (table, body, params) => {
   knex(table)

@@ -32,5 +32,5 @@ exports.up = async () => {
 }
 
 exports.down = async () => {
-  await knex.schema.dropTableIfExists('boards')
+  await knex.schema.dropTableIfExists('positions')
 }
