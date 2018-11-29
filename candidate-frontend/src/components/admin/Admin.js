@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, withRouter, Link } from "react-router-dom";
 import AdminUsers from "./adminUsers/AdminUsers";
-import "./Admin.css";
 import AdminQuestionForm from "./adminGrading/adminQuestionForm/AdminQuestionForm";
 class Admin extends Component {
   constructor(props) {

@@ -1,5 +1,4 @@
 import React from "react";
-import "./DocumentGrading.css";
 import QuestionTemplate from "../questionTemplate/QuestionTemplate";
 
 const DocumentGrading = ({questions, onChange, updateGrade}) => {

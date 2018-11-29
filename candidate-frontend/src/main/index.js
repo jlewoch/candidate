@@ -1,17 +1,14 @@
-import React, { Component } from "react";
-import "./App.css";
+import AppComponent from './Main'
 
-import { Route, Switch, withRouter } from "react-router";
+export const App = (AppComponent)
 // import Dashboard from "../components/dashboard/Dashboard";
 // import NavBar from "../components/navBar/NavBar";
 // import Positions from "../components/positions/Positions";
 // import Admin from "../components/admin/Admin";
-import {Login} from "../components/login";
 // import PositionsList from "../components/positions/positionsList/PositionsList";
 // import Grading from "../components/candidate/grading/Grading";
 // import Results from "../components/candidate/results/Results";
 
-class App extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -90,17 +87,8 @@ class App extends Component {
   //   this.resumeSession()
   // } 
 
-  render() {
   
-    return (
-      <div className="App">
-       
-      </div>
-    );
-  }
-}
 
-export default App;
 // {userinfo ? <NavBar userinfo={userinfo} /> : null}
 
 // <Switch>

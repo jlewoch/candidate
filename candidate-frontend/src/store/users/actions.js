@@ -1,10 +1,22 @@
 import * as types from './actionTypes';
 import {createAction} from 'redux-act';
 
-export const addUser = createAction(types.ADD_USER)
-export const getUsers = createAction(types.GET_USERS)
-export const deleteUser = createAction(types.DELETE_USER)
-export const enableUser = createAction(types.ENABLE_USER)
-export const disableUser = createAction(types.DISABLE_USER)
-export const updateUser = createAction(types.UPDATE_USER)
-export const showEnabledFilter = createAction(types.SHOW_ENABLED_FILTER)
+export const getUsersRequest = createAction(types.GET_USERS_REQUEST)
+export const getUsersSuccess = createAction(types.GET_USERS_SUCCESS)
+export const getUsersFailed = createAction(types.GET_USERS_FAILED)
+export const getUsersComplete = createAction(types.GET_USERS_COMPLETE)
+
+export const addUserRequest = createAction(types.ADD_USER_REQUEST)
+export const addUserSuccess = createAction(types.ADD_USER_SUCCESS)
+export const addUserFailed = createAction(types.ADD_USER_FAILED)
+export const addUserComplete = createAction(types.ADD_USER_COMPLETE)
+
+export const deleteUserRequest = createAction(types.DELETE_USER_REQUEST)
+export const deleteUserSuccess = createAction(types.DELETE_USER_SUCCESS)
+export const deleteUserFailed = createAction(types.DELETE_USER_FAILED)
+export const deleteUserComplete = createAction(types.DELETE_USER_COMPLETE)
+
+export const updateUserRequest = createAction(types.UPDATE_USER_REQUEST)
+export const updateUserSuccess = createAction(types.UPDATE_USER_SUCCESS)
+export const updateUserFailed = createAction(types.UPDATE_USER_FAILED)
+export const updateUserComplete = createAction(types.UPDATE_USER_COMPLETE)

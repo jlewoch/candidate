@@ -1,74 +1,54 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-class PositionsList extends Component {
-constructor(props) {
-    super(props);
-    this.state = {
-        positions:[],
+import React from 'react'
+import styled from 'styled-components'
+import PositionCard from '../position_card/PositionCard'
+import { positions } from '../../../testdata';
+
+const PositionsList = ({ label = ''}) => {
+  const PositionSection = styled.div.attrs({})`
+    background: #f1f1f1;
+    padding: 1rem;
+    margin 10px;
+    overflow-y: scroll;
+    height: 100%;
+    border-radius: 12px;
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        
     }
-}
-getPositions = () => {
-    fetch("https://candidate-application.herokuapp.com/db/positions/list",{
-        method:'GET',
-        signal:this.AbortController.signal,
-        headers:{
-          authToken: localStorage.getItem('session')
-        }
-      })
-      .then(result => result.json())
-      .then(data => {
-        this.setState({
-          positions: data,
-        });
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  };
-  componentWillUnmount() {
-    this.AbortController.abort()
-  }
-  
-  componentDidMount() {
-    this.AbortController = new window.AbortController()
-    localStorage.setItem('lastVisited', this.props.location.pathname)
-   
-      this.getPositions()
-  }
-  
-    render() {
-        const {positions} = this.state;
-        if (positions.length < 1) {
-            return(null)
-          }
-        return ( <div className='list-main-container'>
-        <div className='list-container'>
-            <table className="table">
-            <thead>
-            <tr>
-            <th>Title</th>
-            <th>Opening Date</th>
-            <th>Closing Date</th>
-            <th>Priority</th>
-            </tr>
-            </thead>
-            <tbody>
-                {positions.map(position=>{
-                    return(
-                        <tr key={position.id}>
-                        <td><Link className='table-link' to={`/positions/${position.id}/applicants`}>{position.title}</Link></td>
-                        <td>{new Date(position.openingDate).toDateString()}</td>
-                        <td>{new Date(position.closingDate).toDateString()}</td>
-                        <td>{position.priority}</td>
-                        </tr>
-                    )
-                })}
-                </tbody>
-            </table>
-            </div>
-            </div>
-        );
+
+    ::-webkit-scrollbar-track {
+        box-shadow: none;
+        
     }
+     
+    ::-webkit-scrollbar-thumb {
+        background: #55B1C3; 
+        border-radius: 10px;
+        height: 20px;
+    }
+    `
+  const SectionLabel = styled.h4`
+    padding: 0px 1rem;
+    margin: 0;
+    `
+
+  return (
+    <PositionSection>
+      <SectionLabel>{label}</SectionLabel>
+      {positions.map(position => (
+        <PositionCard
+          key={position.id}
+          id={position.id}
+          title={position.title}
+          opened={position.openingDate}
+          total={position.totalApplications}
+          assigned={position.assignedTo}
+          location={position.location}
+        />
+      ))}
+    </PositionSection>
+  )
 }
 
-export default withRouter(PositionsList);
+export default PositionsList

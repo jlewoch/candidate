@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link, withRouter } from 'react-router-dom';
-import './Results.css'
 import PositionsNav from "../../positions/positionsNav/PositionsNav";
 class Results extends Component {
     constructor(props) {

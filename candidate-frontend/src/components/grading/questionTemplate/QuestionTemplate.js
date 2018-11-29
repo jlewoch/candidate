@@ -1,5 +1,4 @@
 import React from "react";
-import "./QuestionTemplate.css";
 import Buttons from "./Buttons";
 import TextArea from "./testarea/TextArea";
 const QuestionTemplate = ({ question, index, onChange, value, updateGrade}) => {

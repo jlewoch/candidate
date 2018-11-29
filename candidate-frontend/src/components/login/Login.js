@@ -1,5 +1,4 @@
 import React from 'react'
-import './Login.css'
 import Modal from '../../shared_components/modal'
 
 
