@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require("express");
 const router = express.Router();
 const knex = require('../knex/knex.js');
@@ -18,10 +19,17 @@ router.route('/').get((req, res)=>{
         let temp = objects.createPosition(positionObj,date,employee)
         knex('QuestionEvaluations').insert(temp).then(data=> res.status(200)).catch(err=>console.log(err))
     })
+=======
+const express = require('express')
+const router = express.Router()
+const call = require('../service_helpers/general_call_functions')
+>>>>>>> c18083fd976e6a59c2fae9c0a866f94c0bf20f5d
 
-router.route('/').get((req, res)=>{
-    knex('Positions').select('id', 'title','openingDate','closingDate', 'priority').where({resolved: 0}).then(data=>res.json(data)).catch(err=>console.log(err))
+router
+  .route('/')
+  .get((req, res) => {})
+  .post((req, res) => {})
+  .put((req, res) => {})
+  .delete((req, res) => {})
 
-})
-
-module.exports = router;
+module.exports = router

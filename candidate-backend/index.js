@@ -1,19 +1,19 @@
-require("dotenv").config();
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 9000;
-const jwt = require('jsonwebtoken');
-app.use(cors());
-app.use(bodyParser.json());
+require('dotenv').config()
+const express = require('express')
+const app = express()
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const PORT = process.env.PORT || 9000
+const jwt = require('jsonwebtoken')
+app.use(cors())
+app.use(bodyParser.json())
 
 // app.use((req, res, next) => {
 
 //     if(req.url === '/db/login') next()
 //     else {
 //        const sessionToken = req.headers.authtoken.split(' ')[0]
-       
+
 //        if (sessionToken) {
 //            if (jwt.verify(sessionToken, process.env.KEY)) {
 //             req.token = jwt.decode(sessionToken)
@@ -26,18 +26,11 @@ app.use(bodyParser.json());
 //        }
 //     }
 // })
+<<<<<<< HEAD
 const test = require('./services/database/accounts');
+=======
 
-app.use('/db/session', require('./routes/session'))
-app.use('/db/questions', require('./routes/questions'))
-app.use('/db/login', require('./routes/login'))
-app.use('/db/accounts', require('./routes/accounts'))
-app.use('/db/applicants', require('./routes/applicants'))
-app.use('/db/applications', require('./routes/applications'))
-app.use('/db/positions', require('./routes/positions'))
-app.use('/db/steps', require('./routes/steps'))
-app.use('/db/accounts', require('./routes/accounts'))
+app.use('/db', require('./routes/session'))
+>>>>>>> c18083fd976e6a59c2fae9c0a866f94c0bf20f5d
 
-app.listen(PORT, () =>
-  console.log(`The server is up and listening on ${PORT}`)
-); 
+app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))

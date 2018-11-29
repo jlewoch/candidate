@@ -1,0 +1,19 @@
+.applicants {
+    width: 100%;
+}
+
+.applicants-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.applicants-section {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-headers {
+    display: flex;
+    text-align: center;
+}

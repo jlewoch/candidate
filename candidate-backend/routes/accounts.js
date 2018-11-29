@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const express = require("express");
 const router = express.Router();
 const bcrypt = require('bcrypt');
@@ -36,5 +37,16 @@ accountDbSrv.removeAccount(req.body.account_id).then(data=>res.json(data)).catch
 //             knex('Accounts').where({employeeId: employee, username: username}).update(temp).then(data=> res.status(200)).catch(err=>console.log(err))
 //         })
 
+=======
+const express = require('express')
+const router = express.Router()
+const call = require('../service_helpers/general_call_functions')
+router
+  .route('/')
+  .get((req, res) => {})
+  .post((req, res) => {})
+  .put((req, res) => {})
+  .delete((req, res) => {})
+>>>>>>> c18083fd976e6a59c2fae9c0a866f94c0bf20f5d
 
-module.exports = router;
+module.exports = router
