@@ -28,11 +28,11 @@ exports.up = async () => {
     table
       .timestamp('open_date')
       .notNull()
-      .defaultTo(new Date().toUTCString())
+      .defaultTo(knex.fn.now())
     table
       .timestamp('close_date')
       .notNull()
-      .defaultTo(new Date().toUTCString())
+      .defaultTo(knex.fn.now())
   })
 }
 
