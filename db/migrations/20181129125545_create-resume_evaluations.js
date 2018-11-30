@@ -1,4 +1,4 @@
-const knex = require('../db/knex/knex')
+const knex = require('../knex/knex')
 exports.up = async () => {
   await knex.schema.createTable('resume_evaluations', table => {
     table
@@ -6,10 +6,7 @@ exports.up = async () => {
       .unsigned()
       .primary()
     table.integer('application_id').notNull()
-    table
-      .integer('weight')
-      .notNull()
-      .defaultTo(0)
+
     table.string('notes').notNull()
 
     table

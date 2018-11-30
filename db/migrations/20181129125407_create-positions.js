@@ -1,4 +1,5 @@
-const knex = require('../db/knex/knex')
+const knex = require('../knex/knex')
+
 exports.up = async () => {
   await knex.schema.createTable('positions', table => {
     table
