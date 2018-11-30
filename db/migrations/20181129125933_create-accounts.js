@@ -34,7 +34,7 @@ exports.up = async () => {
     table
       .timestamps('updated_at')
       .notNull()
-      .defaultTo(new Date().toUTCString())
+      .defaultTo(knex.fn.now())
   })
 }
 
