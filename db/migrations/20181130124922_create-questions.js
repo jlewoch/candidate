@@ -2,17 +2,18 @@ const knex = require('../knex/knex')
 exports.up = async () => {
   await knex.schema.createTable('questions', table => {
     table
-      .increments('id')
+      .uuid('guid')
       .unsigned()
       .primary()
+
     table.string('question').notNull()
     table
       .integer('weight')
       .notNull()
       .defaultTo(0)
-    table.integer('updated_by').notNull()
-    table.integer('created_by').notNull()
-    table.integer('step').notNull()
+    table.uuid('updated_by').notNull()
+    table.uuid('created_by').notNull()
+    table.uuid('step').notNull()
 
     table
       .boolean('active')
@@ -25,7 +26,7 @@ exports.up = async () => {
     table
       .timestamp('updated_at')
       .notNull()
-      .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+      .defaultTo(knex.fn.now())
   })
 }
 

@@ -3,10 +3,13 @@ const knex = require('../knex/knex')
 exports.up = async () => {
   await knex.schema.createTable('applicants', table => {
     table
-      .increments('id')
+      .uuid('guid')
       .unsigned()
       .primary()
-    table.string('name').notNull()
+    table.string('f_name').notNull()
+    table.string('l_name').notNull()
+    table.string('email').notNull()
+    table.string('phone').notNull()
 
     table
       .timestamp('created_at')
@@ -15,7 +18,8 @@ exports.up = async () => {
     table
       .timestamp('updated_at')
       .notNull()
-      .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+      .defaultTo(knex.fn.now())
+    table.unique(['email', 'phone'])
   })
 }
 

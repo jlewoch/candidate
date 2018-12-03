@@ -1,40 +1,34 @@
 const knex = require('../db/knex/knex')
 
-const all = (table, body, params) => {
-  knex(table)
+const all = (table, res) => {
+  return knex(table)
     .select('*')
-    .then(async data => {
-      res.status(200).json({ data, result: 'success' })
-    })
     .catch(err => res.status(400).json(err))
 }
 
-const get = () => {
-  knex(table)
+const get = (table, params, res) => {
+  return knex(table)
     .select('*')
-    .where({ id: params.id })
-    .then(async data => {
-      res.status(200).json({ data, result: 'success' })
-    })
+    .where({ guid: params.guid })
     .catch(err => res.status(400).json(err))
 }
-const update = () => {
+const update = (table, body, params, res) => {
   knex(table)
     .update(body)
-    .where({ id: params.id })
+    .where({ guid: params.guid })
     .then(res.status(200).json({ result: 'success' }))
     .catch(err => res.status(400).json(err))
 }
-const create = () => {
+const create = (table, body, res) => {
   knex(table)
     .insert(body)
-    .returning('id')
+    .returning('guid')
     .then(data => res.status(201).json({ data, result: 'success' }))
     .catch(err => res.status(400).json(err))
 }
-const destroy = () => {
+const destroy = (table, params, res) => {
   knex(table)
-    .where({ id: params.id })
+    .where({ guid: params.guid })
     .del()
     .then(res.status(200).json({ result: 'success' }))
     .catch(res.status(400).json)

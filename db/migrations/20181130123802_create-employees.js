@@ -1,20 +1,17 @@
 const knex = require('../knex/knex')
 exports.up = async () => {
-  await knex.schema.createTable('employee', table => {
+  await knex.schema.createTable('employees', table => {
     table
-      .increments('id')
+      .uuid('guid')
       .unsigned()
       .primary()
     table.string('f_name').notNull()
     table.string('l_name').notNull()
-    table.integer('phone')
+    table.string('phone')
     table.string('email')
     table.integer('department').notNull()
-    table.integer('manager').notNull()
-    table
-      .integer('updated_by')
-      .notNull()
-      .defaultTo(0)
+    table.uuid('manager').notNull()
+    table.uuid('updated_by').notNull()
     table
       .boolean('active')
       .notNull()
@@ -26,11 +23,11 @@ exports.up = async () => {
     table
       .timestamp('updated_at')
       .notNull()
-      .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+      .defaultTo(knex.fn.now())
     table.unique(['email', 'phone'])
   })
 }
 
 exports.down = async () => {
-  await knex.schema.dropTableIfExists('employee')
+  await knex.schema.dropTableIfExists('employees')
 }

@@ -1,8 +1,8 @@
 const knex = require('../knex/knex')
 exports.up = async () => {
-  await knex.schema.createTable('account', table => {
+  await knex.schema.createTable('accounts', table => {
     table
-      .increments('id')
+      .uuid('guid')
       .unsigned()
       .primary()
     table.string('username').notNull()
@@ -12,14 +12,8 @@ exports.up = async () => {
       .notNull()
       .defaultTo(true)
 
-    table
-      .integer('access_level')
-      .notNull()
-      .defaultTo(0)
-    table
-      .integer('updated_by')
-      .notNull()
-      .defaultTo(0)
+    table.uuid('access_level').notNull()
+    table.uuid('updated_by').notNull()
 
     table
       .timestamp('created_at')
@@ -28,16 +22,12 @@ exports.up = async () => {
     table
       .timestamp('updated_at')
       .notNull()
-      .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+      .defaultTo(knex.fn.now())
 
     table.unique(['password'])
-    table
-      .timestamps('updated_at')
-      .notNull()
-      .defaultTo(knex.fn.now())
   })
 }
 
 exports.down = async () => {
-  await knex.schema.dropTableIfExists('account')
+  await knex.schema.dropTableIfExists('accounts')
 }

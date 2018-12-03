@@ -3,7 +3,7 @@ const knex = require('../knex/knex')
 exports.up = async () => {
   await knex.schema.createTable('positions', table => {
     table
-      .increments('id')
+      .uuid('guid')
       .unsigned()
       .primary()
     table.string('title').notNull()
@@ -16,7 +16,7 @@ exports.up = async () => {
       .integer('priority')
       .notNull()
       .defaultTo(1)
-    table.integer('assigned_to')
+    table.uuid('assigned_to')
     table
       .timestamp('created_at')
       .notNull()
@@ -24,7 +24,7 @@ exports.up = async () => {
     table
       .timestamp('updated_at')
       .notNull()
-      .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+      .defaultTo(knex.fn.now())
     table
       .timestamp('open_date')
       .notNull()

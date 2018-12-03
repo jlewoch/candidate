@@ -2,18 +2,18 @@ const knex = require('../knex/knex')
 exports.up = async () => {
   await knex.schema.createTable('misc_evaluations', table => {
     table
-      .increments('id')
+      .uuid('guid')
       .unsigned()
       .primary()
-    table.integer('application_id').notNull()
+    table.uuid('application').notNull()
     table
       .integer('points_provided')
       .notNull()
       .defaultTo(0)
 
     table.string('notes').notNull()
-
-    table.integer('updated_by').notNull()
+    table.uuid('question').notNull()
+    table.uuid('updated_by').notNull()
     table
       .timestamp('created_at')
       .notNull()
@@ -21,7 +21,7 @@ exports.up = async () => {
     table
       .timestamp('updated_at')
       .notNull()
-      .defaultTo(knex.raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'))
+      .defaultTo(knex.fn.now())
   })
 }
 

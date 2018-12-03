@@ -11,109 +11,80 @@ function account (obj, creator) {
 
 function applicant (obj) {
   return {
-    fName: obj.fName,
-    lName: obj.lName,
-    email: obj.email
+    Name: obj.f_Name + ' ' + obj.l_Name,
+    email: obj.email,
+    phone: obj.phone,
+    applications: obj.applications
   }
 }
 function application (obj) {
   return {
-    totalAvailablePoints: obj.total,
-    posting_id: obj.positionId,
-    applicantId: obj.applicantId,
+    id: obj.id,
+    position: obj.position,
+    status: obj.status,
+    enabled: obj.enabled
   }
 }
 
-function document (obj) {
-  return {
-    name: obj.name,
-    type: obj.type
-  }
-}
 function employee (obj, creator) {
   return {
-    fName: obj.fName,
-    lName: obj.lName,
+    first_name: obj.f_name,
+    last_name: obj.l_name,
     phone: obj.phone,
     email: obj.email,
-    manager: obj.manager,
-    createdBy: creator,
-    modifiedBy: creator
+    manager: obj.manager
   }
 }
 
-function position (obj, creator) {
+function positions (obj) {
+  console.log(obj)
+
   return {
+    id: obj.guid,
     title: obj.title,
-    closingDate: obj.closingDate,
-    openingDate: obj.openingDate,
+    closing_date: obj.close_date.toLocaleDateString('en-us'),
+    opening_date: obj.open_date.toLocaleDateString('en-us'),
     priority: obj.priority,
-    createdBy: creator,
-    modifiedBy: creator
+    assigned_to: obj.assigned_to
   }
 }
 
-function question (obj, creator) {
+function questions (obj) {
   return {
+    id: obj.guid,
     question: obj.question,
     weight: obj.weight,
     enabled: obj.enabled,
-    stepProgressionLevel: obj.stepProgressionLevel,
-    createdBy: creator,
-    modifiedBy: creator
+    step: obj.step
   }
 }
-function questionEvaluation (obj, creator) {
-  return {
-    notes: obj.notes ? obj.notes : '',
-    providedGrade: obj.providedGrade,
-    questionId: obj.questionId,
-    applicationId: obj.applicationId,
-    createdBy: creator,
-    modifiedBy: creator
-  }
-}
+
 function step (obj, creator) {
   return {
     name: obj.name,
-    progressionLevel: obj.progressionLevel,
+    level: obj.level,
     required: obj.required,
     weight: obj.weight,
-    type: obj.type,
-    enabled: obj.enabled,
-    createdBy: creator,
-    modifiedBy: creator
+    enabled: obj.enabled
   }
 }
-function stepEvaluation (applicationId, creator, stepId, skipped) {
+function evaluation (obj) {
   return {
     skipped: skipped || false,
-    totalAvailablePoints: 0,
+    points_provided: 0,
     totalGrade: 0,
     status: 'Not Started',
     skipped: 0,
-    stepId: stepId,
-    applicationId: applicationId,
-    modifiedBy: creator
+    application: obj.application
   }
 }
-function updateObject (updateFields) {
-  let obj = {}
-  for (let i = 0; i < updateFields.length; i++) {
-    return { ...obj, [updateFields[i]]: updateFields[hello[i]] }
-  }
-  return obj
-}
+
 module.exports = {
-  updateObject,
   step,
-  stepEvaluation,
-  question,
-  questionEvaluation,
+  questions,
   account,
   applicant,
   application,
-  document,
-  position,
+  positions,
   employee
 }

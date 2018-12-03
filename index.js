@@ -3,8 +3,8 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const PORT = process.env.PORT || 9000
-const jwt = require('jsonwebtoken')
+const PORT = process.env.PORT || 8000
+// const jwt = require('jsonwebtoken')
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -27,6 +27,6 @@ app.use(bodyParser.json())
 //     }
 // })
 
-app.use('/db', require('./routes/session'))
+app.use('/db', require('./routes/index'))
 
 app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))
