@@ -1,14 +1,12 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
 
-import { Form } from 'semantic-ui-react'
+import QuestionsForm from '../components/forms/questions/QuestionsForm'
 
 const Main = () => {
-  const MainDiv = styled.div``
   return (
-    <MainDiv>
-      <Applicants />
-    </MainDiv>
+    <div id='main'>
+      <QuestionsForm />
+    </div>
   )
 }
 
