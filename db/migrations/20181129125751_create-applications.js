@@ -7,7 +7,7 @@ exports.up = async () => {
       .primary()
     table.uuid('applicant').notNull()
     table.integer('status').notNull()
-    table.uuid('position').notNull()
+    table.uuid('job').notNull()
     table
       .boolean('enabled')
       .notNull()

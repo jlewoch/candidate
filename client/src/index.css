@@ -1,18 +1,20 @@
-*{
+* {
     box-sizing: border-box;
-    
-
 }
-body{
+
+body {
     height: 100vh;
-   min-width: 1050px;
-    margin:0;
+    min-width: 1050px;
+    margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
+#root {
+    height: 100%;
+    width: 100%;
+}
 
-#root{
+#main {
     height: 100%;
     width: 100%;
 }

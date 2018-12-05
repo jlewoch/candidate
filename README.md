@@ -27,8 +27,23 @@ This is an applicantion that tries to remove some of the sub contionus bias from
 
 
 
-For development 
-create a file named .env
+## Being Worked on before it can be deployed
+
+#### Backend
+1. Routes
+2. Services
+3. Serving Objects
+4. Status Codes
+
+#### Client
+1. Forms
+2. Applicants
+3. Grading
+4. Dashboard
+5. Redux implimentation and restructure
+6. Routes
+
+
 
 
 ## Prerequisites

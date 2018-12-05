@@ -7,9 +7,10 @@ exports.up = async () => {
       .primary()
     table.string('f_name').notNull()
     table.string('l_name').notNull()
-    table.string('phone')
-    table.string('email')
-    table.integer('department').notNull()
+    table.integer('phone').defaultTo(9999999999)
+    table.string('email').notNull()
+    table.uuid('department').notNull()
+    table.uuid('account').notNull()
     table.uuid('manager').notNull()
     table.uuid('updated_by').notNull()
     table

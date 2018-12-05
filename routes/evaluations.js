@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
 const call = require('../service_helpers/general_api')
-
+// ----------------------------------------------------------------------------------------------------------
 router.route('/resume').get((req, res) => {
-  call.all('resume_evaluations')
+  call.all('resume_evaluations').post((req, res) => {
+    call.create(('resume_evaluations', body, res))
+  })
 })
+
 router
   .route('/resume/:guid')
   .get((req, res) => {
     call.get('resume_evaluations', req.params, res)
-  })
-  .post((req, res) => {
-    call.create(('resume_evaluations', body, res))
   })
   .put((req, res) => {
     call.update('resume_evaluations', req.body, req.params, res)
@@ -19,17 +19,17 @@ router
   .delete((req, res) => {
     call.destroy('resume_evaluations', req.params, res)
   })
-
+// ----------------------------------------------------------------------------------------------------------
 router.route('/phone').get((req, res) => {
-  call.all('phone_evaluations')
+  call.all('phone_evaluations').post((req, res) => {
+    call.create(('phone_evaluations', body, res))
+  })
 })
+
 router
   .route('/phone/:guid')
   .get((req, res) => {
     call.get('phone_evaluations', req.params, res)
-  })
-  .post((req, res) => {
-    call.create(('phone_evaluations', body, res))
   })
   .put((req, res) => {
     call.update('phone_evaluations', req.body, req.params, res)
@@ -37,17 +37,17 @@ router
   .delete((req, res) => {
     call.destroy('phone_evaluations', req.params, res)
   })
-
+// ----------------------------------------------------------------------------------------------------------
 router.route('/interview').get((req, res) => {
-  call.all('interview_evaluations')
+  call.all('interview_evaluations').post((req, res) => {
+    call.create(('interview_evaluations', body, res))
+  })
 })
+
 router
   .route('/interview/:guid')
   .get((req, res) => {
     call.get('interview_evaluations', req.params, res)
-  })
-  .post((req, res) => {
-    call.create(('interview_evaluations', body, res))
   })
   .put((req, res) => {
     call.update('interview_evaluations', req.body, req.params, res)
@@ -55,7 +55,7 @@ router
   .delete((req, res) => {
     call.destroy('interview_evaluations', req.params, res)
   })
-
+// ----------------------------------------------------------------------------------------------------------
 router
   .route('/misc')
   .get((req, res) => {
@@ -64,6 +64,7 @@ router
   .post((req, res) => {
     call.create(('misc_evaluations', body, res))
   })
+
 router
   .route('/misc/:guid')
   .get((req, res) => {

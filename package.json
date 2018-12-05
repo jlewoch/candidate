@@ -1,25 +1,29 @@
 {
-  "name": "backend",
+  "name": "Candidate",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is an applicantion that tries to remove some of the sub contionus bias from the hiring process by removing personal info from the resume and does not display the candidates name until they have moved on to the second step. I feel this will level the playing field for eveyone. It also allows recruites\\companies to have the ability to put a quantifiable weight on questions and step sections that matter more to the company. Current live view can be seen at [Candidate](https://candidate-application.herokuapp.com/)",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "postinstall": "cd client && npm install && npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlewoch/candidate.git"
+  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlewoch/candidate/issues"
+  },
+  "homepage": "https://github.com/jlewoch/candidate#readme",
   "dependencies": {
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "knex": "^0.15.2",
     "pg": "^7.7.1"
-  },
-  "devDependencies": {
-    "nodemon": "^1.18.7"
   }
 }

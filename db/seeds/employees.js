@@ -10,7 +10,7 @@ exports.seed = function (knex, Promise) {
           manager: '8201a600-6398-4e26-b94b-858a33694f98',
           updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
           active: true,
-          department: 36,
+          department: 'f7feda69-1958-44e4-9dc2-cdd879ccbfb6',
           f_name: 'Cochran',
           l_name: 'Mckay',
           email: 'cochranmckay@gadtron.com',
