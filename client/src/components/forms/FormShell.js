@@ -1,32 +1,49 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Button } from 'primereact/button'
-const FormShell = ({ cancel, item, submit, children, title }) => {
-  return (
-    <form onSubmit={submit}>
+import { Dialog } from 'primereact/dialog'
+
+export default class FormShell extends Component {
+  state = { visible: false }
+
+  render () {
+    const { cancel, item, title } = this.props
+    return (
       <div>
-        <h4>{item ? { title } : `Create a New ${title}`}</h4>
-      </div>
-      <div className='form-center'>{children}</div>
+        <Dialog
+          header={item ? `Edit ${title}` : `New ${title}`}
+          visible={this.state.visible}
+          width='300px'
+          closable={false}
+          modal
+          onHide={e => this.setState({ visible: false })}
+        >
+          <div>
+            <div className='form-center'>{this.props.children}</div>
 
-      <div className='form-footer'>
-        <div className='form-controls'>
-          <Button
-            label='Save'
-            type='submit'
-            icon='pi pi-check'
-            iconPos='right'
-          />
-        </div>
-        <div className='form-controls'>
-          <Button
-            label='Cancel'
-            onClick={cancel}
-            className='p-button-warning'
-          />
-        </div>
+            <div className='form-footer'>
+              <div className='form-controls'>
+                <Button onClick={this.props.submit} label='Save' />
+              </div>
+              <div className='form-controls'>
+                <Button
+                  label='Cancel'
+                  onClick={() => {
+                    cancel()
+                    this.setState({ visible: false })
+                  }}
+                  className='p-button-danger'
+                />
+              </div>
+            </div>
+          </div>
+        </Dialog>
+        <Button
+          label={item ? `Edit` : `Add`}
+          icon={`pi ${item ? 'pi-pencil' : 'pi-plus'}`}
+          iconPos='right'
+          onClick={e => this.setState({ visible: true })}
+        />
       </div>
-    </form>
-  )
+    )
+  }
 }
-
-export default FormShell

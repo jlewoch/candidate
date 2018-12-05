@@ -6,7 +6,7 @@ import store from './store'
 import registerServiceWorker from './registerServiceWorker'
 import './index.css'
 import 'primereact/resources/themes/nova-dark/theme.css'
-import 'primereact/resources/primereact.min.css'
+import 'primereact/resources/primereact.css'
 import 'primeicons/primeicons.css'
 import './styles/form.css'
 ReactDOM.render(

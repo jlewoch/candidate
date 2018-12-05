@@ -1,20 +1,12 @@
 import React, { Component } from 'react'
-import { ToggleButton } from 'primereact/togglebutton'
+import FormShell from '../FormShell'
 import { InputTextarea } from 'primereact/inputtextarea'
-
 import { Slider } from 'primereact/slider'
+import { ToggleButton } from 'primereact/togglebutton'
 import { InputText } from 'primereact/inputtext'
 import { Dropdown } from 'primereact/dropdown'
-import FormShell from '../FormShell'
-const steps = [
-  { label: 'Resume Review', value: 'NY' },
-  { label: 'Phone Screening', value: 'RM' },
-  { label: 'Interview #1', value: 'LDN' },
-  { label: 'interview #2', value: 'IST' },
-  { label: 'Misc', value: 'PRS' }
-]
 
-export default class QuestionsForm extends Component {
+export default class QuestionsFormDisaply extends Component {
   constructor () {
     super()
     this.state = {
@@ -49,32 +41,49 @@ export default class QuestionsForm extends Component {
         }
     )
   }
-  submit = e => {
-    e.preventDefault()
-  }
 
   componentDidMount = () => {
-    this.setState({ ...this.props.question })
+    this.setState({ ...this.props.item })
   }
 
   render () {
-    const { question } = this.props
+    const { item } = this.props
+    const { question, step, max, weight, active } = this.state
     return (
       <FormShell
         title='Question'
         cancel={this.cancel}
-        submit={this.submit}
-        item={question}
+        submit={() =>
+          this.props.submit({ question: { active, step, question, weight } })
+        }
+        item={item}
       >
         <div className='form-center-top'>
           <div className='form-controls'>
             <Dropdown
-              value={this.state.step}
-              options={steps}
+              value={step}
+              options={this.props.steps}
               onChange={e => {
                 this.setState({ step: e.value })
               }}
               placeholder='Select Step'
+            />
+          </div>
+          <div className='form-controls'>
+            <InputText
+              max={max}
+              min={0}
+              value={weight}
+              style={{ width: '10em' }}
+              type='number'
+              onChange={this.sliderChange}
+            />
+            <Slider
+              max={max}
+              min={0}
+              value={weight}
+              onChange={this.sliderChange}
+              style={{ width: '10em' }}
             />
           </div>
           <div className='form-controls'>
@@ -84,23 +93,8 @@ export default class QuestionsForm extends Component {
               offLabel='Inactive'
               onIcon='pi pi-check'
               offIcon='pi pi-times'
-              checked={this.state.active}
+              checked={active}
               onChange={e => this.setState({ active: e.value })}
-            />
-          </div>
-          <div className='form-controls'>
-            <InputText
-              max={this.state.max}
-              value={this.state.weight}
-              style={{ width: '10em' }}
-              type='number'
-              onChange={this.sliderChange}
-            />
-            <Slider
-              max={this.state.max}
-              value={this.state.weight}
-              onChange={this.sliderChange}
-              style={{ width: '10em' }}
             />
           </div>
         </div>
@@ -109,7 +103,7 @@ export default class QuestionsForm extends Component {
             tooltip='Enter a Question'
             rows={5}
             cols={50}
-            value={this.state.question}
+            value={question}
             onChange={e => this.setState({ question: e.target.value })}
             autoResize
           />

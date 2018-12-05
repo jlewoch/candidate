@@ -1,7 +1,7 @@
 import React from 'react'
 
-import QuestionsForm from '../components/forms/questions/QuestionsForm'
-
+import { Button } from 'primereact/button'
+import { QuestionsForm } from '../components/forms/questions'
 const Main = () => {
   return (
     <div id='main'>
