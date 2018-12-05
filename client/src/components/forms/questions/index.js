@@ -5,7 +5,10 @@ import {
   addQuestionRequest
 } from '../../../store/questions/actions'
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    steps:state.steps,
+    
+})
 const mapDispatchToProps = (dispatch, ownProps) => ({
   submit: e =>
     ownProps.item

@@ -1,19 +1,19 @@
 const knex = require('../knex/knex')
 exports.up = async () => {
-  await knex.schema.createTable('misc_evaluations', table => {
+  await knex.schema.createTable('departments', table => {
     table
       .uuid('guid')
       .unsigned()
       .primary()
-    table.uuid('application').notNull()
-    table
-      .integer('points_provided')
-      .notNull()
-      .defaultTo(0)
 
-    table.string('notes').notNull()
-    table.uuid('question').notNull()
+    table.string('name').notNull()
     table.uuid('updated_by').notNull()
+    table.uuid('created_by').notNull()
+    table
+      .boolean('required')
+      .notNull()
+      .defaultTo(true)
+
     table
       .timestamp('created_at')
       .notNull()
@@ -26,5 +26,5 @@ exports.up = async () => {
 }
 
 exports.down = async () => {
-  await knex.schema.dropTableIfExists('misc_evaluations')
+  await knex.schema.dropTableIfExists('departments')
 }

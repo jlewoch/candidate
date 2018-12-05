@@ -1,22 +1,22 @@
 import * as types from './actionTypes';
 import {createAction} from 'redux-act';
 
-export const getQuestionsRequest = createAction(types.GET_QUESTIONS_REQUEST)
-export const getQuestionsSuccess = createAction(types.GET_QUESTIONS_SUCCESS)
-export const getQuestionsFailed = createAction(types.GET_QUESTIONS_FAILED)
-export const getQuestionsComplete = createAction(types.GET_QUESTIONS_COMPLETE)
+export const getEmployeesRequest = createAction(types.GET_EMPLOYEES_REQUEST)
+export const getEmployeesSuccess = createAction(types.GET_EMPLOYEES_SUCCESS)
+export const getEmployeesFailed = createAction(types.GET_EMPLOYEES_FAILED)
+export const getEmployeesComplete = createAction(types.GET_EMPLOYEES_COMPLETE)
 
-export const addQuestionRequest = createAction(types.ADD_QUESTION_REQUEST)
-export const addQuestionSuccess = createAction(types.ADD_QUESTION_SUCCESS)
-export const addQuestionFailed = createAction(types.ADD_QUESTION_FAILED)
-export const addQuestionComplete = createAction(types.ADD_QUESTION_COMPLETE)
+export const addEmployeeRequest = createAction(types.ADD_EMPLOYEE_REQUEST)
+export const addEmployeeSuccess = createAction(types.ADD_EMPLOYEE_SUCCESS)
+export const addEmployeeFailed = createAction(types.ADD_EMPLOYEE_FAILED)
+export const addEmployeeComplete = createAction(types.ADD_EMPLOYEE_COMPLETE)
 
-export const deleteQuestionRequest = createAction(types.DELETE_QUESTION_REQUEST)
-export const deleteQuestionSuccess = createAction(types.DELETE_QUESTION_SUCCESS)
-export const deleteQuestionFailed = createAction(types.DELETE_QUESTION_FAILED)
-export const deleteQuestionComplete = createAction(types.DELETE_QUESTION_COMPLETE)
+export const deleteEmployeeRequest = createAction(types.DELETE_EMPLOYEE_REQUEST)
+export const deleteEmployeeSuccess = createAction(types.DELETE_EMPLOYEE_SUCCESS)
+export const deleteEmployeeFailed = createAction(types.DELETE_EMPLOYEE_FAILED)
+export const deleteEmployeeComplete = createAction(types.DELETE_EMPLOYEE_COMPLETE)
 
-export const updateQuestionRequest = createAction(types.UPDATE_QUESTION_REQUEST)
-export const updateQuestionSuccess = createAction(types.UPDATE_QUESTION_SUCCESS)
-export const updateQuestionFailed = createAction(types.UPDATE_QUESTION_FAILED)
-export const updateQuestionComplete = createAction(types.UPDATE_QUESTION_COMPLETE)
+export const updateEmployeeRequest = createAction(types.UPDATE_EMPLOYEE_REQUEST)
+export const updateEmployeeSuccess = createAction(types.UPDATE_EMPLOYEE_SUCCESS)
+export const updateEmployeeFailed = createAction(types.UPDATE_EMPLOYEE_FAILED)
+export const updateEmployeeComplete = createAction(types.UPDATE_EMPLOYEE_COMPLETE)
