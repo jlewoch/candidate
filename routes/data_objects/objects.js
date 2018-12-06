@@ -1,8 +1,18 @@
-const bcrypt = require('bcrypt')
-const department = () => ({})
-const manager = () => {}
+const position = obj => ({
+  id: obj.id,
+  title: obj.title
+})
+const department = obj => ({
+  id: obj.id,
+  name: obj.name
+})
+const manager = obj => ({
+  ...employee(obj),
+  direct_reports: obj.direct_reports
+})
 const applicant = obj => ({
-  Name: obj.f_Name + ' ' + obj.l_Name,
+  id: obj.id,
+  Name: obj.f_name + ' ' + obj.l_name,
   email: obj.email,
   phone: obj.phone,
   applications: obj.applications
@@ -15,6 +25,7 @@ const application = obj => ({
 })
 
 const employee = obj => ({
+  full_name: obj.f_name + ' ' + obj.l_name,
   first_name: obj.f_name,
   last_name: obj.l_name,
   phone: obj.phone,
@@ -22,8 +33,8 @@ const employee = obj => ({
   manager: obj.manager
 })
 
-const positions = obj => ({
-  id: obj.guid,
+const job = obj => ({
+  id: obj.id,
   title: obj.title,
   closing_date: obj.close_date.toLocaleDateString('en-us'),
   opening_date: obj.open_date.toLocaleDateString('en-us'),
@@ -31,36 +42,40 @@ const positions = obj => ({
   assigned_to: obj.assigned_to
 })
 
-const questions = obj => ({
-  id: obj.guid,
-  question: obj.question,
+const question = obj => ({
+  id: obj.id,
+  question: obj.question + '?',
   weight: obj.weight,
   enabled: obj.enabled,
   step: obj.step
 })
 
 const step = obj => ({
+  id: obj.id,
   name: obj.name,
   level: obj.level,
   required: obj.required,
   weight: obj.weight,
   enabled: obj.enabled
 })
-const evaluation = obj => ({
-  skipped: skipped || false,
-  points_provided: 0,
-  totalGrade: 0,
-  status: 'Not Started',
-  skipped: 0,
+const section_evaluation = obj => ({
+  skipped: obj.skipped,
+  totalGrade: obj.totalGrade,
+  status: obj.status,
+  step: obj.step,
   application: obj.application
 })
+const single_evalution = obj => ({})
 
 module.exports = {
+  job,
+  question,
   step,
-  questions,
-  account,
+  section_evaluation,
   applicant,
   application,
-  positions,
-  employee
+  single_evalution,
+  manager,
+  department,
+  position
 }

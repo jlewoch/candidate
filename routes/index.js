@@ -1,21 +1,23 @@
 const express = require('express')
 const router = express.Router()
 
-// unauthenticated
-router.use('/login', require('./login'))
-
-// authenticated
-router.use('/session', require('./session'))
-router.use('/questions', require('./questions'))
-router.use('/accounts', require('./accounts'))
 router.use('/applicants', require('./applicants'))
 router.use('/applications', require('./applications'))
-router.use('/departments', require('./departments'))
+router.use('/jobs', require('./jobs'))
+
+router.use('/questions', require('./questions'))
+router.use('/first_interview', require('./first_interview_evaluations'))
+router.use('/phone', require('./phone_evaluations'))
+router.use('/second_interview', require('./second_interview_evaluations'))
+router.use('/resume', require('./resume_evaluations'))
+router.use('/section', require('./section_evaluations'))
+router.use('/steps', require('./steps'))
+
 router.use('/employees', require('./employees'))
 router.use('/positions', require('./positions'))
-router.use('/positings', require('./postings'))
-router.use('/steps', require('./steps'))
+
+router.use('/session', require('./session'))
 router.use('/accounts', require('./accounts'))
-router.use('/evaluations', require('./evaluations'))
+router.use('/login', require('./login'))
 
 module.exports = router

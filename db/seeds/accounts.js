@@ -1,9 +1,20 @@
-exports.seed = function (knex, Promise) {
+exports.seed = async knex => {
   // Deletes ALL existing entries
   return knex('accounts')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('accounts').insert([])
+      return knex('accounts').insert([
+        {
+          username: 'jlewoch',
+          password: 'Dragons21',
+          enabled: true,
+          locked: 0,
+          login_attempts: 0,
+          access_level: 2,
+          created_by: 0,
+          updated_by: 0
+        }
+      ])
     })
 }

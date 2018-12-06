@@ -1,16 +1,21 @@
-const knex = require('../knex/knex')
-
-exports.up = async () => {
-  await knex.schema.createTable('applicants', table => {
+exports.up = async knex => {
+  return knex.schema.createTable('applicants', table => {
     table
-      .uuid('guid')
+      .bigIncrements('id')
       .unsigned()
       .primary()
     table.string('f_name').notNull()
     table.string('l_name').notNull()
-    table.string('email').notNull()
-    table.string('phone').notNull()
-
+    table
+      .string('email')
+      .unique()
+      .notNull()
+    table
+      .string('phone')
+      .unique()
+      .notNull()
+    table.bigInteger('updated_by').notNull()
+    table.bigInteger('created_by').notNull()
     table
       .timestamp('created_at')
       .notNull()
@@ -19,10 +24,9 @@ exports.up = async () => {
       .timestamp('updated_at')
       .notNull()
       .defaultTo(knex.fn.now())
-    table.unique(['email', 'phone'])
   })
 }
 
-exports.down = async () => {
+exports.down = async knex => {
   await knex.schema.dropTableIfExists('applicants')
 }

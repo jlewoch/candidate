@@ -1,18 +1,17 @@
+const express = require('express')
+const router = express.Router()
+const call = require('./api_service_helpers/general_api')
+
 router
-  .route('/jobs')
+  .route('/')
   .get((req, res) => {
-    call.all('jobs').then(data => {
-      res.status(200).json({
-        data: data.map(item => obj.jobs(item)),
-        result: 'success'
-      })
-    })
+    call.all('jobs')
   })
   .post((req, res) => {
     call.create(('jobs', body, res))
   })
 router
-  .route('/jobs/:guid')
+  .route('/:id')
   .get((req, res) => {
     call.get('jobs', req.params, res)
   })

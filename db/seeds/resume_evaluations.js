@@ -1,4 +1,4 @@
-exports.seed = function (knex, Promise) {
+exports.seed = async knex =>{
   // Deletes ALL existing entries
   return knex('resume_evaluations')
     .del()

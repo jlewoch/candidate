@@ -1,22 +1,19 @@
 exports.up = async knex => {
-  await knex.schema.createTable('applications', table => {
+  await knex.schema.createTable('section_evaluations', table => {
     table
       .bigIncrements('id')
       .unsigned()
       .primary()
-
-    table.integer('status').notNull()
-
     table
-      .boolean('enabled')
-      .notNull()
-      .defaultTo(true)
-    table
-      .float('total_grade')
+      .integer('total_grade')
       .notNull()
       .defaultTo(0)
-    table.bigInteger('applicant').notNull()
-    table.bigInteger('job').notNull()
+    table
+      .boolean('skipped')
+      .notNull()
+      .defaultTo(false)
+    table.bigInteger('step').notNull()
+    table.bigInteger('application').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table
@@ -31,5 +28,5 @@ exports.up = async knex => {
 }
 
 exports.down = async knex => {
-  await knex.schema.dropTableIfExists('applications')
+  await knex.schema.dropTableIfExists('section_evaluations')
 }

@@ -1,22 +1,18 @@
 exports.up = async knex => {
-  await knex.schema.createTable('applications', table => {
+  await knex.schema.createTable('second_interview_evaluations', table => {
     table
       .bigIncrements('id')
       .unsigned()
       .primary()
 
-    table.integer('status').notNull()
-
     table
-      .boolean('enabled')
-      .notNull()
-      .defaultTo(true)
-    table
-      .float('total_grade')
+      .integer('points_provided')
       .notNull()
       .defaultTo(0)
-    table.bigInteger('applicant').notNull()
-    table.bigInteger('job').notNull()
+
+    table.string('notes')
+    table.bigInteger('application').notNull()
+    table.bigInteger('question').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table
@@ -31,5 +27,5 @@ exports.up = async knex => {
 }
 
 exports.down = async knex => {
-  await knex.schema.dropTableIfExists('applications')
+  await knex.schema.dropTableIfExists('second_interview_evaluations')
 }

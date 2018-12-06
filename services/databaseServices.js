@@ -1,5 +1,5 @@
 const knex = require("../db/knex/knex");
-const objects = require("../services/objects");
+const objects = require("./objects");
 const objectServices = require("./objectServices");
 
 

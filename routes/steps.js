@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const call = require('../service_helpers/general_api')
-
+const call = require('./api_service_helpers/general_api')
+const obj = require('./data_objects/objects')
 router
   .route('/')
   .get((req, res) => {
@@ -11,7 +11,7 @@ router
     call.create(('steps', body, res))
   })
 router
-  .route('/:guid')
+  .route('/:id')
   .get((req, res) => {
     call.get('steps', req.params, res)
   })

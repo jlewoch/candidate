@@ -1,9 +1,9 @@
-exports.seed = function (knex, Promise) {
+exports.seed = async knex =>{
   // Deletes ALL existing entries
-  return knex('interview_evaluations')
+  return knex('second_interview_evaluations')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('interview_evaluations').insert([])
+      return knex('second_interview_evaluations').insert([])
     })
 }
