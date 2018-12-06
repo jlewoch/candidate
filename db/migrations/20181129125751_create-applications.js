@@ -8,10 +8,6 @@ exports.up = async knex => {
     table.integer('status').notNull()
 
     table
-      .boolean('enabled')
-      .notNull()
-      .defaultTo(true)
-    table
       .float('total_grade')
       .notNull()
       .defaultTo(0)

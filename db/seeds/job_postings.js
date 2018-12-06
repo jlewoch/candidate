@@ -1,12 +1,12 @@
 exports.seed = async knex => {
   // Deletes ALL existing entries
-  return knex('jobs')
+  return knex('job_postings')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('jobs').insert([
+      return knex('job_postings').insert([
         {
-          title: 'Web Developer',
+          position: 0,
           openings: 1,
           priority: 1,
           assigned_to: 0,
@@ -16,7 +16,7 @@ exports.seed = async knex => {
           close_date: '2017-06-05T04:19:34 +04:00'
         },
         {
-          title: 'Recruiter',
+          position: 1,
           openings: 8,
           priority: 1,
           assigned_to: 0,
@@ -26,7 +26,7 @@ exports.seed = async knex => {
           close_date: '2018-05-29T04:51:46 +04:00'
         },
         {
-          title: 'Accountant',
+          position: 2,
           openings: 1,
           priority: 2,
           assigned_to: 0,
@@ -36,7 +36,7 @@ exports.seed = async knex => {
           close_date: '2015-08-07T07:12:50 +04:00'
         },
         {
-          title: 'Technical Analyst',
+          position: 3,
           openings: 6,
           priority: 2,
           assigned_to: 0,
@@ -46,7 +46,7 @@ exports.seed = async knex => {
           close_date: '2016-11-25T03:42:58 +05:00'
         },
         {
-          title: 'Receptionist',
+          position: 4,
           openings: 1,
           priority: 2,
           assigned_to: 0,

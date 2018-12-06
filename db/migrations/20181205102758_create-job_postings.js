@@ -1,11 +1,11 @@
 exports.up = async knex => {
-  await knex.schema.createTable('jobs', table => {
+  await knex.schema.createTable('job_postings', table => {
     table
       .bigIncrements('id')
       .unsigned()
       .primary()
     table
-      .string('title')
+      .bigInteger('position')
       .notNull()
       .unique()
     table
@@ -40,5 +40,5 @@ exports.up = async knex => {
 }
 
 exports.down = async knex => {
-  await knex.schema.dropTableIfExists('jobs')
+  await knex.schema.dropTableIfExists('job_postings')
 }

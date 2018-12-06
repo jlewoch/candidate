@@ -7,7 +7,6 @@ exports.seed = async knex => {
       return knex('first_interview_evaluations').insert([
         {
           notes: 'Sandoval',
-          updated_by: 0,
           question: 0,
           application: 0,
           points_provided: 4,
@@ -16,7 +15,6 @@ exports.seed = async knex => {
         },
         {
           notes: 'Kemp',
-          updated_by: 0,
           question: 4,
           application: 0,
           points_provided: 6,
@@ -25,7 +23,6 @@ exports.seed = async knex => {
         },
         {
           notes: 'Morrison',
-          updated_by: 0,
           question: 5,
           application: 0,
           points_provided: 8,
@@ -34,7 +31,6 @@ exports.seed = async knex => {
         },
         {
           notes: 'Gonzalez',
-          updated_by: 0,
           question: 1,
           application: 0,
           points_provided: 6,
@@ -43,7 +39,6 @@ exports.seed = async knex => {
         },
         {
           notes: 'Fox',
-          updated_by: 0,
           question: 2,
           application: 0,
           points_provided: 2,
@@ -52,7 +47,6 @@ exports.seed = async knex => {
         },
         {
           notes: 'Reid',
-          updated_by: 0,
           question: 3,
           application: 0,
           points_provided: 8,
@@ -61,7 +55,6 @@ exports.seed = async knex => {
         },
         {
           notes: 'Reid',
-          updated_by: 0,
           question: 3,
           application: 1,
           points_provided: 8,
@@ -70,7 +63,6 @@ exports.seed = async knex => {
         },
         {
           notes: 'Reid',
-          updated_by: 0,
           question: 3,
           application: 2,
           points_provided: 8,

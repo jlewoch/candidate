@@ -6,8 +6,8 @@ exports.seed = async knex => {
       // Inserts seed entries
       return knex('accounts').insert([
         {
-          username: 'jlewoch',
-          password: 'Dragons21',
+          username: 'test',
+          password: 'test',
           enabled: true,
           locked: 0,
           login_attempts: 0,
