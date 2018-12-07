@@ -8,15 +8,11 @@ exports.up = async knex => {
     table.integer('status').notNull()
 
     table
-      .boolean('enabled')
-      .notNull()
-      .defaultTo(true)
-    table
       .float('total_grade')
       .notNull()
       .defaultTo(0)
     table.bigInteger('applicant').notNull()
-    table.bigInteger('job').notNull()
+    table.bigInteger('job_posting').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table

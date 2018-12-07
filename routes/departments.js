@@ -8,17 +8,17 @@ const { OK, CREATED } = require('./api_service_helpers/status_codes')
 router
   .route('/')
   .get((req, res) => {
-    call.all('phone_evaluations').then(data =>
+    call.all('departments').then(data =>
       res.status(OK.code).json({
-        data: data.map(item => obj.single_evalution(item)),
+        data: data.map(item => obj.department(item)),
         message: OK.message
       })
     )
   })
   .post((req, res) => {
-    call.create('phone_evaluations', req.body, res).then(data =>
+    call.create('departments', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.single_evalution(item)),
+        data: data.map(item => obj.department(item)),
         message: CREATED.message
       })
     )
@@ -26,16 +26,16 @@ router
 router
   .route('/:id')
   .get((req, res) => {
-    call.get('phone_evaluations', req.params, res)
+    call.get('departments', req.params, res)
   })
   .put((req, res) => {
-    call.update('phone_evaluations', req.body, req.params, res)
+    call.update('departments', req.body, req.params, res)
   })
   .patch((req, res) => {
-    call.update('phone_evaluations', req.body, req.params, res)
+    call.update('departments', req.body, req.params, res)
   })
   .delete((req, res) => {
-    call.destroy('phone_evaluations', req.params, res)
+    call.destroy('departments', req.params, res)
   })
 
 module.exports = router

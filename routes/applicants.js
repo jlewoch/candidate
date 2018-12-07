@@ -3,7 +3,7 @@ const router = express.Router()
 const call = require('./api_service_helpers/general_api')
 const obj = require('./data_objects/objects')
 const objs = require('../middleware/api/objectServices')
-const { OK } = require('./api_service_helpers/status_codes')
+const { OK, CREATED } = require('./api_service_helpers/status_codes')
 
 router
   .route('/')
@@ -17,9 +17,9 @@ router
   })
   .post((req, res) => {
     call.create('applicants', req.body, res).then(data =>
-      res.status(OK.code).json({
+      res.status(CREATED.code).json({
         data: data.map(item => obj.applicant(item)),
-        message: OK.message
+        message: CREATED.message
       })
     )
   })

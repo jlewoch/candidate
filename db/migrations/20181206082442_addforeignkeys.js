@@ -281,7 +281,7 @@ exports.up = async knex => {
       .onDelete('cascade')
       .onUpdate('cascade')
   })
-  knex.schema.alterTable('jobs', table => {
+  knex.schema.alterTable('job_postings', table => {
     table
       .bigInteger('updated_by')
       .references('id')
@@ -300,6 +300,13 @@ exports.up = async knex => {
       .bigInteger('assigned_to')
       .references('id')
       .inTable('employees')
+      .notNullable()
+      .onDelete('cascade')
+      .onUpdate('cascade')
+    table
+      .bigInteger('position')
+      .references('id')
+      .inTable('positions')
       .notNullable()
       .onDelete('cascade')
       .onUpdate('cascade')

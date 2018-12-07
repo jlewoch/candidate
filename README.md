@@ -32,8 +32,7 @@ This is an applicantion that tries to remove some of the sub contionus bias from
 #### Backend
 1. Routes
 2. Services
-3. Serving Objects
-4. Status Codes
+3. Status Codes
 
 #### Client
 1. Forms

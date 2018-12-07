@@ -2,39 +2,25 @@ const express = require('express')
 const router = express.Router()
 const call = require('./api_service_helpers/general_api')
 const obj = require('./data_objects/objects')
-const objs = require('../middleware/api/objectServices')
-const { BAD_REQUEST } = require('./api_service_helpers/status_codes')
-
-function confirmValid (req, res, next) {
-  objs.weightLeft(req.body.step).then(left => {
-    req.body.enabled && req.body.weight && req.body.weight <= left
-      ? next()
-      : res
-        .status(BAD_REQUEST.code)
-        .json(
-          BAD_REQUEST.message +
-              `there is ${left}% weight left for the selected step`
-        )
-  })
-}
+const { confirmValid } = require('../middleware/api/router_middleware')
+const { OK, CREATED } = require('./api_service_helpers/status_codes')
 
 router.get('/', (req, res) => {
   call.all('questions', res).then(data => {
-    res.status(200).json({
+    res.status(OK.code).json({
       data: data.map(item => obj.question(item)),
-      result: 'success'
+      message: OK.message
     })
   })
 })
 
 router.post('/', confirmValid, (req, res) => {
-  call
-    .create('questions', req.body, res)
-    .then(data =>
-      res
-        .status(201)
-        .json({ data: data.map(item => obj.question(item)), result: 'success' })
-    )
+  call.create('questions', req.body, res).then(data =>
+    res.status(CREATED.code).json({
+      data: data.map(item => obj.question(item)),
+      message: CREATED.message
+    })
+  )
 })
 router
   .route('/:id')
