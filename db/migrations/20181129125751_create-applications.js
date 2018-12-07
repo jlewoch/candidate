@@ -12,7 +12,7 @@ exports.up = async knex => {
       .notNull()
       .defaultTo(0)
     table.bigInteger('applicant').notNull()
-    table.bigInteger('job').notNull()
+    table.bigInteger('job_posting').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table

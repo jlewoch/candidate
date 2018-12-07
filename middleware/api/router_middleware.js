@@ -17,7 +17,6 @@ const confirmValid = (req, res, next) => {
 const checkRequiredFields = (req, res, next) => {
   // pulls path from base url and selects array to compare from file
   table = table[req.baseUrl.split('/').pop()]
-  console.log()
 
   if (
     Object.keys(req.body)
