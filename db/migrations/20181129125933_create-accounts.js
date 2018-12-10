@@ -1,20 +1,29 @@
-const knex = require('../knex/knex')
-exports.up = async () => {
+exports.up = async knex => {
   await knex.schema.createTable('accounts', table => {
     table
-      .uuid('guid')
+      .bigIncrements('id')
       .unsigned()
       .primary()
-    table.string('username').notNull()
+    table
+      .string('username')
+      .notNull()
+      .unique()
     table.string('password').notNull()
     table
       .boolean('enabled')
       .notNull()
       .defaultTo(true)
-
-    table.uuid('access_level').notNull()
-    table.uuid('updated_by').notNull()
-
+    table
+      .boolean('locked')
+      .notNull()
+      .defaultTo(false)
+    table
+      .integer('login_attempts')
+      .notNull()
+      .defaultTo(0)
+    table.bigInteger('account_level').notNull()
+    table.bigInteger('updated_by').notNull()
+    table.bigInteger('created_by').notNull()
     table
       .timestamp('created_at')
       .notNull()
@@ -23,11 +32,9 @@ exports.up = async () => {
       .timestamp('updated_at')
       .notNull()
       .defaultTo(knex.fn.now())
-
-    table.unique(['password'])
   })
 }
 
-exports.down = async () => {
+exports.down = async knex => {
   await knex.schema.dropTableIfExists('accounts')
 }

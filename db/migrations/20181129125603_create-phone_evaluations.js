@@ -1,20 +1,20 @@
-const knex = require('../knex/knex')
-exports.up = async () => {
+exports.up = async knex => {
   await knex.schema.createTable('phone_evaluations', table => {
     table
-      .uuid('guid')
+      .bigIncrements('id')
       .unsigned()
       .primary()
-    table.uuid('application').notNull()
 
-    table.string('notes').notNull()
+    table.string('notes')
 
     table
-      .integer('points_provided')
+      .integer('provided_points')
       .notNull()
       .defaultTo(0)
-    table.uuid('question').notNull()
-    table.uuid('updated_by').notNull()
+    table.bigInteger('application').notNull()
+    table.bigInteger('question').notNull()
+    table.bigInteger('updated_by').notNull()
+    table.bigInteger('created_by').notNull()
     table
       .timestamp('created_at')
       .notNull()
@@ -26,6 +26,6 @@ exports.up = async () => {
   })
 }
 
-exports.down = async () => {
+exports.down = async knex => {
   await knex.schema.dropTableIfExists('phone_evaluations')
 }

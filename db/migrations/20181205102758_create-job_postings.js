@@ -1,12 +1,13 @@
-const knex = require('../knex/knex')
-
-exports.up = async () => {
-  await knex.schema.createTable('jobs', table => {
+exports.up = async knex => {
+  await knex.schema.createTable('job_postings', table => {
     table
-      .uuid('guid')
+      .bigIncrements('id')
       .unsigned()
       .primary()
-    table.string('title').notNull()
+    table
+      .bigInteger('position')
+      .notNull()
+      .unique()
     table
       .integer('openings')
       .notNull()
@@ -16,7 +17,9 @@ exports.up = async () => {
       .integer('priority')
       .notNull()
       .defaultTo(1)
-    table.uuid('assigned_to')
+    table.bigInteger('assigned_to').notNull()
+    table.bigInteger('updated_by').notNull()
+    table.bigInteger('created_by').notNull()
     table
       .timestamp('created_at')
       .notNull()
@@ -30,12 +33,12 @@ exports.up = async () => {
       .notNull()
       .defaultTo(knex.fn.now())
     table
-      .timestamp('close_date')
+      .timestamp('closing_date')
       .notNull()
       .defaultTo(knex.fn.now())
   })
 }
 
-exports.down = async () => {
-  await knex.schema.dropTableIfExists('jobs')
+exports.down = async knex => {
+  await knex.schema.dropTableIfExists('job_postings')
 }

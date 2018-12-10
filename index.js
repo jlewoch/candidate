@@ -1,10 +1,15 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
+const logger = require('morgan')
 const bodyParser = require('body-parser')
-const PORT = process.env.PORT || 9000
+
 const jwt = require('jsonwebtoken')
+
+const PORT = process.env.PORT || 8000
+app.use(logger('dev'))
 app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }))
 
 // app.use((req, res, next) => {
 
@@ -25,6 +30,6 @@ app.use(bodyParser.json())
 //     }
 // })
 
-app.use('/db', require('./routes/index'))
+app.use('/db', require('./routes'))
 
 app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))

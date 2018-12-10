@@ -1,14 +1,24 @@
-const knex = require('../knex/knex')
-exports.up = async () => {
+exports.up = async knex => {
   await knex.schema.createTable('account_levels', table => {
     table
-      .uuid('guid')
+      .bigIncrements('id')
       .unsigned()
       .primary()
-    table.string('description').notNull()
-    table.integer('level').notNull()
-    table.uuid('updated_by').notNull()
-
+    table
+      .string('name')
+      .notNull()
+      .unique()
+    table
+      .string('description')
+      .notNull()
+      .defaultTo('N/A')
+    table
+      .integer('level')
+      .notNull()
+      .unique()
+      .defaultTo(0)
+    table.bigInteger('updated_by').notNull()
+    table.bigInteger('created_by').notNull()
     table
       .timestamp('created_at')
       .notNull()
@@ -17,10 +27,9 @@ exports.up = async () => {
       .timestamp('updated_at')
       .notNull()
       .defaultTo(knex.fn.now())
-    table.unique(['level'])
   })
 }
 
-exports.down = async () => {
+exports.down = async knex => {
   await knex.schema.dropTableIfExists('account_levels')
 }

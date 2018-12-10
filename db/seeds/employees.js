@@ -1,4 +1,4 @@
-exports.seed = function (knex, Promise) {
+exports.seed = async knex => {
   // Deletes ALL existing entries
   return knex('employees')
     .del()
@@ -6,17 +6,144 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('employees').insert([
         {
-          guid: '8201a600-6398-4e26-b94b-858a33694f98',
-          manager: '8201a600-6398-4e26-b94b-858a33694f98',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          active: true,
-          department: 'f7feda69-1958-44e4-9dc2-cdd879ccbfb6',
-          f_name: 'Cochran',
-          l_name: 'Mckay',
-          email: 'cochranmckay@gadtron.com',
-          phone: '+1 (838) 473-3918',
-          created_at: '2017-08-12T02:26:40 +04:00',
-          updated_at: '2017-04-16T08:09:22 +04:00'
+          enabled: true,
+          f_name: 'Ramsey',
+          l_name: 'Huff',
+          email: 'ramseyhuff@earthpure.com',
+          phone: 8075182072,
+          created_by: 7,
+          updated_by: 2,
+          address: 3,
+          department: 2,
+          manager: 3,
+          position: 1,
+          account: 10
+        },
+        {
+          enabled: true,
+          f_name: 'Velez',
+          l_name: 'Turner',
+          email: 'velezturner@earthpure.com',
+          phone: 8595432356,
+          created_by: 2,
+          updated_by: 9,
+          address: 4,
+          department: 5,
+          manager: 1,
+          position: 1,
+          account: 1
+        },
+        {
+          enabled: true,
+          f_name: 'Hammond',
+          l_name: 'Padilla',
+          email: 'hammondpadilla@earthpure.com',
+          phone: 9134762908,
+          created_by: 3,
+          updated_by: 5,
+          address: 10,
+          department: 2,
+          manager: 1,
+          position: 1,
+          account: 2
+        },
+        {
+          enabled: true,
+          f_name: 'Mckinney',
+          l_name: 'Erickson',
+          email: 'mckinneyerickson@earthpure.com',
+          phone: 9564763404,
+          created_by: 5,
+          updated_by: 4,
+          address: 6,
+          department: 2,
+          manager: 1,
+          position: 2,
+          account: 3
+        },
+        {
+          enabled: true,
+          f_name: 'Fannie',
+          l_name: 'Hicks',
+          email: 'fanniehicks@earthpure.com',
+          phone: 8445142667,
+          created_by: 4,
+          updated_by: 7,
+          address: 1,
+          department: 1,
+          manager: 1,
+          position: 2,
+          account: 4
+        },
+        {
+          enabled: false,
+          f_name: 'Lilian',
+          l_name: 'Haynes',
+          email: 'lilianhaynes@earthpure.com',
+          phone: 9084133251,
+          created_by: 8,
+          updated_by: 10,
+          address: 6,
+          department: 2,
+          manager: 1,
+          position: 3,
+          account: 5
+        },
+        {
+          enabled: true,
+          f_name: 'Chrystal',
+          l_name: 'Best',
+          email: 'chrystalbest@earthpure.com',
+          phone: 8325053831,
+          created_by: 5,
+          updated_by: 10,
+          address: 9,
+          department: 2,
+          manager: 1,
+          position: 3,
+          account: 6
+        },
+        {
+          enabled: true,
+          f_name: 'Shepard',
+          l_name: 'Robertson',
+          email: 'shepardrobertson@earthpure.com',
+          phone: 8394842913,
+          created_by: 8,
+          updated_by: 1,
+          address: 10,
+          department: 2,
+          manager: 10,
+          position: 4,
+          account: 7
+        },
+        {
+          enabled: true,
+          f_name: 'Harmon',
+          l_name: 'Patterson',
+          email: 'harmonpatterson@earthpure.com',
+          phone: 9904412649,
+          created_by: 4,
+          updated_by: 5,
+          address: 4,
+          department: 4,
+          manager: 3,
+          position: 4,
+          account: 8
+        },
+        {
+          enabled: true,
+          f_name: 'Clayton',
+          l_name: 'West',
+          email: 'claytonwest@earthpure.com',
+          phone: 9334053836,
+          created_by: 9,
+          updated_by: 4,
+          address: 1,
+          department: 4,
+          manager: 10,
+          position: 1,
+          account: 9
         }
       ])
     })

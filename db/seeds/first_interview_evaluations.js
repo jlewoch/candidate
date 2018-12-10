@@ -1,69 +1,809 @@
-exports.seed = function (knex, Promise) {
+exports.seed = async knex => {
   // Deletes ALL existing entries
-  return knex('interview_evaluations')
+  return knex('first_interview_evaluations')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('interview_evaluations').insert([
+      return knex('first_interview_evaluations').insert([
         {
-          guid: '45c78216-2570-451e-8f8e-471ced07dda2',
-          notes: 'Sandoval',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          question: '57694d4b-dd79-4d04-b64a-b00d36fe5e45',
-          application: '9964d79c-0edd-4aec-b9ca-af64c66569a1',
-          points_provided: 4,
-          created_at: '2015-04-30T12:51:48 +04:00',
-          updated_at: '2018-04-23T01:58:42 +04:00'
+          notes: 'notes',
+          provided_points: 5,
+          question: 38,
+          application: 5,
+          created_by: 10,
+          updated_by: 7
         },
         {
-          guid: 'fc4fc46d-5cd2-4e14-af43-2b9017984ce6',
-          notes: 'Kemp',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          question: 'cdd457bd-d93e-469a-a1ee-6ca5d4028324',
-          application: '9964d79c-0edd-4aec-b9ca-af64c66569a1',
-          points_provided: 6,
-          created_at: '2015-04-10T02:29:01 +04:00',
-          updated_at: '2018-05-06T10:22:04 +04:00'
+          notes: 'notes',
+          provided_points: 4,
+          question: 17,
+          application: 9,
+          created_by: 5,
+          updated_by: 5
         },
         {
-          guid: '8720a346-dff0-4d16-91ca-cfa8014763d0',
-          notes: 'Morrison',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          question: '5ac8a6cc-71ff-473e-ac32-91aeb7d78e47',
-          application: '9964d79c-0edd-4aec-b9ca-af64c66569a1',
-          points_provided: 8,
-          created_at: '2016-08-02T09:05:47 +04:00',
-          updated_at: '2016-03-21T09:18:05 +04:00'
+          notes: 'notes',
+          provided_points: 4,
+          question: 30,
+          application: 10,
+          created_by: 9,
+          updated_by: 10
         },
         {
-          guid: 'd48e8608-7aad-4b51-9e07-9d89e4db332a',
-          notes: 'Gonzalez',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          question: '521a1a6c-2256-4f0e-a692-ae4cc0aa6eab',
-          application: '9964d79c-0edd-4aec-b9ca-af64c66569a1',
-          points_provided: 6,
-          created_at: '2017-02-21T09:14:41 +05:00',
-          updated_at: '2015-07-25T09:19:40 +04:00'
+          notes: 'notes',
+          provided_points: 10,
+          question: 3,
+          application: 10,
+          created_by: 2,
+          updated_by: 9
         },
         {
-          guid: 'efc78ffd-e91d-45ae-89ee-4494a06a71c4',
-          notes: 'Fox',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          question: 'a4ece821-b159-4e4a-ab2e-1e890cb82998',
-          application: '9964d79c-0edd-4aec-b9ca-af64c66569a1',
-          points_provided: 2,
-          created_at: '2016-02-26T03:18:41 +05:00',
-          updated_at: '2017-12-23T08:43:27 +05:00'
+          notes: 'notes',
+          provided_points: 1,
+          question: 10,
+          application: 4,
+          created_by: 5,
+          updated_by: 9
         },
         {
-          guid: '7d11a85d-08f7-4a9c-9e0c-bcd888742327',
-          notes: 'Reid',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          question: '5bcd8ba5-5bd4-49d9-bc87-321101a1f20a',
-          application: '9964d79c-0edd-4aec-b9ca-af64c66569a1',
-          points_provided: 8,
-          created_at: '2015-04-13T11:16:42 +04:00',
-          updated_at: '2016-08-03T05:09:05 +04:00'
+          notes: 'notes',
+          provided_points: 1,
+          question: 36,
+          application: 1,
+          created_by: 5,
+          updated_by: 6
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 40,
+          application: 6,
+          created_by: 5,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 18,
+          application: 9,
+          created_by: 1,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 37,
+          application: 3,
+          created_by: 8,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 10,
+          question: 34,
+          application: 7,
+          created_by: 7,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 38,
+          application: 10,
+          created_by: 4,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 15,
+          application: 4,
+          created_by: 10,
+          updated_by: 10
+        },
+        {
+          notes: 'notes',
+          provided_points: 10,
+          question: 28,
+          application: 2,
+          created_by: 2,
+          updated_by: 10
+        },
+        {
+          notes: 'notes',
+          provided_points: 4,
+          question: 4,
+          application: 10,
+          created_by: 7,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 7,
+          question: 10,
+          application: 4,
+          created_by: 4,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 17,
+          application: 9,
+          created_by: 2,
+          updated_by: 6
+        },
+        {
+          notes: 'notes',
+          provided_points: 7,
+          question: 26,
+          application: 10,
+          created_by: 2,
+          updated_by: 8
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 37,
+          application: 9,
+          created_by: 6,
+          updated_by: 9
+        },
+        {
+          notes: 'notes',
+          provided_points: 9,
+          question: 22,
+          application: 5,
+          created_by: 9,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 4,
+          question: 12,
+          application: 1,
+          created_by: 8,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 7,
+          application: 5,
+          created_by: 1,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 4,
+          application: 3,
+          created_by: 6,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 1,
+          application: 10,
+          created_by: 9,
+          updated_by: 10
+        },
+        {
+          notes: 'notes',
+          provided_points: 7,
+          question: 24,
+          application: 3,
+          created_by: 9,
+          updated_by: 8
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 38,
+          application: 2,
+          created_by: 2,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 10,
+          application: 3,
+          created_by: 10,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 21,
+          application: 1,
+          created_by: 10,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 7,
+          question: 29,
+          application: 8,
+          created_by: 10,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 2,
+          application: 8,
+          created_by: 4,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 27,
+          application: 4,
+          created_by: 1,
+          updated_by: 6
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 36,
+          application: 6,
+          created_by: 8,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 10,
+          question: 13,
+          application: 4,
+          created_by: 3,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 28,
+          application: 7,
+          created_by: 1,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 39,
+          application: 4,
+          created_by: 9,
+          updated_by: 6
+        },
+        {
+          notes: 'notes',
+          provided_points: 10,
+          question: 39,
+          application: 10,
+          created_by: 2,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 9,
+          question: 26,
+          application: 2,
+          created_by: 3,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 25,
+          application: 1,
+          created_by: 9,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 4,
+          question: 23,
+          application: 5,
+          created_by: 3,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 38,
+          application: 10,
+          created_by: 10,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 4,
+          question: 39,
+          application: 5,
+          created_by: 3,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 7,
+          application: 8,
+          created_by: 6,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 11,
+          application: 2,
+          created_by: 3,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 13,
+          application: 5,
+          created_by: 10,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 4,
+          application: 5,
+          created_by: 1,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 7,
+          question: 2,
+          application: 10,
+          created_by: 8,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 17,
+          application: 9,
+          created_by: 5,
+          updated_by: 8
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 27,
+          application: 1,
+          created_by: 5,
+          updated_by: 9
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 1,
+          application: 8,
+          created_by: 6,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 23,
+          application: 8,
+          created_by: 7,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 4,
+          question: 6,
+          application: 3,
+          created_by: 8,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 7,
+          question: 2,
+          application: 10,
+          created_by: 1,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 10,
+          question: 26,
+          application: 4,
+          created_by: 9,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 39,
+          application: 2,
+          created_by: 10,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 20,
+          application: 2,
+          created_by: 3,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 30,
+          application: 2,
+          created_by: 10,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 10,
+          question: 29,
+          application: 6,
+          created_by: 4,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 28,
+          application: 9,
+          created_by: 2,
+          updated_by: 6
+        },
+        {
+          notes: 'notes',
+          provided_points: 9,
+          question: 1,
+          application: 2,
+          created_by: 8,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 16,
+          application: 6,
+          created_by: 10,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 19,
+          application: 6,
+          created_by: 3,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 39,
+          application: 5,
+          created_by: 5,
+          updated_by: 10
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 35,
+          application: 2,
+          created_by: 1,
+          updated_by: 6
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 17,
+          application: 10,
+          created_by: 4,
+          updated_by: 9
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 33,
+          application: 8,
+          created_by: 6,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 30,
+          application: 10,
+          created_by: 9,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 16,
+          application: 6,
+          created_by: 4,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 25,
+          application: 7,
+          created_by: 10,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 32,
+          application: 5,
+          created_by: 8,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 9,
+          question: 31,
+          application: 4,
+          created_by: 3,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 16,
+          application: 10,
+          created_by: 8,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 14,
+          application: 2,
+          created_by: 6,
+          updated_by: 10
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 22,
+          application: 5,
+          created_by: 10,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 37,
+          application: 1,
+          created_by: 10,
+          updated_by: 9
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 18,
+          application: 6,
+          created_by: 6,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 26,
+          application: 3,
+          created_by: 5,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 16,
+          application: 7,
+          created_by: 3,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 14,
+          application: 3,
+          created_by: 10,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 35,
+          application: 1,
+          created_by: 8,
+          updated_by: 9
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 38,
+          application: 6,
+          created_by: 4,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 9,
+          question: 9,
+          application: 6,
+          created_by: 5,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 8,
+          application: 2,
+          created_by: 5,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 36,
+          application: 5,
+          created_by: 10,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 7,
+          question: 9,
+          application: 4,
+          created_by: 9,
+          updated_by: 1
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 11,
+          application: 2,
+          created_by: 9,
+          updated_by: 8
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 4,
+          application: 5,
+          created_by: 5,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 6,
+          application: 1,
+          created_by: 5,
+          updated_by: 8
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 24,
+          application: 5,
+          created_by: 8,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 10,
+          question: 33,
+          application: 7,
+          created_by: 4,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 38,
+          application: 10,
+          created_by: 4,
+          updated_by: 8
+        },
+        {
+          notes: 'notes',
+          provided_points: 8,
+          question: 4,
+          application: 7,
+          created_by: 4,
+          updated_by: 7
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 39,
+          application: 6,
+          created_by: 3,
+          updated_by: 8
+        },
+        {
+          notes: 'notes',
+          provided_points: 4,
+          question: 38,
+          application: 4,
+          created_by: 9,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 17,
+          application: 7,
+          created_by: 3,
+          updated_by: 4
+        },
+        {
+          notes: 'notes',
+          provided_points: 3,
+          question: 39,
+          application: 8,
+          created_by: 6,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 2,
+          question: 35,
+          application: 6,
+          created_by: 6,
+          updated_by: 3
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 22,
+          application: 7,
+          created_by: 4,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 1,
+          question: 31,
+          application: 4,
+          created_by: 1,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 5,
+          question: 3,
+          application: 10,
+          created_by: 10,
+          updated_by: 5
+        },
+        {
+          notes: 'notes',
+          provided_points: 9,
+          question: 1,
+          application: 6,
+          created_by: 10,
+          updated_by: 2
+        },
+        {
+          notes: 'notes',
+          provided_points: 6,
+          question: 5,
+          application: 10,
+          created_by: 9,
+          updated_by: 10
         }
       ])
     })

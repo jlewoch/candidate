@@ -1,4 +1,4 @@
-exports.seed = function (knex, Promise) {
+exports.seed = async knex => {
   // Deletes ALL existing entries
   return knex('applications')
     .del()
@@ -6,58 +6,244 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('applications').insert([
         {
-          guid: '9964d79c-0edd-4aec-b9ca-af64c66569a1',
-          applicant: 'dcc8807e-3e1a-430b-8802-af962735bb8a',
-          position: 'c4e7f6fd-1d88-48a0-abc9-a4bea4e45bed',
-          enabled: true,
-          status: 0,
-          created_at: '2014-04-14T05:51:30 +04:00',
-          updated_at: '2015-10-28T03:22:57 +04:00'
+          total_grade: 78,
+          status: 2,
+          applicant: 30,
+          job_posting: 1,
+          created_by: 10,
+          updated_by: 4
         },
         {
-          guid: 'fe26397e-8214-4749-b18d-8496bd6cc248',
-          applicant: 'cc7e7337-88d3-4412-84a3-f2fb02feb53f',
-          position: 'c4e7f6fd-1d88-48a0-abc9-a4bea4e45bed',
-          enabled: true,
-          status: 0,
-          created_at: '2014-04-14T05:51:30 +04:00',
-          updated_at: '2015-10-28T03:22:57 +04:00'
+          total_grade: 42,
+          status: 4,
+          applicant: 1,
+          job_posting: 4,
+          created_by: 3,
+          updated_by: 10
         },
         {
-          guid: '08e145a1-8fb7-476f-a548-f930da515b24',
-          applicant: '53a36a39-e927-4298-83c6-0c0bb6d7d365',
-          position: '8586ca0e-f3b7-4a4f-a143-fffb9ed5823d',
-          enabled: true,
-          status: 0,
-          created_at: '2014-04-14T05:51:30 +04:00',
-          updated_at: '2015-10-28T03:22:57 +04:00'
+          total_grade: 25,
+          status: 4,
+          applicant: 2,
+          job_posting: 2,
+          created_by: 3,
+          updated_by: 8
         },
         {
-          guid: 'f4a9f5b0-91ff-44d6-94f6-17f811abe4be',
-          applicant: '08fa650a-f220-49d3-b8d4-72f5580a99a9',
-          position: '7a0516a6-954d-465b-9b0d-7482f8537965',
-          enabled: true,
-          status: 0,
-          created_at: '2014-04-14T05:51:30 +04:00',
-          updated_at: '2015-10-28T03:22:57 +04:00'
+          total_grade: 38,
+          status: 2,
+          applicant: 3,
+          job_posting: 1,
+          created_by: 3,
+          updated_by: 3
         },
         {
-          guid: 'c32a60c3-5979-4bc4-941b-80a7913fd6fc',
-          applicant: '29f725cd-c6fa-4bb6-bbc3-c664059d8723',
-          position: '04fc3b54-9bf5-4d44-8782-2b2ac68a1055',
-          enabled: true,
+          total_grade: 80,
           status: 0,
-          created_at: '2014-04-14T05:51:30 +04:00',
-          updated_at: '2015-10-28T03:22:57 +04:00'
+          applicant: 4,
+          job_posting: 3,
+          created_by: 2,
+          updated_by: 5
         },
         {
-          guid: 'c92a5597-e483-473d-b7ee-a550f98722c3',
-          applicant: 'bbcfa81d-4e7a-469d-b0ef-ca15338a914b',
-          position: '4c604141-a9f2-4fe7-a3b9-36e0a6c68bf3',
-          enabled: true,
+          total_grade: 69,
+          status: 1,
+          applicant: 5,
+          job_posting: 5,
+          created_by: 4,
+          updated_by: 2
+        },
+        {
+          total_grade: 92,
+          status: 2,
+          applicant: 6,
+          job_posting: 2,
+          created_by: 4,
+          updated_by: 9
+        },
+        {
+          total_grade: 34,
+          status: 3,
+          applicant: 7,
+          job_posting: 3,
+          created_by: 3,
+          updated_by: 7
+        },
+        {
+          total_grade: 44,
+          status: 2,
+          applicant: 8,
+          job_posting: 5,
+          created_by: 5,
+          updated_by: 5
+        },
+        {
+          total_grade: 2,
+          status: 1,
+          applicant: 9,
+          job_posting: 2,
+          created_by: 7,
+          updated_by: 10
+        },
+        {
+          total_grade: 60,
+          status: 3,
+          applicant: 10,
+          job_posting: 3,
+          created_by: 1,
+          updated_by: 10
+        },
+        {
+          total_grade: 52,
           status: 0,
-          created_at: '2014-04-14T05:51:30 +04:00',
-          updated_at: '2015-10-28T03:22:57 +04:00'
+          applicant: 11,
+          job_posting: 3,
+          created_by: 9,
+          updated_by: 2
+        },
+        {
+          total_grade: 38,
+          status: 0,
+          applicant: 12,
+          job_posting: 3,
+          created_by: 2,
+          updated_by: 1
+        },
+        {
+          total_grade: 72,
+          status: 1,
+          applicant: 13,
+          job_posting: 5,
+          created_by: 8,
+          updated_by: 10
+        },
+        {
+          total_grade: 55,
+          status: 2,
+          applicant: 14,
+          job_posting: 4,
+          created_by: 10,
+          updated_by: 4
+        },
+        {
+          total_grade: 76,
+          status: 4,
+          applicant: 15,
+          job_posting: 5,
+          created_by: 4,
+          updated_by: 8
+        },
+        {
+          total_grade: 5,
+          status: 1,
+          applicant: 16,
+          job_posting: 5,
+          created_by: 1,
+          updated_by: 8
+        },
+        {
+          total_grade: 7,
+          status: 0,
+          applicant: 17,
+          job_posting: 2,
+          created_by: 10,
+          updated_by: 4
+        },
+        {
+          total_grade: 83,
+          status: 4,
+          applicant: 18,
+          job_posting: 5,
+          created_by: 1,
+          updated_by: 8
+        },
+        {
+          total_grade: 89,
+          status: 4,
+          applicant: 19,
+          job_posting: 4,
+          created_by: 7,
+          updated_by: 8
+        },
+        {
+          total_grade: 77,
+          status: 1,
+          applicant: 20,
+          job_posting: 1,
+          created_by: 8,
+          updated_by: 3
+        },
+        {
+          total_grade: 43,
+          status: 2,
+          applicant: 21,
+          job_posting: 4,
+          created_by: 8,
+          updated_by: 6
+        },
+        {
+          total_grade: 4,
+          status: 0,
+          applicant: 22,
+          job_posting: 1,
+          created_by: 9,
+          updated_by: 9
+        },
+        {
+          total_grade: 39,
+          status: 3,
+          applicant: 23,
+          job_posting: 3,
+          created_by: 4,
+          updated_by: 2
+        },
+        {
+          total_grade: 67,
+          status: 3,
+          applicant: 24,
+          job_posting: 1,
+          created_by: 1,
+          updated_by: 8
+        },
+        {
+          total_grade: 73,
+          status: 1,
+          applicant: 25,
+          job_posting: 3,
+          created_by: 7,
+          updated_by: 6
+        },
+        {
+          total_grade: 15,
+          status: 2,
+          applicant: 26,
+          job_posting: 1,
+          created_by: 2,
+          updated_by: 5
+        },
+        {
+          total_grade: 77,
+          status: 2,
+          applicant: 27,
+          job_posting: 3,
+          created_by: 3,
+          updated_by: 8
+        },
+        {
+          total_grade: 66,
+          status: 0,
+          applicant: 28,
+          job_posting: 5,
+          created_by: 8,
+          updated_by: 2
+        },
+        {
+          total_grade: 82,
+          status: 0,
+          applicant: 29,
+          job_posting: 5,
+          created_by: 6,
+          updated_by: 1
         }
       ])
     })

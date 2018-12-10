@@ -1,4 +1,4 @@
-exports.seed = function (knex, Promise) {
+exports.seed = async knex => {
   // Deletes ALL existing entries
   return knex('questions')
     .del()
@@ -6,59 +6,324 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
       return knex('questions').insert([
         {
-          guid: '57694d4b-dd79-4d04-b64a-b00d36fe5e45',
-          question: 'Do they have the required skills',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          created_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          step: '997cf217-090d-4487-9a5b-91ae5ca1b57c',
-          active: true,
-          weight: 100,
-          created_at: '2016-12-04T06:00:36 +05:00',
-          updated_at: '2016-07-23T07:11:03 +04:00'
+          enabled: true,
+          weight: 10,
+          question: 'question 0',
+          step: 3,
+          created_by: 7,
+          updated_by: 10
         },
         {
-          guid: 'cdd457bd-d93e-469a-a1ee-6ca5d4028324',
-          question: 'Would they fit in the company culture',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          created_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          step: '997cf217-090d-4487-9a5b-91ae5ca1b57c',
-          active: true,
-          weight: 51,
-          created_at: '2014-08-11T03:25:43 +04:00',
-          updated_at: '2016-03-07T10:46:46 +05:00'
+          enabled: true,
+          weight: 10,
+          question: 'question 1',
+          step: 4,
+          created_by: 4,
+          updated_by: 10
         },
         {
-          guid: '5bcd8ba5-5bd4-49d9-bc87-321101a1f20a',
-          question: 'Do they have the Required Education',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          created_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          step: '997cf217-090d-4487-9a5b-91ae5ca1b57c',
-          active: true,
-          weight: 24,
-          created_at: '2015-03-09T11:26:33 +04:00',
-          updated_at: '2014-01-14T05:20:53 +05:00'
+          enabled: true,
+          weight: 10,
+          question: 'question 2',
+          step: 4,
+          created_by: 8,
+          updated_by: 8
         },
         {
-          guid: '5ac8a6cc-71ff-473e-ac32-91aeb7d78e47',
-          question: 'Is the applicant genuine',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          created_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          step: '997cf217-090d-4487-9a5b-91ae5ca1b57c',
-          active: true,
-          weight: 44,
-          created_at: '2017-10-14T11:41:05 +04:00',
-          updated_at: '2017-05-13T02:41:03 +04:00'
+          enabled: true,
+          weight: 10,
+          question: 'question 3',
+          step: 2,
+          created_by: 2,
+          updated_by: 2
         },
         {
-          guid: '521a1a6c-2256-4f0e-a692-ae4cc0aa6eab',
-          question: 'Is there any misleading informtation',
-          updated_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          created_by: '8201a600-6398-4e26-b94b-858a33694f98',
-          step: '997cf217-090d-4487-9a5b-91ae5ca1b57c',
-          active: true,
-          weight: 100,
-          created_at: '2017-04-03T11:47:32 +04:00',
-          updated_at: '2017-05-24T06:11:32 +04:00'
+          enabled: true,
+          weight: 10,
+          question: 'question 4',
+          step: 4,
+          created_by: 5,
+          updated_by: 5
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 5',
+          step: 1,
+          created_by: 4,
+          updated_by: 3
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 6',
+          step: 2,
+          created_by: 6,
+          updated_by: 9
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 7',
+          step: 4,
+          created_by: 8,
+          updated_by: 5
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 8',
+          step: 1,
+          created_by: 8,
+          updated_by: 10
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 9',
+          step: 3,
+          created_by: 7,
+          updated_by: 9
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 10',
+          step: 2,
+          created_by: 8,
+          updated_by: 8
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 11',
+          step: 2,
+          created_by: 10,
+          updated_by: 9
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 12',
+          step: 2,
+          created_by: 8,
+          updated_by: 4
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 13',
+          step: 1,
+          created_by: 10,
+          updated_by: 3
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 14',
+          step: 3,
+          created_by: 7,
+          updated_by: 10
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 15',
+          step: 4,
+          created_by: 1,
+          updated_by: 9
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 16',
+          step: 3,
+          created_by: 3,
+          updated_by: 2
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 17',
+          step: 1,
+          created_by: 2,
+          updated_by: 3
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 18',
+          step: 4,
+          created_by: 9,
+          updated_by: 2
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 19',
+          step: 3,
+          created_by: 8,
+          updated_by: 4
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 20',
+          step: 4,
+          created_by: 2,
+          updated_by: 7
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 21',
+          step: 4,
+          created_by: 5,
+          updated_by: 3
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 22',
+          step: 4,
+          created_by: 1,
+          updated_by: 1
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 23',
+          step: 4,
+          created_by: 10,
+          updated_by: 1
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 24',
+          step: 1,
+          created_by: 6,
+          updated_by: 1
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 25',
+          step: 1,
+          created_by: 10,
+          updated_by: 1
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 26',
+          step: 4,
+          created_by: 10,
+          updated_by: 9
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 27',
+          step: 1,
+          created_by: 3,
+          updated_by: 1
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 28',
+          step: 2,
+          created_by: 7,
+          updated_by: 7
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 29',
+          step: 3,
+          created_by: 8,
+          updated_by: 4
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 30',
+          step: 1,
+          created_by: 4,
+          updated_by: 2
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 31',
+          step: 4,
+          created_by: 9,
+          updated_by: 7
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 32',
+          step: 1,
+          created_by: 5,
+          updated_by: 5
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 33',
+          step: 3,
+          created_by: 5,
+          updated_by: 9
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 34',
+          step: 2,
+          created_by: 8,
+          updated_by: 5
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 35',
+          step: 4,
+          created_by: 6,
+          updated_by: 4
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 36',
+          step: 3,
+          created_by: 9,
+          updated_by: 1
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 37',
+          step: 2,
+          created_by: 5,
+          updated_by: 10
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 38',
+          step: 4,
+          created_by: 10,
+          updated_by: 5
+        },
+        {
+          enabled: true,
+          weight: 10,
+          question: 'question 39',
+          step: 1,
+          created_by: 8,
+          updated_by: 7
         }
       ])
     })

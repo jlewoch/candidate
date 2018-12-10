@@ -1,24 +1,26 @@
-const knex = require('../knex/knex')
-exports.up = async () => {
+exports.up = async knex => {
   await knex.schema.createTable('questions', table => {
     table
-      .uuid('guid')
+      .bigIncrements('id')
       .unsigned()
       .primary()
 
-    table.string('question').notNull()
+    table
+      .string('question')
+      .notNull()
+      .unique()
     table
       .integer('weight')
       .notNull()
-      .defaultTo(0)
-    table.uuid('updated_by').notNull()
-    table.uuid('created_by').notNull()
-    table.uuid('step').notNull()
+      .defaultTo(10)
 
     table
-      .boolean('active')
+      .boolean('enabled')
       .notNull()
       .defaultTo(true)
+    table.bigInteger('step').notNull()
+    table.bigInteger('updated_by').notNull()
+    table.bigInteger('created_by').notNull()
     table
       .timestamp('created_at')
       .notNull()
@@ -30,6 +32,6 @@ exports.up = async () => {
   })
 }
 
-exports.down = async () => {
+exports.down = async knex => {
   await knex.schema.dropTableIfExists('questions')
 }
