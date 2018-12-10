@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import { get, update, push, remove } from '../../api/mySql/mySql'
+import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
@@ -17,7 +17,7 @@ function * callRequestGetPositions () {
 function * callRequestDeletePosition () {
   yield put(actions.deletePositionRequest())
   try {
-    const positions = yield call(remove, 'positions')
+    const positions = yield call(destroy, 'positions')
     yield put(actions.deletePositionSuccess(positions))
   } catch (error) {
     yield put(actions.deletePositionFailed(error))
@@ -27,7 +27,7 @@ function * callRequestDeletePosition () {
 function * callRequestAddPosition () {
   yield put(actions.addPositionRequest())
   try {
-    const positions = yield call(push, 'positions')
+    const positions = yield call(create, 'positions')
     yield put(actions.addPositionSuccess(positions))
   } catch (error) {
     yield put(actions.addPositionFailed(error))

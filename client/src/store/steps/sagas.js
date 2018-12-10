@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import { get, update, push, remove } from '../../api/mySql/mySql'
+import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
@@ -17,7 +17,7 @@ function * callRequestGetSteps () {
 function * callRequestDeleteStep () {
   yield put(actions.deleteStepRequest())
   try {
-    const steps = yield call(remove, 'steps')
+    const steps = yield call(destroy, 'steps')
     yield put(actions.deleteStepSuccess(steps))
   } catch (error) {
     yield put(actions.deleteStepFailed(error))
@@ -27,7 +27,7 @@ function * callRequestDeleteStep () {
 function * callRequestAddStep () {
   yield put(actions.addStepRequest())
   try {
-    const steps = yield call(push, 'steps')
+    const steps = yield call(create, 'steps')
     yield put(actions.addStepSuccess(steps))
   } catch (error) {
     yield put(actions.addStepFailed(error))
@@ -46,11 +46,7 @@ function * callRequestUpdateStep () {
 }
 export const requestStepsSaga = function * () {
   yield takeEvery(types.GET_STEPS_REQUEST, () => callRequestGetSteps())
-  yield takeEvery(types.DELETE_STEP_REQUEST, () =>
-    callRequestDeleteStep()
-  )
+  yield takeEvery(types.DELETE_STEP_REQUEST, () => callRequestDeleteStep())
   yield takeEvery(types.ADD_STEP_REQUEST, () => callRequestAddStep())
-  yield takeEvery(types.UPDATE_STEP_REQUEST, () =>
-    callRequestUpdateStep()
-  )
+  yield takeEvery(types.UPDATE_STEP_REQUEST, () => callRequestUpdateStep())
 }
