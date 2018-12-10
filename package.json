@@ -4,7 +4,8 @@
   "description": "This is an applicantion that tries to remove some of the sub contionus bias from the hiring process by removing personal info from the resume and does not display the candidates name until they have moved on to the second step. I feel this will level the playing field for eveyone. It also allows recruites\\companies to have the ability to put a quantifiable weight on questions and step sections that matter more to the company. Current live view can be seen at [Candidate](https://candidate-application.herokuapp.com/)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon start",
+    "postinstall": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",

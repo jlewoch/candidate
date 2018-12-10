@@ -3,13 +3,14 @@ const express = require('express')
 const app = express()
 const logger = require('morgan')
 const bodyParser = require('body-parser')
-
-const jwt = require('jsonwebtoken')
+const path = require('path')
+// const jwt = require('jsonwebtoken')
 
 const PORT = process.env.PORT || 8000
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 // app.use((req, res, next) => {
 
@@ -30,6 +31,8 @@ app.use(express.urlencoded({ extended: false }))
 //     }
 // })
 
-app.use('/db', require('./routes'))
-
+app.use('/db', require('./routes/index'))
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))
