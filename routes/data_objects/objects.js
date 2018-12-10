@@ -70,7 +70,7 @@ const section_evaluation = obj => ({
   updated_by: obj.updated_by
 })
 const single_evalution = obj => ({
-  points_provided: obj.points_provided,
+  provided_points: obj.provided_points,
   notes: obj.notes,
   application: obj.application,
   question: obj.question,
@@ -80,7 +80,7 @@ const single_evalution = obj => ({
 
 const account_level = obj => ({
   id: obj.id,
-  description: obj.description,
+  name: obj.name,
   level: obj.level
 })
 const account = obj => ({

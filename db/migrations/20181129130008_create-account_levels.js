@@ -5,9 +5,13 @@ exports.up = async knex => {
       .unsigned()
       .primary()
     table
-      .string('description')
+      .string('name')
       .notNull()
       .unique()
+    table
+      .string('description')
+      .notNull()
+      .defaultTo('N/A')
     table
       .integer('level')
       .notNull()

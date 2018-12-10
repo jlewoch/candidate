@@ -6,22 +6,22 @@ exports.seed = async knex => {
       // Inserts seed entries
       return knex('account_levels').insert([
         {
-          description: 'No Access',
+          name: 'No Access',
           level: 0,
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         },
         {
-          description: 'Recruiter',
+          name: 'Recruiter',
           level: 1,
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         },
         {
-          description: 'Head Recruiter',
+          name: 'Head Recruiter',
           level: 2,
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         }
       ])
     })

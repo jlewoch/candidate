@@ -6,10 +6,7 @@ exports.up = async knex => {
       .primary()
     table.string('f_name').notNull()
     table.string('l_name').notNull()
-    table
-      .bigInteger('phone')
-      .notNull()
-      .defaultTo(9999999999)
+    table.bigInteger('phone').notNull()
     table
       .string('email')
       .notNull()
@@ -20,7 +17,9 @@ exports.up = async knex => {
       .notNull()
       .defaultTo(true)
     table.bigInteger('account').notNull()
+    table.bigInteger('address').notNull()
     table.bigInteger('department').notNull()
+    table.bigInteger('position').notNull()
     table.bigInteger('manager').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()

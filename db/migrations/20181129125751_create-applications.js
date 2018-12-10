@@ -5,7 +5,10 @@ exports.up = async knex => {
       .unsigned()
       .primary()
 
-    table.integer('status').notNull()
+    table
+      .integer('status')
+      .notNull()
+      .defaultTo(0)
 
     table
       .float('total_grade')
