@@ -1,11 +1,10 @@
 import React from 'react'
 
-import { Button } from 'primereact/button'
-import { QuestionsForm } from '../components/forms/questions'
+import { Admin } from '../components/admin'
 const Main = () => {
   return (
     <div id='main'>
-      <QuestionsForm />
+      <Admin />
     </div>
   )
 }

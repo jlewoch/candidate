@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import { get, update, push, remove } from '../../api/mySql/mySql'
+import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
@@ -17,7 +17,7 @@ function * callRequestGetApplicants () {
 function * callRequestDeleteApplicant () {
   yield put(actions.deleteApplicantRequest())
   try {
-    const applicants = yield call(remove, 'applicants')
+    const applicants = yield call(destroy, 'applicants')
     yield put(actions.deleteApplicantSuccess(applicants))
   } catch (error) {
     yield put(actions.deleteApplicantFailed(error))
@@ -27,7 +27,7 @@ function * callRequestDeleteApplicant () {
 function * callRequestAddApplicant () {
   yield put(actions.addApplicantRequest())
   try {
-    const applicants = yield call(push, 'applicants')
+    const applicants = yield call(create, 'applicants')
     yield put(actions.addApplicantSuccess(applicants))
   } catch (error) {
     yield put(actions.addApplicantFailed(error))

@@ -24,7 +24,7 @@ function weightLeft (step) {
 }
 async function getGrade (application, table, step) {
   let x = await knex
-    .select('points_provided', 'step')
+    .select('provided_points', 'step')
     .from('questions')
     .leftJoin(table, function () {
       this.on(`${table}.question`, 'questions.id').andOnIn(
@@ -36,7 +36,7 @@ async function getGrade (application, table, step) {
     .then(item =>
       item.reduce(
         (prev, next) =>
-          next.points_provided > -1 && prev + next.points_provided,
+          next.provided_points > -1 && prev + next.provided_points,
         0
       )
     )

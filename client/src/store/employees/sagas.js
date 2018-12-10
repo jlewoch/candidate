@@ -1,56 +1,57 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import { get, update, push, remove } from '../../api/mySql/mySql'
+import { get, update, create, destroy } from '../api/api'
+import { setProcessing } from '../api/processing/actions'
+import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetEmployees () {
-  yield put(actions.getEmployeesRequest())
+function * callRequestGetEmployees (payload) {
+  setProcessing(types.GET_EMPLOYEES, true)
   try {
-    const employees = yield call(get, 'employees')
-    yield put(actions.getEmployeesSuccess(employees))
+    const employees = yield call(get, `employees`)
+    yield put(actions.getEmployeesSuccess(employees.data))
   } catch (error) {
-    yield put(actions.getEmployeesFailed(error))
+    setError(types.GET_EMPLOYEES, error)
   }
-  yield put(actions.getEmployeesComplete)
+  setProcessing(types.GET_EMPLOYEES, false)
 }
 
-function * callRequestDeleteEmployee () {
-  yield put(actions.deleteEmployeeRequest())
+function * callRequestDeleteEmployees (payload) {
+  setProcessing(types.DELETE_EMPLOYEES, true)
+
   try {
-    const employees = yield call(remove, 'employees')
-    yield put(actions.deleteEmployeeSuccess(employees))
+    const employees = yield call(destroy, `employees/${payload.id}`)
+    yield put(actions.deleteEmployeesSuccess(employees))
   } catch (error) {
-    yield put(actions.deleteEmployeeFailed(error))
+    setError(types.DELETE_EMPLOYEES, error)
   }
-  yield put(actions.deleteEmployeeComplete)
+  setProcessing(types.DELETE_EMPLOYEES, false)
 }
-function * callRequestAddEmployee () {
-  yield put(actions.addEmployeeRequest())
+function * callRequestAddEmployees (payload) {
+  setProcessing(types.ADD_EMPLOYEES, true)
+
   try {
-    const employees = yield call(push, 'employees')
-    yield put(actions.addEmployeeSuccess(employees))
+    const employees = yield call(create, `employees`)
+    yield put(actions.addEmployeesSuccess(employees.data))
   } catch (error) {
-    yield put(actions.addEmployeeFailed(error))
+    setError(types.ADD_EMPLOYEES, error)
   }
-  yield put(actions.addEmployeeComplete)
+  setProcessing(types.ADD_EMPLOYEES, false)
 }
-function * callRequestUpdateEmployee () {
-  yield put(actions.updateEmployeeRequest())
+function * callRequestUpdateEmployees (payload) {
+  setProcessing(types.UPDATE_EMPLOYEES, true)
+
   try {
-    const employees = yield call(update, 'employees')
-    yield put(actions.updateEmployeeSuccess(employees))
+    const employees = yield call(update, `employees/${payload.id}`)
+    yield put(actions.updateEmployeesSuccess(employees))
   } catch (error) {
-    yield put(actions.updateEmployeeFailed(error))
+    setError(types.UPDATE_EMPLOYEES, error)
   }
-  yield put(actions.updateEmployeeComplete)
+  setProcessing(types.UPDATE_EMPLOYEES, false)
 }
-export const requestEmployeesSaga = function * () {
-  yield takeEvery(types.GET_EMPLOYEES_REQUEST, () => callRequestGetEmployees())
-  yield takeEvery(types.DELETE_EMPLOYEE_REQUEST, () =>
-    callRequestDeleteEmployee()
-  )
-  yield takeEvery(types.ADD_EMPLOYEE_REQUEST, () => callRequestAddEmployee())
-  yield takeEvery(types.UPDATE_EMPLOYEE_REQUEST, () =>
-    callRequestUpdateEmployee()
-  )
+export const employeeSagas = function * () {
+  yield takeEvery(types.GET_EMPLOYEES, () => callRequestGetEmployees())
+  yield takeEvery(types.DELETE_EMPLOYEES, () => callRequestDeleteEmployees())
+  yield takeEvery(types.ADD_EMPLOYEES, () => callRequestAddEmployees())
+  yield takeEvery(types.UPDATE_EMPLOYEES, () => callRequestUpdateEmployees())
 }
