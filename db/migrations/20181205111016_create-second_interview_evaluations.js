@@ -6,7 +6,7 @@ exports.up = async knex => {
       .primary()
 
     table
-      .integer('points_provided')
+      .integer('provided_points')
       .notNull()
       .defaultTo(0)
 

@@ -18,10 +18,10 @@ exports.up = async knex => {
       .notNull()
       .defaultTo(false)
     table
-      .boolean('login_attempts')
+      .integer('login_attempts')
       .notNull()
       .defaultTo(0)
-    table.bigInteger('access_level').notNull()
+    table.bigInteger('account_level').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table

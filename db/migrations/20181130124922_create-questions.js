@@ -12,7 +12,7 @@ exports.up = async knex => {
     table
       .integer('weight')
       .notNull()
-      .defaultTo(0)
+      .defaultTo(10)
 
     table
       .boolean('enabled')

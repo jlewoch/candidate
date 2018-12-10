@@ -33,7 +33,7 @@ exports.up = async knex => {
       .notNull()
       .defaultTo(knex.fn.now())
     table
-      .timestamp('close_date')
+      .timestamp('closing_date')
       .notNull()
       .defaultTo(knex.fn.now())
   })

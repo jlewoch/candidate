@@ -6,7 +6,7 @@ exports.seed = async knex => {
       // Inserts seed entries
       return knex('steps').insert([
         {
-          description: 'Resume Review',
+          name: 'New',
           required: true,
           level: 0,
           weight: 20,
@@ -14,7 +14,7 @@ exports.seed = async knex => {
           updated_by: 0
         },
         {
-          description: 'Phone Screening',
+          name: 'Resume Review',
           required: true,
           level: 1,
           weight: 20,
@@ -22,7 +22,15 @@ exports.seed = async knex => {
           updated_by: 0
         },
         {
-          description: 'First Interview',
+          name: 'Phone Screening',
+          required: true,
+          level: 2,
+          weight: 20,
+          created_by: 0,
+          updated_by: 0
+        },
+        {
+          name: 'First Interview',
           required: true,
           level: 3,
           weight: 20,
@@ -30,17 +38,17 @@ exports.seed = async knex => {
           updated_by: 0
         },
         {
-          description: 'Second Interview',
+          name: 'Second Interview',
           required: true,
-          level: 4,
+          level: 5,
           weight: 20,
           created_by: 0,
           updated_by: 0
         },
         {
-          description: 'Assesment',
+          name: 'Assesment',
           required: false,
-          level: 2,
+          level: 4,
           weight: 20,
           created_by: 0,
           updated_by: 0

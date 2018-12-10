@@ -6,54 +6,54 @@ exports.seed = async knex => {
       // Inserts seed entries
       return knex('job_postings').insert([
         {
-          position: 0,
-          openings: 1,
-          priority: 1,
-          assigned_to: 0,
-          created_by: 0,
-          updated_by: 0,
-          open_date: '2016-10-26T05:31:12 +04:00',
-          close_date: '2017-06-05T04:19:34 +04:00'
-        },
-        {
+          open_date: '2018-11-23T11:39:44 +05:00',
+          closing_date: '2018-02-23T05:09:33 +05:00',
           position: 1,
-          openings: 8,
-          priority: 1,
-          assigned_to: 0,
-          created_by: 0,
-          updated_by: 0,
-          open_date: '2017-09-04T07:56:30 +04:00',
-          close_date: '2018-05-29T04:51:46 +04:00'
+          openings: 2,
+          priority: 2,
+          assigned_to: 6,
+          created_by: 7,
+          updated_by: 5
         },
         {
+          open_date: '2018-05-22T05:13:06 +04:00',
+          closing_date: '2018-10-29T06:44:02 +04:00',
           position: 2,
           openings: 1,
-          priority: 2,
-          assigned_to: 0,
-          created_by: 0,
-          updated_by: 0,
-          open_date: '2016-02-24T04:09:43 +05:00',
-          close_date: '2015-08-07T07:12:50 +04:00'
+          priority: 3,
+          assigned_to: 4,
+          created_by: 6,
+          updated_by: 2
         },
         {
+          open_date: '2018-08-05T06:03:17 +04:00',
+          closing_date: '2018-10-08T06:04:43 +04:00',
           position: 3,
-          openings: 6,
-          priority: 2,
-          assigned_to: 0,
-          created_by: 0,
-          updated_by: 0,
-          open_date: '2016-03-15T06:52:12 +04:00',
-          close_date: '2016-11-25T03:42:58 +05:00'
+          openings: 3,
+          priority: 1,
+          assigned_to: 3,
+          created_by: 2,
+          updated_by: 10
         },
         {
+          open_date: '2018-11-03T02:41:35 +04:00',
+          closing_date: '2018-04-12T06:11:12 +04:00',
           position: 4,
-          openings: 1,
+          openings: 3,
+          priority: 3,
+          assigned_to: 2,
+          created_by: 2,
+          updated_by: 5
+        },
+        {
+          open_date: '2018-04-30T06:47:12 +04:00',
+          closing_date: '2018-06-03T09:01:36 +04:00',
+          position: 5,
+          openings: 3,
           priority: 2,
-          assigned_to: 0,
-          created_by: 0,
-          updated_by: 0,
-          open_date: '2015-11-20T10:53:32 +05:00',
-          close_date: '2015-02-04T05:35:30 +05:00'
+          assigned_to: 2,
+          created_by: 10,
+          updated_by: 7
         }
       ])
     })

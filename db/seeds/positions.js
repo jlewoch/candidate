@@ -7,28 +7,28 @@ exports.seed = async knex => {
       return knex('positions').insert([
         {
           title: 'Web Developer',
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         },
         {
           title: 'Recruiter',
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         },
         {
           title: 'Accountant',
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         },
         {
           title: 'Technical Analyst',
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         },
         {
           title: 'Receptionist',
-          created_by: 0,
-          updated_by: 0
+          created_by: 1,
+          updated_by: 1
         }
       ])
     })

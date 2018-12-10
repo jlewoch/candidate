@@ -10,10 +10,7 @@ exports.up = async knex => {
       .string('email')
       .unique()
       .notNull()
-    table
-      .string('phone')
-      .unique()
-      .notNull()
+    table.bigInteger('phone').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table

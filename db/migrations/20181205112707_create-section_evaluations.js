@@ -8,6 +8,7 @@ exports.up = async knex => {
       .integer('total_grade')
       .notNull()
       .defaultTo(0)
+    table.string('notes')
     table
       .boolean('skipped')
       .notNull()

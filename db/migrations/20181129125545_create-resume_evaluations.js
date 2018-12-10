@@ -8,7 +8,7 @@ exports.up = async knex => {
     table.string('notes')
 
     table
-      .integer('points_provided')
+      .integer('provided_points')
       .notNull()
       .defaultTo(0)
     table.bigInteger('application').notNull()
