@@ -3,7 +3,7 @@ import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetApplications () {
+function * GetApplications () {
   yield put(actions.getApplicationsRequest())
   try {
     const applications = yield call(get, 'applications')
@@ -14,7 +14,7 @@ function * callRequestGetApplications () {
   yield put(actions.getApplicationsComplete)
 }
 
-function * callRequestDeleteApplication () {
+function * DeleteApplication () {
   yield put(actions.deleteApplicationRequest())
   try {
     const applications = yield call(destroy, 'applications')
@@ -24,7 +24,7 @@ function * callRequestDeleteApplication () {
   }
   yield put(actions.deleteApplicationComplete)
 }
-function * callRequestAddApplication () {
+function * AddApplication () {
   yield put(actions.addApplicationRequest())
   try {
     const applications = yield call(create, 'applications')
@@ -34,7 +34,7 @@ function * callRequestAddApplication () {
   }
   yield put(actions.addApplicationComplete)
 }
-function * callRequestUpdateApplication () {
+function * UpdateApplication () {
   yield put(actions.updateApplicationRequest())
   try {
     const applications = yield call(update, 'applications')
@@ -45,12 +45,8 @@ function * callRequestUpdateApplication () {
   yield put(actions.updateApplicationComplete)
 }
 export const requestApplicationsSaga = function * () {
-  yield takeEvery(types.GET_APPLICATIONS_REQUEST, () => callRequestGetApplications())
-  yield takeEvery(types.DELETE_APPLICATION_REQUEST, () =>
-    callRequestDeleteApplication()
-  )
-  yield takeEvery(types.ADD_APPLICATION_REQUEST, () => callRequestAddApplication())
-  yield takeEvery(types.UPDATE_APPLICATION_REQUEST, () =>
-    callRequestUpdateApplication()
-  )
+  yield takeEvery(types.GET_APPLICATIONS, () => GetApplications(e.payload))
+  yield takeEvery(types.DELETE_APPLICATION, e => DeleteApplication())
+  yield takeEvery(types.ADD_APPLICATION, e => AddApplication(e.payload))
+  yield takeEvery(types.UPDATE_APPLICATION, e => UpdateApplication(e.payload))
 }

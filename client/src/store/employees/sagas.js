@@ -5,7 +5,7 @@ import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetEmployees (payload) {
+function * GetEmployees (payload) {
   setProcessing(types.GET_EMPLOYEES, true)
   try {
     const employees = yield call(get, `employees`)
@@ -16,7 +16,7 @@ function * callRequestGetEmployees (payload) {
   setProcessing(types.GET_EMPLOYEES, false)
 }
 
-function * callRequestDeleteEmployees (payload) {
+function * DeleteEmployees (payload) {
   setProcessing(types.DELETE_EMPLOYEES, true)
 
   try {
@@ -27,7 +27,7 @@ function * callRequestDeleteEmployees (payload) {
   }
   setProcessing(types.DELETE_EMPLOYEES, false)
 }
-function * callRequestAddEmployees (payload) {
+function * AddEmployees (payload) {
   setProcessing(types.ADD_EMPLOYEES, true)
 
   try {
@@ -38,7 +38,7 @@ function * callRequestAddEmployees (payload) {
   }
   setProcessing(types.ADD_EMPLOYEES, false)
 }
-function * callRequestUpdateEmployees (payload) {
+function * UpdateEmployees (payload) {
   setProcessing(types.UPDATE_EMPLOYEES, true)
 
   try {
@@ -50,8 +50,8 @@ function * callRequestUpdateEmployees (payload) {
   setProcessing(types.UPDATE_EMPLOYEES, false)
 }
 export const employeeSagas = function * () {
-  yield takeEvery(types.GET_EMPLOYEES, () => callRequestGetEmployees())
-  yield takeEvery(types.DELETE_EMPLOYEES, () => callRequestDeleteEmployees())
-  yield takeEvery(types.ADD_EMPLOYEES, () => callRequestAddEmployees())
-  yield takeEvery(types.UPDATE_EMPLOYEES, () => callRequestUpdateEmployees())
+  yield takeEvery(types.GET_EMPLOYEES, () => GetEmployees())
+  yield takeEvery(types.DELETE_EMPLOYEES, e => DeleteEmployees(e.payload))
+  yield takeEvery(types.ADD_EMPLOYEES, e => AddEmployees(e.payload))
+  yield takeEvery(types.UPDATE_EMPLOYEES, e => UpdateEmployees(e.payload))
 }

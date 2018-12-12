@@ -3,7 +3,7 @@ import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetPositions () {
+function * GetPositions () {
   yield put(actions.getPositionsRequest())
   try {
     const positions = yield call(get, 'positions')
@@ -14,7 +14,7 @@ function * callRequestGetPositions () {
   yield put(actions.getPositionsComplete)
 }
 
-function * callRequestDeletePosition () {
+function * DeletePosition () {
   yield put(actions.deletePositionRequest())
   try {
     const positions = yield call(destroy, 'positions')
@@ -24,7 +24,7 @@ function * callRequestDeletePosition () {
   }
   yield put(actions.deletePositionComplete)
 }
-function * callRequestAddPosition () {
+function * AddPosition () {
   yield put(actions.addPositionRequest())
   try {
     const positions = yield call(create, 'positions')
@@ -34,7 +34,7 @@ function * callRequestAddPosition () {
   }
   yield put(actions.addPositionComplete)
 }
-function * callRequestUpdatePosition () {
+function * UpdatePosition () {
   yield put(actions.updatePositionRequest())
   try {
     const positions = yield call(update, 'positions')
@@ -44,13 +44,9 @@ function * callRequestUpdatePosition () {
   }
   yield put(actions.updatePositionComplete)
 }
-export const requestPositionsSaga = function * () {
-  yield takeEvery(types.GET_POSITIONS_REQUEST, () => callRequestGetPositions())
-  yield takeEvery(types.DELETE_POSITION_REQUEST, () =>
-    callRequestDeletePosition()
-  )
-  yield takeEvery(types.ADD_POSITION_REQUEST, () => callRequestAddPosition())
-  yield takeEvery(types.UPDATE_POSITION_REQUEST, () =>
-    callRequestUpdatePosition()
-  )
+export const positionSagas = function * () {
+  yield takeEvery(types.GET_POSITIONS, () => GetPositions())
+  yield takeEvery(types.DELETE_POSITION, e => DeletePosition(e.payload))
+  yield takeEvery(types.ADD_POSITION, e => AddPosition(e.payload))
+  yield takeEvery(types.UPDATE_POSITION, e => UpdatePosition(e.payload))
 }

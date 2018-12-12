@@ -18,3 +18,20 @@ body {
     height: 100%;
     width: 100%;
 }
+
+span.p-column-title {
+    white-space: nowrap;
+}
+
+td:hover {
+    cursor: pointer;
+}
+
+div.toolbar {
+    display: flex;
+    padding: .25em;
+}
+
+.p-datatable-auto-layout>.p-datatable-wrapper {
+    overflow-x: initial;
+}

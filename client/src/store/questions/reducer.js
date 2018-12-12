@@ -10,7 +10,7 @@ const initialState = {
 
 const questions = createReducer(
   {
-    [types.ADD_QUESTION_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.ADD_QUESTION]: state => ({ ...state, requesting: true }),
     [types.ADD_QUESTION_SUCCESS]: (state, payload) => ({
       ...state,
       questions: [...state.questions, payload]
@@ -27,7 +27,7 @@ const questions = createReducer(
       errorMessage: ''
     }),
 
-    [types.GET_QUESTIONS_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.GET_QUESTIONS]: state => ({ ...state, requesting: true }),
     [types.GET_QUESTIONS_SUCCESS]: (state, payload) => ({
       ...state,
       questions: payload
@@ -44,7 +44,7 @@ const questions = createReducer(
       errorMessage: ''
     }),
 
-    [types.DELETE_QUESTION_REQUEST]: state => ({...state, requesting: true }),
+    [types.DELETE_QUESTION]: state => ({...state, requesting: true }),
     [types.DELETE_QUESTION_SUCCESS]: (state, payload) => ({
       ...state,
       questions: [...state.questions.slice(0, state.questions.indexOf(payload)), ...state.questions.slice(state.questions.indexOf(payload) + 1)]
@@ -61,7 +61,7 @@ const questions = createReducer(
       errorMessage: ''
     }),
 
-    [types.UPDATE_QUESTION_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.UPDATE_QUESTION]: state => ({ ...state, requesting: true }),
     
     [types.UPDATE_QUESTION_SUCCESS]: (state, payload) => ({
       ...state,

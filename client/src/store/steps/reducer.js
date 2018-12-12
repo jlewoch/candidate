@@ -10,7 +10,7 @@ const initialState = {
 
 const steps = createReducer(
   {
-    [types.ADD_STEP_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.ADD_STEP]: state => ({ ...state, requesting: true }),
     [types.ADD_STEP_SUCCESS]: (state, payload) => ({
       ...state,
       steps: [...state.steps, payload]
@@ -27,7 +27,7 @@ const steps = createReducer(
       errorMessage: ''
     }),
 
-    [types.GET_STEPS_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.GET_STEPS]: state => ({ ...state, requesting: true }),
     [types.GET_STEPS_SUCCESS]: (state, payload) => ({
       ...state,
       steps: payload
@@ -44,7 +44,7 @@ const steps = createReducer(
       errorMessage: ''
     }),
 
-    [types.DELETE_STEP_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.DELETE_STEP]: state => ({ ...state, requesting: true }),
     [types.DELETE_STEP_SUCCESS]: (state, payload) => ({
       ...state,
       steps: [
@@ -64,7 +64,7 @@ const steps = createReducer(
       errorMessage: ''
     }),
 
-    [types.UPDATE_STEP_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.UPDATE_STEP]: state => ({ ...state, requesting: true }),
 
     [types.UPDATE_STEP_SUCCESS]: (state, payload) => ({
       ...state,

@@ -10,7 +10,7 @@ const initialState = {
 
 const positions = createReducer(
   {
-    [types.ADD_POSITION_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.ADD_POSITION]: state => ({ ...state, requesting: true }),
     [types.ADD_POSITION_SUCCESS]: (state, payload) => ({
       ...state,
       positions: [...state.positions, payload]
@@ -27,7 +27,7 @@ const positions = createReducer(
       errorMessage: ''
     }),
 
-    [types.GET_POSITIONS_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.GET_POSITIONS]: state => ({ ...state, requesting: true }),
     [types.GET_POSITIONS_SUCCESS]: (state, payload) => ({
       ...state,
       positions: payload
@@ -44,7 +44,7 @@ const positions = createReducer(
       errorMessage: ''
     }),
 
-    [types.DELETE_POSITION_REQUEST]: state => ({...state, requesting: true }),
+    [types.DELETE_POSITION]: state => ({...state, requesting: true }),
     [types.DELETE_POSITION_SUCCESS]: (state, payload) => ({
       ...state,
       positions: [...state.positions.slice(0, state.positions.indexOf(payload)), ...state.positions.slice(state.positions.indexOf(payload) + 1)]
@@ -61,7 +61,7 @@ const positions = createReducer(
       errorMessage: ''
     }),
 
-    [types.UPDATE_POSITION_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.UPDATE_POSITION]: state => ({ ...state, requesting: true }),
     
     [types.UPDATE_POSITION_SUCCESS]: (state, payload) => ({
       ...state,

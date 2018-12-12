@@ -3,7 +3,7 @@ import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetSteps () {
+function * GetSteps () {
   yield put(actions.getStepsRequest())
   try {
     const steps = yield call(get, 'steps')
@@ -14,7 +14,7 @@ function * callRequestGetSteps () {
   yield put(actions.getStepsComplete)
 }
 
-function * callRequestDeleteStep () {
+function * DeleteStep () {
   yield put(actions.deleteStepRequest())
   try {
     const steps = yield call(destroy, 'steps')
@@ -24,7 +24,7 @@ function * callRequestDeleteStep () {
   }
   yield put(actions.deleteStepComplete)
 }
-function * callRequestAddStep () {
+function * AddStep () {
   yield put(actions.addStepRequest())
   try {
     const steps = yield call(create, 'steps')
@@ -34,7 +34,7 @@ function * callRequestAddStep () {
   }
   yield put(actions.addStepComplete)
 }
-function * callRequestUpdateStep () {
+function * UpdateStep () {
   yield put(actions.updateStepRequest())
   try {
     const steps = yield call(update, 'steps')
@@ -44,9 +44,9 @@ function * callRequestUpdateStep () {
   }
   yield put(actions.updateStepComplete)
 }
-export const requestStepsSaga = function * () {
-  yield takeEvery(types.GET_STEPS_REQUEST, () => callRequestGetSteps())
-  yield takeEvery(types.DELETE_STEP_REQUEST, () => callRequestDeleteStep())
-  yield takeEvery(types.ADD_STEP_REQUEST, () => callRequestAddStep())
-  yield takeEvery(types.UPDATE_STEP_REQUEST, () => callRequestUpdateStep())
+export const stepSagas = function * () {
+  yield takeEvery(types.GET_STEPS, () => GetSteps())
+  yield takeEvery(types.DELETE_STEP, e => DeleteStep(e.payload))
+  yield takeEvery(types.ADD_STEP, e => AddStep(e.payload))
+  yield takeEvery(types.UPDATE_STEP, e => UpdateStep(e.payload))
 }

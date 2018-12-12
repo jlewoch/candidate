@@ -8,6 +8,8 @@ export const create = (section, data) => {
     .catch(err => console.log(err))
 }
 export const update = (section, data) => {
+  console.log('data')
+
   return fetch(`http://localhost:8000/db/${section}`, {
     method: 'PUT',
     body: JSON.stringify(data),

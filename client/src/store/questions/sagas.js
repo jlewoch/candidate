@@ -3,7 +3,7 @@ import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetQuestions () {
+function * GetQuestions () {
   yield put(actions.getQuestionsRequest())
   try {
     const questions = yield call(get, 'questions')
@@ -14,7 +14,7 @@ function * callRequestGetQuestions () {
   yield put(actions.getQuestionsComplete)
 }
 
-function * callRequestDeleteQuestion () {
+function * DeleteQuestion () {
   yield put(actions.deleteQuestionRequest())
   try {
     const questions = yield call(destroy, 'questions')
@@ -24,7 +24,7 @@ function * callRequestDeleteQuestion () {
   }
   yield put(actions.deleteQuestionComplete)
 }
-function * callRequestAddQuestion () {
+function * AddQuestion () {
   yield put(actions.addQuestionRequest())
   try {
     const questions = yield call(create, 'questions')
@@ -34,7 +34,7 @@ function * callRequestAddQuestion () {
   }
   yield put(actions.addQuestionComplete)
 }
-function * callRequestUpdateQuestion () {
+function * UpdateQuestion () {
   yield put(actions.updateQuestionRequest())
   try {
     const questions = yield call(update, 'questions')
@@ -44,13 +44,9 @@ function * callRequestUpdateQuestion () {
   }
   yield put(actions.updateQuestionComplete)
 }
-export const requestQuestionsSaga = function * () {
-  yield takeEvery(types.GET_QUESTIONS_REQUEST, () => callRequestGetQuestions())
-  yield takeEvery(types.DELETE_QUESTION_REQUEST, () =>
-    callRequestDeleteQuestion()
-  )
-  yield takeEvery(types.ADD_QUESTION_REQUEST, () => callRequestAddQuestion())
-  yield takeEvery(types.UPDATE_QUESTION_REQUEST, () =>
-    callRequestUpdateQuestion()
-  )
+export const questionSagas = function * () {
+  yield takeEvery(types.GET_QUESTIONS, () => GetQuestions())
+  yield takeEvery(types.DELETE_QUESTION, e => DeleteQuestion(e.payload))
+  yield takeEvery(types.ADD_QUESTION, e => AddQuestion(e.payload))
+  yield takeEvery(types.UPDATE_QUESTION, e => UpdateQuestion(e.payload))
 }

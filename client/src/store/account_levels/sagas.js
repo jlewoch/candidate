@@ -5,7 +5,7 @@ import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetAccountLevels () {
+function * GetAccountLevels () {
   setProcessing(types.GET_ACCOUNT_LEVELS, true)
   try {
     const account_levels = yield call(get, `account_levels`)
@@ -16,7 +16,7 @@ function * callRequestGetAccountLevels () {
   setProcessing(types.GET_ACCOUNT_LEVELS, false)
 }
 
-function * callRequestDeleteAccountLevels (payload) {
+function * DeleteAccountLevels (payload) {
   setProcessing(types.DELETE_ACCOUNT_LEVELS, true)
 
   try {
@@ -27,7 +27,7 @@ function * callRequestDeleteAccountLevels (payload) {
   }
   setProcessing(types.DELETE_ACCOUNT_LEVELS, false)
 }
-function * callRequestAddAccountLevels (payload) {
+function * AddAccountLevels (payload) {
   setProcessing(types.ADD_ACCOUNT_LEVELS, true)
 
   try {
@@ -38,7 +38,7 @@ function * callRequestAddAccountLevels (payload) {
   }
   setProcessing(types.ADD_ACCOUNT_LEVELS, false)
 }
-function * callRequestUpdateAccountLevels (payload) {
+function * UpdateAccountLevels (payload) {
   setProcessing(types.UPDATE_ACCOUNT_LEVELS, true)
 
   try {
@@ -50,12 +50,12 @@ function * callRequestUpdateAccountLevels (payload) {
   setProcessing(types.UPDATE_ACCOUNT_LEVELS, false)
 }
 export const accountLevelSagas = function * () {
-  yield takeEvery(types.GET_ACCOUNT_LEVELS, () => callRequestGetAccountLevels())
-  yield takeEvery(types.DELETE_ACCOUNT_LEVELS, () =>
-    callRequestDeleteAccountLevels()
+  yield takeEvery(types.GET_ACCOUNT_LEVELS, () => GetAccountLevels())
+  yield takeEvery(types.DELETE_ACCOUNT_LEVELS, e =>
+    DeleteAccountLevels(e.payload)
   )
-  yield takeEvery(types.ADD_ACCOUNT_LEVELS, () => callRequestAddAccountLevels())
-  yield takeEvery(types.UPDATE_ACCOUNT_LEVELS, () =>
-    callRequestUpdateAccountLevels()
+  yield takeEvery(types.ADD_ACCOUNT_LEVELS, e => AddAccountLevels(e.payload))
+  yield takeEvery(types.UPDATE_ACCOUNT_LEVELS, e =>
+    UpdateAccountLevels(e.payload)
   )
 }

@@ -10,7 +10,7 @@ const initialState = {
 
 const applicants = createReducer(
   {
-    [types.ADD_APPLICANT_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.ADD_APPLICANT]: state => ({ ...state, requesting: true }),
     [types.ADD_APPLICANT_SUCCESS]: (state, payload) => ({
       ...state,
       applicants: [...state.applicants, payload]
@@ -27,7 +27,7 @@ const applicants = createReducer(
       errorMessage: ''
     }),
 
-    [types.GET_APPLICANTS_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.GET_APPLICANTS]: state => ({ ...state, requesting: true }),
     [types.GET_APPLICANTS_SUCCESS]: (state, payload) => ({
       ...state,
       applicants: payload
@@ -44,10 +44,13 @@ const applicants = createReducer(
       errorMessage: ''
     }),
 
-    [types.DELETE_APPLICANT_REQUEST]: state => ({...state, requesting: true }),
+    [types.DELETE_APPLICANT]: state => ({ ...state, requesting: true }),
     [types.DELETE_APPLICANT_SUCCESS]: (state, payload) => ({
       ...state,
-      applicants: [...state.applicants.slice(0, state.applicants.indexOf(payload)), ...state.applicants.slice(state.applicants.indexOf(payload) + 1)]
+      applicants: [
+        ...state.applicants.slice(0, state.applicants.indexOf(payload)),
+        ...state.applicants.slice(state.applicants.indexOf(payload) + 1)
+      ]
     }),
     [types.DELETE_APPLICANT_FAILED]: (state, payload) => ({
       ...state,
@@ -61,11 +64,24 @@ const applicants = createReducer(
       errorMessage: ''
     }),
 
-    [types.UPDATE_APPLICANT_REQUEST]: state => ({ ...state, requesting: true }),
-    
+    [types.UPDATE_APPLICANT]: state => ({ ...state, requesting: true }),
+
     [types.UPDATE_APPLICANT_SUCCESS]: (state, payload) => ({
       ...state,
-      applicants: [...state.applicants.slice(0, state.applicants.indexOf(state.applicants.find(item=> item.id = payload.id))), payload,...state.applicants.slice(state.applicants.indexOf(state.applicants.find(item=> item.id = payload.id)) + 1)]
+      applicants: [
+        ...state.applicants.slice(
+          0,
+          state.applicants.indexOf(
+            state.applicants.find(item => (item.id = payload.id))
+          )
+        ),
+        payload,
+        ...state.applicants.slice(
+          state.applicants.indexOf(
+            state.applicants.find(item => (item.id = payload.id))
+          ) + 1
+        )
+      ]
     }),
     [types.UPDATE_APPLICANT_FAILED]: (state, payload) => ({
       ...state,
@@ -77,7 +93,7 @@ const applicants = createReducer(
       error: false,
       requesting: false,
       errorMessage: ''
-    }),
+    })
   },
   initialState
 )

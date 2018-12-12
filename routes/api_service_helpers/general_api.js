@@ -22,7 +22,7 @@ const update = (table, body, params, res) => {
   knex(table)
     .update(body)
     .where({ id: params.id })
-    .then(data => res.status(OK.code).json({ message: OK.message }))
+    .then(data => res.status(OK.code).json({ data: data, message: OK.message }))
     .catch(error =>
       res.status(BAD_REQUEST.code).json({ error, message: BAD_REQUEST.message })
     )

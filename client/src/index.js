@@ -1,17 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { App } from './main'
+import { BrowserRouter as Router } from 'react-router-dom'
 import store from './store'
 import registerServiceWorker from './registerServiceWorker'
-import './index.css'
 import 'primereact/resources/themes/nova-dark/theme.css'
 import 'primereact/resources/primereact.css'
 import 'primeicons/primeicons.css'
-import './styles/form.css'
+import './index.css'
+
+import Routes from './routes/Routes'
+
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <Routes />
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

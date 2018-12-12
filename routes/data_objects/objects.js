@@ -92,7 +92,12 @@ const account = obj => ({
   access_level: obj.access_level
 })
 
+const fullName = (fname, lname) => {
+  return fname + ' ' + lname
+}
+
 module.exports = {
+  fullName,
   account_level,
   account,
   job,

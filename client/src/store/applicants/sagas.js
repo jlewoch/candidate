@@ -3,7 +3,7 @@ import { get, update, create, destroy } from '../api/api'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetApplicants () {
+function * GetApplicants () {
   yield put(actions.getApplicantsRequest())
   try {
     const applicants = yield call(get, 'applicants')
@@ -14,7 +14,7 @@ function * callRequestGetApplicants () {
   yield put(actions.getApplicantsComplete)
 }
 
-function * callRequestDeleteApplicant () {
+function * DeleteApplicant () {
   yield put(actions.deleteApplicantRequest())
   try {
     const applicants = yield call(destroy, 'applicants')
@@ -24,7 +24,7 @@ function * callRequestDeleteApplicant () {
   }
   yield put(actions.deleteApplicantComplete)
 }
-function * callRequestAddApplicant () {
+function * AddApplicant () {
   yield put(actions.addApplicantRequest())
   try {
     const applicants = yield call(create, 'applicants')
@@ -34,7 +34,7 @@ function * callRequestAddApplicant () {
   }
   yield put(actions.addApplicantComplete)
 }
-function * callRequestUpdateApplicant () {
+function * UpdateApplicant () {
   yield put(actions.updateApplicantRequest())
   try {
     const applicants = yield call(update, 'applicants')
@@ -45,12 +45,8 @@ function * callRequestUpdateApplicant () {
   yield put(actions.updateApplicantComplete)
 }
 export const requestApplicantsSaga = function * () {
-  yield takeEvery(types.GET_APPLICANTS_REQUEST, () => callRequestGetApplicants())
-  yield takeEvery(types.DELETE_APPLICANT_REQUEST, () =>
-    callRequestDeleteApplicant()
-  )
-  yield takeEvery(types.ADD_APPLICANT_REQUEST, () => callRequestAddApplicant())
-  yield takeEvery(types.UPDATE_APPLICANT_REQUEST, () =>
-    callRequestUpdateApplicant()
-  )
+  yield takeEvery(types.GET_APPLICANTS, () => GetApplicants())
+  yield takeEvery(types.DELETE_APPLICANT, e => DeleteApplicant(e.payload))
+  yield takeEvery(types.ADD_APPLICANT, e => AddApplicant(e.payload))
+  yield takeEvery(types.UPDATE_APPLICANT, e => UpdateApplicant(e.payload))
 }

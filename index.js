@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8000
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'client/build')))
+// app.use(express.static(path.join(__dirname, 'client/build')))
 
 // app.use((req, res, next) => {
 
@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 // })
 
 app.use('/db', require('./routes/index'))
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client/build/index.html'))
-})
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
+// })
 app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))

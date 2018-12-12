@@ -5,7 +5,7 @@ import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * callRequestGetAccounts () {
+function * GetAccounts () {
   setProcessing(types.GET_ACCOUNTS, true)
   try {
     const accounts = yield call(get, `accounts`)
@@ -16,7 +16,7 @@ function * callRequestGetAccounts () {
   setProcessing(types.GET_ACCOUNTS, false)
 }
 
-function * callRequestDeleteAccounts (payload) {
+function * DeleteAccounts (payload) {
   setProcessing(types.DELETE_ACCOUNTS, true)
 
   try {
@@ -27,7 +27,7 @@ function * callRequestDeleteAccounts (payload) {
   }
   setProcessing(types.DELETE_ACCOUNTS, false)
 }
-function * callRequestAddAccounts (payload) {
+function * AddAccounts (payload) {
   setProcessing(types.ADD_ACCOUNTS, true)
 
   try {
@@ -38,11 +38,16 @@ function * callRequestAddAccounts (payload) {
   }
   setProcessing(types.ADD_ACCOUNTS, false)
 }
-function * callRequestUpdateAccounts (payload) {
+function * UpdateAccounts (payload) {
   setProcessing(types.UPDATE_ACCOUNTS, true)
+  console.log(payload)
 
   try {
-    const accounts = yield call(update, `accounts/${payload.id}`)
+    const accounts = yield call(
+      update,
+      `accounts/${payload.id}`,
+      payload.update
+    )
     yield put(actions.updateAccountsSuccess(accounts))
   } catch (error) {
     setError(types.UPDATE_ACCOUNTS, error)
@@ -50,8 +55,8 @@ function * callRequestUpdateAccounts (payload) {
   setProcessing(types.UPDATE_ACCOUNTS, false)
 }
 export const accountSagas = function * () {
-  yield takeEvery(types.GET_ACCOUNTS, () => callRequestGetAccounts())
-  yield takeEvery(types.DELETE_ACCOUNTS, () => callRequestDeleteAccounts())
-  yield takeEvery(types.ADD_ACCOUNTS, () => callRequestAddAccounts())
-  yield takeEvery(types.UPDATE_ACCOUNTS, () => callRequestUpdateAccounts())
+  yield takeEvery(types.GET_ACCOUNTS, () => GetAccounts())
+  yield takeEvery(types.DELETE_ACCOUNTS, e => DeleteAccounts(e.payload))
+  yield takeEvery(types.ADD_ACCOUNTS, e => AddAccounts(e.payload))
+  yield takeEvery(types.UPDATE_ACCOUNTS, e => UpdateAccounts(e.payload))
 }

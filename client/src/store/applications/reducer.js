@@ -10,7 +10,7 @@ const initialState = {
 
 const applications = createReducer(
   {
-    [types.ADD_APPLICATION_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.ADD_APPLICATION]: state => ({ ...state, requesting: true }),
     [types.ADD_APPLICATION_SUCCESS]: (state, payload) => ({
       ...state,
       applications: [...state.applications, payload]
@@ -27,7 +27,7 @@ const applications = createReducer(
       errorMessage: ''
     }),
 
-    [types.GET_APPLICATIONS_REQUEST]: state => ({ ...state, requesting: true }),
+    [types.GET_APPLICATIONS]: state => ({ ...state, requesting: true }),
     [types.GET_APPLICATIONS_SUCCESS]: (state, payload) => ({
       ...state,
       applications: payload
@@ -44,10 +44,13 @@ const applications = createReducer(
       errorMessage: ''
     }),
 
-    [types.DELETE_APPLICATION_REQUEST]: state => ({...state, requesting: true }),
+    [types.DELETE_APPLICATION]: state => ({ ...state, requesting: true }),
     [types.DELETE_APPLICATION_SUCCESS]: (state, payload) => ({
       ...state,
-      applications: [...state.applications.slice(0, state.applications.indexOf(payload)), ...state.applications.slice(state.applications.indexOf(payload) + 1)]
+      applications: [
+        ...state.applications.slice(0, state.applications.indexOf(payload)),
+        ...state.applications.slice(state.applications.indexOf(payload) + 1)
+      ]
     }),
     [types.DELETE_APPLICATION_FAILED]: (state, payload) => ({
       ...state,
@@ -61,11 +64,24 @@ const applications = createReducer(
       errorMessage: ''
     }),
 
-    [types.UPDATE_APPLICATION_REQUEST]: state => ({ ...state, requesting: true }),
-    
+    [types.UPDATE_APPLICATION]: state => ({ ...state, requesting: true }),
+
     [types.UPDATE_APPLICATION_SUCCESS]: (state, payload) => ({
       ...state,
-      applications: [...state.applications.slice(0, state.applications.indexOf(state.applications.find(item=> item.id = payload.id))), payload,...state.applications.slice(state.applications.indexOf(state.applications.find(item=> item.id = payload.id)) + 1)]
+      applications: [
+        ...state.applications.slice(
+          0,
+          state.applications.indexOf(
+            state.applications.find(item => (item.id = payload.id))
+          )
+        ),
+        payload,
+        ...state.applications.slice(
+          state.applications.indexOf(
+            state.applications.find(item => (item.id = payload.id))
+          ) + 1
+        )
+      ]
     }),
     [types.UPDATE_APPLICATION_FAILED]: (state, payload) => ({
       ...state,
@@ -77,7 +93,7 @@ const applications = createReducer(
       error: false,
       requesting: false,
       errorMessage: ''
-    }),
+    })
   },
   initialState
 )
