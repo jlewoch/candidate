@@ -7,7 +7,7 @@ import { ContextMenu } from 'primereact/contextmenu'
 export default class TableWrapper extends Component {
   static propTypes = {
     list: PropTypes.array.isRequired,
-    expandedTemplate: PropTypes.func.isRequired,
+    expandedTemplate: PropTypes.element,
     addNew: PropTypes.func.isRequired,
     menu: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     checkSelectionState: PropTypes.array.isRequired,
@@ -21,7 +21,7 @@ export default class TableWrapper extends Component {
   }
 
   expand = e => {
-    if (e.originalEvent.target.className) {
+    if (e.originalEvent.target.className || !this.props.expandedTemplate) {
       return
     }
 
@@ -89,9 +89,7 @@ export default class TableWrapper extends Component {
           ref={this.props.dt}
           value={this.props.list}
           expandedRows={this.state.expandedRow}
-          rowExpansionTemplate={() =>
-            this.props.expandedTemplate(this.state.expandRow)
-          }
+          rowExpansionTemplate={this.props.expandedTemplate}
           paginator
           paginatorTemplate='FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown'
           rowsPerPageOptions={rowOptions}
@@ -100,6 +98,7 @@ export default class TableWrapper extends Component {
           footer={footer}
           onRowClick={this.expand}
           autoLayout
+          onRowCollapse={e => console.log(e, 'cola')}
           globalFilter={this.state.globalFilter}
           selection={this.props.checkSelectionState}
           onSelectionChange={this.props.checkSelectionChange}

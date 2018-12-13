@@ -35,3 +35,14 @@ div.toolbar {
 .p-datatable-auto-layout>.p-datatable-wrapper {
     overflow-x: initial;
 }
+
+.expand-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.expand-controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}

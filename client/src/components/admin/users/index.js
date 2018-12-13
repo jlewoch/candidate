@@ -11,7 +11,7 @@ import { getAccountLevels } from '../../../store/account_levels/actions'
 const mapStateToProps = state => ({
   employees: state.employees.employees,
   account_levels: state.account_levels.account_levels,
-  accounts: state.accounts.accounts,
+  accounts: state.accounts,
   managers: state.employees.managers
 })
 const mapDispatchToProps = dispatch => ({

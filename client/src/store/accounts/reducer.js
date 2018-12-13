@@ -1,46 +1,29 @@
 import * as types from './actionTypes'
 import { createReducer } from 'redux-act'
 
-const initialState = {
-  accounts: []
-}
+const initialState = {}
 
 const accounts = createReducer(
   {
     [types.ADD_ACCOUNTS_SUCCESS]: (state, payload) => ({
       ...state,
-      accounts: [...state.accounts, payload]
+      payload
     }),
 
     [types.GET_ACCOUNTS_SUCCESS]: (state, payload) => ({
       ...state,
-      accounts: payload
+      payload
     }),
 
-    [types.DELETE_ACCOUNTS_SUCCESS]: (state, payload) => ({
-      ...state,
-      accounts: [
-        ...state.accounts.slice(0, state.accounts.indexOf(payload)),
-        ...state.accounts.slice(state.accounts.indexOf(payload) + 1)
-      ]
-    }),
+    [types.DELETE_ACCOUNTS_SUCCESS]: (state, payload) => {
+      let tem = state
+      delete tem[payload._a]
+      return tem
+    },
 
     [types.UPDATE_ACCOUNTS_SUCCESS]: (state, payload) => ({
       ...state,
-      accounts: [
-        ...state.accounts.slice(
-          0,
-          state.accounts.indexOf(
-            state.accounts.find(item => (item.id = payload.id))
-          )
-        ),
-        payload,
-        ...state.accounts.slice(
-          state.accounts.indexOf(
-            state.accounts.find(item => (item.id = payload.id))
-          ) + 1
-        )
-      ]
+      [payload._a]: { ...state[payload._a], ...payload.update }
     })
   },
   initialState

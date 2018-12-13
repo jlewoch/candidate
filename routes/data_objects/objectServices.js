@@ -13,7 +13,14 @@ function getPercent (data) {
       0
     )
 }
-
+const convertToObject = (data, objectStructure) => {
+  let temp = {}
+  for (let i = 0; i < data.length; i++) {
+    const element = data[i]
+    temp[element.id] = objectStructure(element)
+  }
+  return temp
+}
 function weightLeft (step) {
   return knex
     .select('weight')
@@ -65,5 +72,6 @@ function lockAccount (attepts, maxAllowed) {
 
 module.exports = {
   getGrade,
-  weightLeft
+  weightLeft,
+  convertToObject
 }

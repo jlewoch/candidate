@@ -8,8 +8,6 @@ export const create = (section, data) => {
     .catch(err => console.log(err))
 }
 export const update = (section, data) => {
-  console.log('data')
-
   return fetch(`http://localhost:8000/db/${section}`, {
     method: 'PUT',
     body: JSON.stringify(data),
@@ -19,15 +17,6 @@ export const update = (section, data) => {
     .catch(err => console.log(err))
 }
 
-export const patch = (section, data) => {
-  return fetch(`http://localhost:8000/db/${section}`, {
-    method: 'PATCH',
-    body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
-  })
-    .then(data => data.json())
-    .catch(err => console.log(err))
-}
 export const destroy = (section, data) => {
   return fetch(`http://localhost:8000/db/${section}`, {
     method: 'DELETE',

@@ -2,8 +2,8 @@ import * as types from './actionTypes'
 import { createReducer } from 'redux-act'
 
 const initialState = {
-  employees: [],
-  managers:[]
+  employees: {},
+  managers: []
 }
 
 const employees = createReducer(
@@ -19,30 +19,18 @@ const employees = createReducer(
       managers: payload.managers
     }),
 
-    [types.DELETE_EMPLOYEES_SUCCESS]: (state, payload) => ({
-      ...state,
-      employees: [
-        ...state.employees.slice(0, state.employees.indexOf(payload)),
-        ...state.employees.slice(state.employees.indexOf(payload) + 1)
-      ]
-    }),
+    [types.DELETE_EMPLOYEES_SUCCESS]: (state, payload) => {
+      let temp = state
+      delete temp[payload._]
+      return temp
+    },
 
     [types.UPDATE_EMPLOYEES_SUCCESS]: (state, payload) => ({
       ...state,
-      employees: [
-        ...state.employees.slice(
-          0,
-          state.employees.indexOf(
-            state.employees.find(item => (item.id = payload.id))
-          )
-        ),
-        payload,
-        ...state.employees.slice(
-          state.employees.indexOf(
-            state.employees.find(item => (item.id = payload.id))
-          ) + 1
-        )
-      ]
+      employees: {
+        ...state.employees,
+        [payload._]: { ...state.employees[payload._], ...payload.update }
+      }
     })
   },
   initialState

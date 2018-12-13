@@ -2,6 +2,7 @@ import { takeEvery, call, put } from 'redux-saga/effects'
 import { get, update, create, destroy } from '../api/api'
 import { setProcessing } from '../api/processing/actions'
 import { setError } from '../api/error/actions'
+import { updateEmployeesSuccess } from '../employees/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
@@ -32,7 +33,7 @@ function * AddAccounts (payload) {
 
   try {
     const accounts = yield call(create, `accounts`)
-    yield put(actions.addAccountsSuccess(accounts))
+    yield put(actions.addAccountsSuccess(accounts.data))
   } catch (error) {
     setError(types.ADD_ACCOUNTS, error)
   }
@@ -40,15 +41,19 @@ function * AddAccounts (payload) {
 }
 function * UpdateAccounts (payload) {
   setProcessing(types.UPDATE_ACCOUNTS, true)
-  console.log(payload)
 
   try {
     const accounts = yield call(
       update,
-      `accounts/${payload.id}`,
+      `accounts/${payload._a}`,
       payload.update
     )
-    yield put(actions.updateAccountsSuccess(accounts))
+    yield put(actions.updateAccountsSuccess(accounts.data))
+    if (payload._) {
+      yield put(
+        updateEmployeesSuccess({ _: payload._, update: payload.update })
+      )
+    }
   } catch (error) {
     setError(types.UPDATE_ACCOUNTS, error)
   }

@@ -1,52 +1,61 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { get, update, create, destroy } from '../api/api'
+import { setProcessing } from '../api/processing/actions'
+import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * GetQuestions () {
-  yield put(actions.getQuestionsRequest())
+function * getQuestions () {
+  setProcessing(types.GET_QUESTIONS, true)
   try {
-    const questions = yield call(get, 'questions')
-    yield put(actions.getQuestionsSuccess(questions))
+    const questions = yield call(get, `questions`)
+    yield put(actions.getQuestionsSuccess(questions.data))
   } catch (error) {
-    yield put(actions.getQuestionsFailed(error))
+    setError(types.GET_QUESTIONS, error)
   }
-  yield put(actions.getQuestionsComplete)
+  setProcessing(types.GET_QUESTIONS, false)
 }
 
-function * DeleteQuestion () {
-  yield put(actions.deleteQuestionRequest())
+function * deleteQuestions (payload) {
+  setProcessing(types.DELETE_QUESTIONS, true)
+
   try {
-    const questions = yield call(destroy, 'questions')
-    yield put(actions.deleteQuestionSuccess(questions))
+    const questions = yield call(destroy, `questions/${payload.id}`)
+    yield put(actions.deleteQuestionsSuccess(questions))
   } catch (error) {
-    yield put(actions.deleteQuestionFailed(error))
+    setError(types.DELETE_QUESTIONS, error)
   }
-  yield put(actions.deleteQuestionComplete)
+  setProcessing(types.DELETE_QUESTIONS, false)
 }
-function * AddQuestion () {
-  yield put(actions.addQuestionRequest())
+function * addQuestions (payload) {
+  setProcessing(types.ADD_QUESTIONS, true)
+
   try {
-    const questions = yield call(create, 'questions')
-    yield put(actions.addQuestionSuccess(questions))
+    const questions = yield call(create, `questions`, payload)
+    yield put(actions.addQuestionsSuccess(questions))
   } catch (error) {
-    yield put(actions.addQuestionFailed(error))
+    setError(types.ADD_QUESTIONS, error)
   }
-  yield put(actions.addQuestionComplete)
+  setProcessing(types.ADD_QUESTIONS, false)
 }
-function * UpdateQuestion () {
-  yield put(actions.updateQuestionRequest())
+function * updateQuestions (payload) {
+  setProcessing(types.UPDATE_QUESTIONS, true)
+
   try {
-    const questions = yield call(update, 'questions')
-    yield put(actions.updateQuestionSuccess(questions))
+    const questions = yield call(
+      update,
+      `questions/${payload.id}`,
+      payload.update
+    )
+    yield put(actions.updateQuestionsSuccess(questions))
   } catch (error) {
-    yield put(actions.updateQuestionFailed(error))
+    setError(types.UPDATE_QUESTIONS, error)
   }
-  yield put(actions.updateQuestionComplete)
+  setProcessing(types.UPDATE_QUESTIONS, false)
 }
 export const questionSagas = function * () {
-  yield takeEvery(types.GET_QUESTIONS, () => GetQuestions())
-  yield takeEvery(types.DELETE_QUESTION, e => DeleteQuestion(e.payload))
-  yield takeEvery(types.ADD_QUESTION, e => AddQuestion(e.payload))
-  yield takeEvery(types.UPDATE_QUESTION, e => UpdateQuestion(e.payload))
+  yield takeEvery(types.GET_QUESTIONS, () => getQuestions())
+  yield takeEvery(types.DELETE_QUESTIONS, e => deleteQuestions(e.payload))
+  yield takeEvery(types.ADD_QUESTIONS, e => addQuestions(e.payload))
+  yield takeEvery(types.UPDATE_QUESTIONS, e => updateQuestions(e.payload))
 }

@@ -3,16 +3,18 @@ import PropTypes from 'prop-types'
 import { Column } from 'primereact/column'
 import { MultiSelect } from 'primereact/multiselect'
 import { Dropdown } from 'primereact/dropdown'
-import UserExpandedTemplate from './UserExpandedTemplate'
+import { UserExpandedTemplate } from '../expanded_template'
 import TableWrapper from '../../../../shared_components/datatable_wrapper/TableWrapper'
 import UserToolBar from './UserToolBar'
+import ConfirmMessage from '../../../../shared_components/dialogs/ConfirmMessage'
+
 const locked = [
   { label: 'Locked', value: 'Locked' },
   { label: 'Clear', value: '' }
 ]
 export default class UserDatatableDisaply extends Component {
   static propTypes = {
-    employees: PropTypes.array.isRequired,
+    employees: PropTypes.object.isRequired,
     addNew: PropTypes.func.isRequired
   }
 
@@ -20,7 +22,8 @@ export default class UserDatatableDisaply extends Component {
     super(props)
     this.state = {
       checkboxItems: [],
-      contextItem: {}
+      contextItem: {},
+      showDialog: false
     }
     this.dt = createRef()
   }
@@ -44,6 +47,14 @@ export default class UserDatatableDisaply extends Component {
     this.dt.filter(x, 'level_name', 'in')
     this.setState({ accessGroups: e.value })
   }
+
+  notSaved = e => {
+    this.setState({ tempHolder: e })
+    this.toggleDialog()
+  }
+  toggleDialog = () => {
+    this.setState({ showDialog: !this.state.showDialog })
+  }
   render () {
     const lockedDropDown = (
       <Dropdown
@@ -54,24 +65,30 @@ export default class UserDatatableDisaply extends Component {
       />
     )
     const departmentDropDown = (
-      <MultiSelect
-        optionLabel='name'
-        dataKey='name'
-        value={this.state.departments}
-        options={this.props.departments}
-        onChange={this.departmentFilter}
-        style={{ maxWidth: '250px' }}
-      />
+      <div>
+        <MultiSelect
+          optionLabel='name'
+          dataKey='name'
+          value={this.state.departments}
+          options={Object.keys(this.props.departments).map(
+            i => this.props.departments[i]
+          )}
+          onChange={this.departmentFilter}
+          style={{ maxWidth: '250px' }}
+        />
+      </div>
     )
     const accessGroupDropDown = (
-      <MultiSelect
-        optionLabel='name'
-        dataKey='id'
-        value={this.state.accessGroups}
-        options={this.props.account_levels}
-        onChange={this.accessGroupFilter}
-        style={{ maxWidth: '250px' }}
-      />
+      <div>
+        <MultiSelect
+          optionLabel='name'
+          dataKey='id'
+          value={this.state.accessGroups}
+          options={this.props.account_levels}
+          onChange={this.accessGroupFilter}
+          style={{ maxWidth: '250px' }}
+        />
+      </div>
     )
     const menu = [
       this.state.contextItem.locked
@@ -86,48 +103,68 @@ export default class UserDatatableDisaply extends Component {
           command: this.props.lock
         }
     ]
+
     return (
-      <TableWrapper
-        dt={el => (this.dt = el)}
-        contextSelectedItem={this.state.contextItem}
-        contextSelectedItemChange={e => this.setState({ contextItem: e.value })}
-        checkSelectionChange={e => this.setState({ checkboxItems: e.value })}
-        checkSelectionState={this.state.checkboxItems}
-        list={this.props.employees}
-        menu={menu}
-        addNew={e => console.log(e)}
-        expandedTemplate={UserExpandedTemplate}
-      >
-        <Column selectionMode='multiple' style={{ width: '2em' }} />
-        <Column
-          field='locked'
-          body={props => UserToolBar(props, this.props.updateAccounts)}
+      <div>
+        <ConfirmMessage
+          show={this.state.showDialog}
+          toggle={this.toggleDialog}
+          saveAction={() => this.props.updateEmployees(this.state.tempHolder)}
         />
-        <Column
-          field='lockedLabel'
-          header='Locked Status'
-          sortable
-          filter
-          filterElement={lockedDropDown}
-        />
-        <Column field='empfull_name' header='Name' sortable filter />
-        <Column field='email' header='Email' sortable filter />
-        <Column
-          field='deptName'
-          header='Department'
-          sortable
-          filter
-          filterElement={departmentDropDown}
-        />
-        <Column field='manfull_name' header='Manager' sortable filter />
-        <Column
-          field='level_name'
-          header='Access Group'
-          sortable
-          filter
-          filterElement={accessGroupDropDown}
-        />
-      </TableWrapper>
+        <TableWrapper
+          dt={el => (this.dt = el)}
+          contextSelectedItem={this.state.contextItem}
+          contextSelectedItemChange={e =>
+            this.setState({ contextItem: e.value })
+          }
+          checkSelectionChange={e => this.setState({ checkboxItems: e.value })}
+          checkSelectionState={this.state.checkboxItems}
+          list={Object.keys(this.props.employees).map(
+            key => this.props.employees[key]
+          )}
+          menu={menu}
+          addNew={e => console.log(e)}
+          expandedTemplate={e => (
+            <UserExpandedTemplate save={this.notSaved} selectedUser={e} />
+          )}
+        >
+          <Column selectionMode='multiple' style={{ width: '2em' }} />
+          <Column
+            field='locked'
+            body={props =>
+              UserToolBar(
+                props,
+                this.props.updateAccounts,
+                this.props.updateSelectedUser
+              )
+            }
+          />
+          <Column
+            field='lockedLabel'
+            header='Locked Status'
+            sortable
+            filter
+            filterElement={lockedDropDown}
+          />
+          <Column field='empfull_name' header='Name' sortable filter />
+          <Column field='email' header='Email' sortable filter />
+          <Column
+            field='deptName'
+            header='Department'
+            sortable
+            filter
+            filterElement={departmentDropDown}
+          />
+          <Column field='manfull_name' header='Manager' sortable filter />
+          <Column
+            field='level_name'
+            header='Access Group'
+            sortable
+            filter
+            filterElement={accessGroupDropDown}
+          />
+        </TableWrapper>
+      </div>
     )
   }
 }

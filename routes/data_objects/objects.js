@@ -1,9 +1,9 @@
 const position = obj => ({
-  id: obj.id,
+  _: obj.id,
   title: obj.title
 })
 const department = obj => ({
-  id: obj.id,
+  _: obj.id,
   name: obj.name
 })
 const manager = obj => ({
@@ -11,13 +11,13 @@ const manager = obj => ({
   direct_reports: obj.direct_reports
 })
 const applicant = obj => ({
-  id: obj.id,
+  _: obj.id,
   Name: obj.f_name + ' ' + obj.l_name,
   email: obj.email,
   phone: obj.phone
 })
 const application = obj => ({
-  id: obj.id,
+  _: obj.id,
   job: obj.job,
   grade: obj.total_grade,
   applicant: obj.applicant,
@@ -36,7 +36,7 @@ const employee = obj => ({
 })
 
 const job = obj => ({
-  id: obj.id,
+  _: obj.id,
   position: obj.position,
   close_date: obj.close_date.toLocaleDateString('en-us'),
   open_date: obj.open_date.toLocaleDateString('en-us'),
@@ -45,7 +45,7 @@ const job = obj => ({
 })
 
 const question = obj => ({
-  id: obj.id,
+  _: obj.id,
   question: obj.question + '?',
   weight: obj.weight,
   enabled: obj.enabled,
@@ -53,10 +53,12 @@ const question = obj => ({
 })
 
 const step = obj => ({
-  id: obj.id,
-  description: obj.description,
+  _: obj.id,
+  name: obj.name,
+  enabledLabel: obj.enabled ? 'Enabled' : 'Disabled',
   level: obj.level,
   required: obj.required,
+  requiredLabel: obj.required && 'Required',
   weight: obj.weight,
   enabled: obj.enabled
 })
@@ -79,12 +81,12 @@ const single_evalution = obj => ({
 })
 
 const account_level = obj => ({
-  id: obj.id,
+  _: obj.id,
   name: obj.name,
   level: obj.level
 })
 const account = obj => ({
-  id: obj.id,
+  _: obj.id,
   username: obj.username,
   enabled: obj.enabled,
   locked: obj.locked,

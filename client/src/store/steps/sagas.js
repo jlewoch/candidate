@@ -1,52 +1,57 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { get, update, create, destroy } from '../api/api'
+import { setProcessing } from '../api/processing/actions'
+import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * GetSteps () {
-  yield put(actions.getStepsRequest())
+function * getSteps () {
+  setProcessing(types.GET_STEPS, true)
   try {
-    const steps = yield call(get, 'steps')
-    yield put(actions.getStepsSuccess(steps))
+    const steps = yield call(get, `steps`)
+    yield put(actions.getStepsSuccess(steps.data))
   } catch (error) {
-    yield put(actions.getStepsFailed(error))
+    setError(types.GET_STEPS, error)
   }
-  yield put(actions.getStepsComplete)
+  setProcessing(types.GET_STEPS, false)
 }
 
-function * DeleteStep () {
-  yield put(actions.deleteStepRequest())
+function * deleteSteps (payload) {
+  setProcessing(types.DELETE_STEPS, true)
+
   try {
-    const steps = yield call(destroy, 'steps')
-    yield put(actions.deleteStepSuccess(steps))
+    const steps = yield call(destroy, `steps/${payload._}`)
+    yield put(actions.deleteStepsSuccess(steps))
   } catch (error) {
-    yield put(actions.deleteStepFailed(error))
+    setError(types.DELETE_STEPS, error)
   }
-  yield put(actions.deleteStepComplete)
+  setProcessing(types.DELETE_STEPS, false)
 }
-function * AddStep () {
-  yield put(actions.addStepRequest())
+function * addSteps (payload) {
+  setProcessing(types.ADD_STEPS, true)
+
   try {
-    const steps = yield call(create, 'steps')
-    yield put(actions.addStepSuccess(steps))
+    const steps = yield call(create, `steps`, payload)
+    yield put(actions.addStepsSuccess(steps.data))
   } catch (error) {
-    yield put(actions.addStepFailed(error))
+    setError(types.ADD_STEPS, error)
   }
-  yield put(actions.addStepComplete)
+  setProcessing(types.ADD_STEPS, false)
 }
-function * UpdateStep () {
-  yield put(actions.updateStepRequest())
+function * updateSteps (payload) {
+  setProcessing(types.UPDATE_STEPS, true)
+
   try {
-    const steps = yield call(update, 'steps')
-    yield put(actions.updateStepSuccess(steps))
+    const steps = yield call(update, `steps/${payload._}`, payload.update)
+    yield put(actions.updateStepsSuccess(steps.data))
   } catch (error) {
-    yield put(actions.updateStepFailed(error))
+    setError(types.UPDATE_STEPS, error)
   }
-  yield put(actions.updateStepComplete)
+  setProcessing(types.UPDATE_STEPS, false)
 }
 export const stepSagas = function * () {
-  yield takeEvery(types.GET_STEPS, () => GetSteps())
-  yield takeEvery(types.DELETE_STEP, e => DeleteStep(e.payload))
-  yield takeEvery(types.ADD_STEP, e => AddStep(e.payload))
-  yield takeEvery(types.UPDATE_STEP, e => UpdateStep(e.payload))
+  yield takeEvery(types.GET_STEPS, () => getSteps())
+  yield takeEvery(types.DELETE_STEPS, e => deleteSteps(e.payload))
+  yield takeEvery(types.ADD_STEPS, e => addSteps(e.payload))
+  yield takeEvery(types.UPDATE_STEPS, e => updateSteps(e.payload))
 }

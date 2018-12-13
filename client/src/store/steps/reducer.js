@@ -1,98 +1,32 @@
 import * as types from './actionTypes'
 import { createReducer } from 'redux-act'
 
-const initialState = {
-  steps:[],
-  error: false,
-  requesting: false,
-  errorMessage: ''
-}
+const initialState = {}
 
 const steps = createReducer(
   {
-    [types.ADD_STEP]: state => ({ ...state, requesting: true }),
-    [types.ADD_STEP_SUCCESS]: (state, payload) => ({
+    [types.ADD_STEPS_SUCCESS]: (state, payload) => ({
       ...state,
-      steps: [...state.steps, payload]
-    }),
-    [types.ADD_STEP_FAILED]: (state, payload) => ({
-      ...state,
-      error: true,
-      errorMessage: payload
-    }),
-    [types.ADD_STEP_COMPLETE]: state => ({
-      ...state,
-      error: false,
-      requesting: false,
-      errorMessage: ''
+      payload
     }),
 
-    [types.GET_STEPS]: state => ({ ...state, requesting: true }),
     [types.GET_STEPS_SUCCESS]: (state, payload) => ({
       ...state,
-      steps: payload
-    }),
-    [types.GET_STEPS_FAILED]: (state, payload) => ({
-      ...state,
-      error: true,
-      errorMessage: payload
-    }),
-    [types.GET_STEPS_COMPLETE]: state => ({
-      ...state,
-      error: false,
-      requesting: false,
-      errorMessage: ''
+      ...payload
     }),
 
-    [types.DELETE_STEP]: state => ({ ...state, requesting: true }),
-    [types.DELETE_STEP_SUCCESS]: (state, payload) => ({
-      ...state,
-      steps: [
-        ...state.steps.slice(0, state.steps.indexOf(payload)),
-        ...state.steps.slice(state.steps.indexOf(payload) + 1)
-      ]
-    }),
-    [types.DELETE_STEP_FAILED]: (state, payload) => ({
-      ...state,
-      error: true,
-      errorMessage: payload
-    }),
-    [types.DELETE_STEP_COMPLETE]: state => ({
-      ...state,
-      error: false,
-      requesting: false,
-      errorMessage: ''
-    }),
+    [types.DELETE_STEPS_SUCCESS]: (state, payload) => {
+      let temp = state
+      delete temp[payload._]
+      return temp
+    },
 
-    [types.UPDATE_STEP]: state => ({ ...state, requesting: true }),
-
-    [types.UPDATE_STEP_SUCCESS]: (state, payload) => ({
+    [types.UPDATE_STEPS_SUCCESS]: (state, payload) => ({
       ...state,
-      steps: [
-        ...state.steps.slice(
-          0,
-          state.steps.indexOf(state.steps.find(item => (item.progressionLevel = payload.progressionLevel)))
-        ),
-        payload,
-        ...state.steps.slice(
-          state.steps.indexOf(
-            state.steps.find(item => (item.progressionLevel = payload.progressionLevel))
-          ) + 1
-        )
-      ]
-    }),
-    [types.UPDATE_STEP_FAILED]: (state, payload) => ({
-      ...state,
-      error: true,
-      errorMessage: payload
-    }),
-    [types.UPDATE_STEP_COMPLETE]: state => ({
-      ...state,
-      error: false,
-      requesting: false,
-      errorMessage: ''
+      [payload._]: { ...state[payload._], ...payload.update }
     })
   },
- initialState
+  initialState
 )
+
 export default steps

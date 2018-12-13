@@ -18,33 +18,6 @@ export default class UserAdminDisplay extends Component {
     this.props.getDepartments()
   }
 
-  save = () => {}
-
-  delete = () => {}
-
-  update = (property, value) => {}
-
-  onSelect = e => {
-    this.setState({
-      displayDialog: true,
-      selectedEmployee: Object.assign({}, e.data),
-      activeIndex: null
-    })
-  }
-
-  addNew = () => {
-    this.setState({
-      adding: true,
-      displayDialog: true
-    })
-  }
-  suggestions = e => {
-    let results = this.props.departments.filter(item =>
-      item.name.toLowerCase().startsWith(e.query.toLowerCase())
-    )
-    console.log(results)
-    this.setState({ deptSuggestions: results })
-  }
   render () {
     return (
       <div>

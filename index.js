@@ -7,6 +7,7 @@ const path = require('path')
 // const jwt = require('jsonwebtoken')
 
 const PORT = process.env.PORT || 8000
+app.use(require('cors')())
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))

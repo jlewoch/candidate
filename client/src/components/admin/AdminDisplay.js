@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import { UserAdmin } from './users'
+import { EvaluationsAdmin } from './evaluations'
 
 export default class AdminDisplay extends Component {
   constructor (props) {
@@ -13,7 +14,7 @@ export default class AdminDisplay extends Component {
   render () {
     return (
       <div>
-        <UserAdmin />
+        <EvaluationsAdmin />
       </div>
     )
   }

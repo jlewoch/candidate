@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const call = require('./api_service_helpers/general_api')
 const obj = require('./data_objects/objects')
-const objs = require('../middleware/api/objectServices')
+const objs = require('./data_objects/objectServices')
 const { OK, CREATED } = require('./api_service_helpers/status_codes')
 const knex = require('../db/knex/knex')
 router
@@ -25,7 +25,6 @@ router
         'd.name as deptName',
         'a.enabled as accountStatus',
         'e.account as _a'
-        
       )
       .leftJoin('departments as d', function () {
         this.on('e.department', '=', 'd.id')
@@ -40,13 +39,25 @@ router
         this.on('a.account_level', '=', 'al.level')
       })
       .then(async data => {
-        let employees = data.map(info => ({
-          ...info,
-          empfull_name: obj.fullName(info.firstName, info.lastName),
-          manfull_name: obj.fullName(info.managerFirst, info.managerLast),
-          lockedLabel: info.locked ? 'Locked' : '',
-          level:{level:info.level, name:info.level_name}
-        }))
+        let employees = {}
+        for (let i = 0; i < data.length; i++) {
+          const element = data[i]
+          employees[element._] = element
+          employees[element._].empfull_name = obj.fullName(
+            element.firstName,
+            element.lastName
+          )
+          employees[element._].manfull_name = obj.fullName(
+            element.managerFirst,
+            element.managerLast
+          )
+          employees[element._].lockedLabel = element.locked ? 'Locked' : ''
+          employees[element._].level = {
+            level: element.level,
+            name: element.level_name
+          }
+        }
+
         let managers = await knex('employees as m')
           .select('m1.f_name', 'm1.l_name', 'm1.id as _')
           .leftJoin('employees as m1', function () {
@@ -78,9 +89,7 @@ router
   .put((req, res) => {
     call.update('employees', req.body, req.params, res)
   })
-  .patch((req, res) => {
-    call.update('employees', req.body, req.params, res)
-  })
+
   .delete((req, res) => {
     call.destroy('employees', req.params, res)
   })

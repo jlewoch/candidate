@@ -20,7 +20,7 @@ function * DeleteEmployees (payload) {
   setProcessing(types.DELETE_EMPLOYEES, true)
 
   try {
-    const employees = yield call(destroy, `employees/${payload.id}`)
+    const employees = yield call(destroy, `employees/${payload._}`)
     yield put(actions.deleteEmployeesSuccess(employees))
   } catch (error) {
     setError(types.DELETE_EMPLOYEES, error)
@@ -42,7 +42,11 @@ function * UpdateEmployees (payload) {
   setProcessing(types.UPDATE_EMPLOYEES, true)
 
   try {
-    const employees = yield call(update, `employees/${payload.id}`)
+    const employees = yield call(
+      update,
+      `employees/${payload._}`,
+      payload.update
+    )
     yield put(actions.updateEmployeesSuccess(employees))
   } catch (error) {
     setError(types.UPDATE_EMPLOYEES, error)

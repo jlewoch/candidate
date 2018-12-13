@@ -1,46 +1,29 @@
 import * as types from './actionTypes'
 import { createReducer } from 'redux-act'
 
-const initialState = {
-  departments: []
-}
+const initialState = {}
 
 const departments = createReducer(
   {
     [types.ADD_DEPARTMENTS_SUCCESS]: (state, payload) => ({
       ...state,
-      departments: [...state.departments, payload]
+      payload
     }),
 
     [types.GET_DEPARTMENTS_SUCCESS]: (state, payload) => ({
       ...state,
-      departments: payload
+      ...payload
     }),
 
-    [types.DELETE_DEPARTMENTS_SUCCESS]: (state, payload) => ({
-      ...state,
-      departments: [
-        ...state.departments.slice(0, state.departments.indexOf(payload)),
-        ...state.departments.slice(state.departments.indexOf(payload) + 1)
-      ]
-    }),
+    [types.DELETE_DEPARTMENTS_SUCCESS]: (state, payload) => {
+      let temp = state
+      delete temp[payload._]
+      return temp
+    },
 
     [types.UPDATE_DEPARTMENTS_SUCCESS]: (state, payload) => ({
       ...state,
-      departments: [
-        ...state.departments.slice(
-          0,
-          state.departments.indexOf(
-            state.departments.find(item => (item.id = payload.id))
-          )
-        ),
-        payload,
-        ...state.departments.slice(
-          state.departments.indexOf(
-            state.departments.find(item => (item.id = payload.id))
-          ) + 1
-        )
-      ]
+      [payload._]: { ...state[payload._], ...payload.update }
     })
   },
   initialState
