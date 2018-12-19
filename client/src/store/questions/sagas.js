@@ -20,7 +20,7 @@ function * deleteQuestions (payload) {
   setProcessing(types.DELETE_QUESTIONS, true)
 
   try {
-    const questions = yield call(destroy, `questions/${payload.id}`)
+    const questions = yield call(destroy, `questions/${payload._}`)
     yield put(actions.deleteQuestionsSuccess(questions))
   } catch (error) {
     setError(types.DELETE_QUESTIONS, error)
@@ -32,7 +32,7 @@ function * addQuestions (payload) {
 
   try {
     const questions = yield call(create, `questions`, payload)
-    yield put(actions.addQuestionsSuccess(questions))
+    yield put(actions.addQuestionsSuccess(questions.data))
   } catch (error) {
     setError(types.ADD_QUESTIONS, error)
   }
@@ -44,10 +44,10 @@ function * updateQuestions (payload) {
   try {
     const questions = yield call(
       update,
-      `questions/${payload.id}`,
+      `questions/${payload._}`,
       payload.update
     )
-    yield put(actions.updateQuestionsSuccess(questions))
+    yield put(actions.updateQuestionsSuccess(questions.data[payload._]))
   } catch (error) {
     setError(types.UPDATE_QUESTIONS, error)
   }

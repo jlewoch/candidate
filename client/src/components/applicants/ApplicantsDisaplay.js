@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { Accordion, AccordionTab } from 'primereact/accordion'
 import ApplicantCard from './applicant_card/ApplicantCard'
 
-export default class ApplicantDisplay extends Component {
+export default class ApplicantsDisplay extends Component {
   constructor (props) {
     super(props)
     this.state = {
       activeIndex: null
     }
+  }
+  componentDidMount () {
+    this.props.getApplicants()
   }
 
   render () {
@@ -45,12 +48,13 @@ export default class ApplicantDisplay extends Component {
               activeIndex={this.state.activeIndex}
               onTabChange={e => this.setState({ activeIndex: e.index })}
             >
-              {Object.values(this.props.applicants).map(applicant => {
+              {Object.keys(this.props.applicants).map(key => {
+                let applicant = this.props.applicants[key]
                 return (
                   <AccordionTab
                     header={
                       <div className='applicant-card-summary'>
-                        <p>{applicant.name}</p>
+                        <p>{applicant.Name}</p>
                         <p>position</p>
                         <p>rank</p>
                         <p>status</p>

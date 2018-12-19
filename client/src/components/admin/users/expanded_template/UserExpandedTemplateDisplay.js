@@ -6,7 +6,6 @@ import { Button } from 'primereact/button'
 import { AutoComplete } from 'primereact/autocomplete'
 import { InputMask } from 'primereact/inputmask'
 import { Dropdown } from 'primereact/dropdown'
-import { Toolbar } from 'primereact/toolbar'
 
 export default class UserExpandedTemplateDisplay extends Component {
   static propTypes = {

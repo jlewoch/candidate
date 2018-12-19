@@ -1,30 +1,18 @@
 import * as types from './actionTypes'
 import { createAction } from 'redux-act'
 
-export const getApplicantsRequest = createAction(types.GET_APPLICANTS)
+export const getApplicants = createAction(types.GET_APPLICANTS)
 export const getApplicantsSuccess = createAction(types.GET_APPLICANTS_SUCCESS)
-export const getApplicantsFailed = createAction(types.GET_APPLICANTS_FAILED)
-export const getApplicantsComplete = createAction(types.GET_APPLICANTS_COMPLETE)
 
-export const addApplicantRequest = createAction(types.ADD_APPLICANT)
-export const addApplicantSuccess = createAction(types.ADD_APPLICANT_SUCCESS)
-export const addApplicantFailed = createAction(types.ADD_APPLICANT_FAILED)
-export const addApplicantComplete = createAction(types.ADD_APPLICANT_COMPLETE)
+export const addApplicants = createAction(types.ADD_APPLICANTS)
+export const addApplicantsSuccess = createAction(types.ADD_APPLICANTS_SUCCESS)
 
-export const deleteApplicantRequest = createAction(types.DELETE_APPLICANT)
-export const deleteApplicantSuccess = createAction(
-  types.DELETE_APPLICANT_SUCCESS
-)
-export const deleteApplicantFailed = createAction(types.DELETE_APPLICANT_FAILED)
-export const deleteApplicantComplete = createAction(
-  types.DELETE_APPLICANT_COMPLETE
+export const deleteApplicants = createAction(types.DELETE_APPLICANTS)
+export const deleteApplicantsSuccess = createAction(
+  types.DELETE_APPLICANTS_SUCCESS
 )
 
-export const updateApplicantRequest = createAction(types.UPDATE_APPLICANT)
-export const updateApplicantSuccess = createAction(
-  types.UPDATE_APPLICANT_SUCCESS
-)
-export const updateApplicantFailed = createAction(types.UPDATE_APPLICANT_FAILED)
-export const updateApplicantComplete = createAction(
-  types.UPDATE_APPLICANT_COMPLETE
+export const updateApplicants = createAction(types.UPDATE_APPLICANTS)
+export const updateApplicantsSuccess = createAction(
+  types.UPDATE_APPLICANTS_SUCCESS
 )

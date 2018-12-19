@@ -23,7 +23,7 @@ const steps = createReducer(
 
     [types.UPDATE_STEPS_SUCCESS]: (state, payload) => ({
       ...state,
-      [payload._]: { ...state[payload._], ...payload.update }
+      [payload._]: { ...state[payload._], ...payload }
     })
   },
   initialState

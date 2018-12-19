@@ -131,13 +131,7 @@ export default class UserDatatableDisaply extends Component {
           <Column selectionMode='multiple' style={{ width: '2em' }} />
           <Column
             field='locked'
-            body={props =>
-              UserToolBar(
-                props,
-                this.props.updateAccounts,
-                this.props.updateSelectedUser
-              )
-            }
+            body={props => UserToolBar(props, this.props.updateAccounts)}
           />
           <Column
             field='lockedLabel'

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { fork, all } from 'redux-saga/effects'
 import { stepSagas } from './steps/sagas'
 import { employeeSagas } from './employees/sagas'
 import { accountSagas } from './accounts/sagas'
@@ -8,6 +7,7 @@ import { departmentSagas } from './departments/sagas'
 import { questionSagas } from './questions/sagas'
 import { positionSagas } from './positions/sagas'
 import { jobPostingSagas } from './job_postings/sagas'
+import { applicantSagas } from './applicants/sagas'
 
 import steps from './steps/reducer'
 import users from './users/reducer'
@@ -46,4 +46,5 @@ export function rootSaga (saga) {
   saga.run(stepSagas)
   saga.run(questionSagas)
   saga.run(positionSagas)
+  saga.run(applicantSagas)
 }

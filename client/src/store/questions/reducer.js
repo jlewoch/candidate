@@ -23,7 +23,7 @@ const questions = createReducer(
 
     [types.UPDATE_QUESTIONS_SUCCESS]: (state, payload) => ({
       ...state,
-      [payload._]: { ...state[payload._], ...payload.update }
+      [payload._]: { ...state[payload._], ...payload }
     })
   },
   initialState

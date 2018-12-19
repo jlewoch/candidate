@@ -1,47 +1,28 @@
 import * as types from './actionTypes'
 import { createReducer } from 'redux-act'
 
-const initialState = {
-  job_postings: []
-}
+const initialState = {}
 
 const job_postings = createReducer(
   {
     [types.ADD_JOB_POSTINGS_SUCCESS]: (state, payload) => ({
       ...state,
-      job_postings: [...state.job_postings, payload]
+      payload
     }),
 
     [types.GET_JOB_POSTINGS_SUCCESS]: (state, payload) => ({
-      ...state,
-      job_postings: payload.job_postings,
-      managers: payload.managers
+      ...payload
     }),
 
-    [types.DELETE_JOB_POSTINGS_SUCCESS]: (state, payload) => ({
-      ...state,
-      job_postings: [
-        ...state.job_postings.slice(0, state.job_postings.indexOf(payload)),
-        ...state.job_postings.slice(state.job_postings.indexOf(payload) + 1)
-      ]
-    }),
+    [types.DELETE_JOB_POSTINGS_SUCCESS]: (state, payload) => {
+      let temp = state
+      delete temp[payload._]
+      return temp
+    },
 
     [types.UPDATE_JOB_POSTINGS_SUCCESS]: (state, payload) => ({
       ...state,
-      job_postings: [
-        ...state.job_postings.slice(
-          0,
-          state.job_postings.indexOf(
-            state.job_postings.find(item => (item.id = payload.id))
-          )
-        ),
-        payload,
-        ...state.job_postings.slice(
-          state.job_postings.indexOf(
-            state.job_postings.find(item => (item.id = payload.id))
-          ) + 1
-        )
-      ]
+      [payload._]: { ...state[payload._], ...payload }
     })
   },
   initialState

@@ -1,5 +1,5 @@
 export const create = (section, data) => {
-  return fetch(`http://localhost:8000/db/${section}`, {
+  return fetch(`http://192.168.1.57:8000/db/${section}`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' }
@@ -8,7 +8,7 @@ export const create = (section, data) => {
     .catch(err => console.log(err))
 }
 export const update = (section, data) => {
-  return fetch(`http://localhost:8000/db/${section}`, {
+  return fetch(`http://192.168.1.57:8000/db/${section}`, {
     method: 'PUT',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' }
@@ -18,7 +18,7 @@ export const update = (section, data) => {
 }
 
 export const destroy = (section, data) => {
-  return fetch(`http://localhost:8000/db/${section}`, {
+  return fetch(`http://192.168.1.57:8000/db/${section}`, {
     method: 'DELETE',
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' }
@@ -27,7 +27,7 @@ export const destroy = (section, data) => {
     .catch(err => console.log(err))
 }
 export const get = section => {
-  return fetch(`http://localhost:8000/db/${section}`, {
+  return fetch(`http://192.168.1.57:8000/db/${section}`, {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(data => data.json())

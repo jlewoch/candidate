@@ -4,11 +4,13 @@ import { setProcessing } from '../api/processing/actions'
 import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
+import { log } from 'util'
 
-function * GetJobPostings (payload) {
+function * getJobPostings () {
   setProcessing(types.GET_JOB_POSTINGS, true)
   try {
     const job_postings = yield call(get, `job_postings`)
+
     yield put(actions.getJobPostingsSuccess(job_postings.data))
   } catch (error) {
     setError(types.GET_JOB_POSTINGS, error)
@@ -16,7 +18,7 @@ function * GetJobPostings (payload) {
   setProcessing(types.GET_JOB_POSTINGS, false)
 }
 
-function * DeleteJobPostings (payload) {
+function * deleteJobPostings (payload) {
   setProcessing(types.DELETE_JOB_POSTINGS, true)
 
   try {
@@ -27,7 +29,7 @@ function * DeleteJobPostings (payload) {
   }
   setProcessing(types.DELETE_JOB_POSTINGS, false)
 }
-function * AddJobPostings (payload) {
+function * addJobPostings (payload) {
   setProcessing(types.ADD_JOB_POSTINGS, true)
 
   try {
@@ -38,7 +40,7 @@ function * AddJobPostings (payload) {
   }
   setProcessing(types.ADD_JOB_POSTINGS, false)
 }
-function * UpdateJobPostings (payload) {
+function * updateJobPostings (payload) {
   setProcessing(types.UPDATE_JOB_POSTINGS, true)
 
   try {
@@ -50,8 +52,8 @@ function * UpdateJobPostings (payload) {
   setProcessing(types.UPDATE_JOB_POSTINGS, false)
 }
 export const jobPostingSagas = function * () {
-  yield takeEvery(types.GET_JOB_POSTINGS, () => GetJobPostings())
-  yield takeEvery(types.DELETE_JOB_POSTINGS, e => DeleteJobPostings(e.payload))
-  yield takeEvery(types.ADD_JOB_POSTINGS, e => AddJobPostings(e.payload))
-  yield takeEvery(types.UPDATE_JOB_POSTINGS, e => UpdateJobPostings(e.payload))
+  yield takeEvery(types.GET_JOB_POSTINGS, () => getJobPostings())
+  yield takeEvery(types.DELETE_JOB_POSTINGS, e => deleteJobPostings(e.payload))
+  yield takeEvery(types.ADD_JOB_POSTINGS, e => addJobPostings(e.payload))
+  yield takeEvery(types.UPDATE_JOB_POSTINGS, e => updateJobPostings(e.payload))
 }

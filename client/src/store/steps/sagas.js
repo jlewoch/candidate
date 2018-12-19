@@ -43,7 +43,7 @@ function * updateSteps (payload) {
 
   try {
     const steps = yield call(update, `steps/${payload._}`, payload.update)
-    yield put(actions.updateStepsSuccess(steps.data))
+    yield put(actions.updateStepsSuccess(steps.data[payload._]))
   } catch (error) {
     setError(types.UPDATE_STEPS, error)
   }

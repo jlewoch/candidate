@@ -7,7 +7,6 @@ import { ContextMenu } from 'primereact/contextmenu'
 export default class TableWrapper extends Component {
   static propTypes = {
     list: PropTypes.array.isRequired,
-    expandedTemplate: PropTypes.element,
     addNew: PropTypes.func.isRequired,
     menu: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     checkSelectionState: PropTypes.array.isRequired,
@@ -18,18 +17,6 @@ export default class TableWrapper extends Component {
   constructor (props) {
     super(props)
     this.state = {}
-  }
-
-  expand = e => {
-    if (e.originalEvent.target.className || !this.props.expandedTemplate) {
-      return
-    }
-
-    let row =
-      this.state.expandedRow && this.state.expandedRow[0] === e.data
-        ? []
-        : [e.data]
-    this.setState({ expandedRow: row })
   }
 
   render () {
@@ -82,13 +69,13 @@ export default class TableWrapper extends Component {
         <ContextMenu model={this.props.menu} ref={el => (this.cm = el)} />
 
         <DataTable
+          ref={this.props.dt}
           contextMenuSelection={this.props.contextSelectedItem}
           onContextMenuSelectionChange={this.props.contextSelectedItemChange}
           onContextMenu={e => this.cm.show(e.originalEvent)}
           responsive
-          ref={this.props.dt}
           value={this.props.list}
-          expandedRows={this.state.expandedRow}
+          expandedRows={this.props.expandedRows}
           rowExpansionTemplate={this.props.expandedTemplate}
           paginator
           paginatorTemplate='FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown'
@@ -96,7 +83,7 @@ export default class TableWrapper extends Component {
           rows={10}
           header={header}
           footer={footer}
-          onRowClick={this.expand}
+          onRowClick={this.props.rowClick}
           autoLayout
           onRowCollapse={e => console.log(e, 'cola')}
           globalFilter={this.state.globalFilter}

@@ -20,7 +20,7 @@ function * DeleteAccountLevels (payload) {
   setProcessing(types.DELETE_ACCOUNT_LEVELS, true)
 
   try {
-    const account_levels = yield call(destroy, `account_levels/${payload.id}`)
+    const account_levels = yield call(destroy, `account_levels/${payload._}`)
     yield put(actions.deleteAccountLevelsSuccess(account_levels))
   } catch (error) {
     setError(types.DELETE_ACCOUNT_LEVELS, error)
@@ -42,7 +42,7 @@ function * UpdateAccountLevels (payload) {
   setProcessing(types.UPDATE_ACCOUNT_LEVELS, true)
 
   try {
-    const account_levels = yield call(update, `account_levels/${payload.id}`)
+    const account_levels = yield call(update, `account_levels/${payload._}`)
     yield put(actions.updateAccountLevelsSuccess(account_levels))
   } catch (error) {
     setError(types.UPDATE_ACCOUNT_LEVELS, error)
