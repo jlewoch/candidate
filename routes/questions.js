@@ -30,7 +30,12 @@ router
     call.get('questions', req.params, res)
   })
   .put((req, res) => {
-    call.update('questions', req.body, req.params, res)
+    call.update('questions', req.body, req.params, res).then(data =>
+      res.status(OK.code).json({
+        data: objs.convertToObject(data, obj.question),
+        message: OK.message
+      })
+    )
   })
   .patch((req, res) => {
     call.update('questions', req.body, req.params, res)

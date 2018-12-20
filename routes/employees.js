@@ -25,6 +25,7 @@ router
         'd.name as deptName',
         'a.enabled as accountStatus',
         'e.account as _a'
+        
       )
       .leftJoin('departments as d', function () {
         this.on('e.department', '=', 'd.id')
@@ -39,25 +40,14 @@ router
         this.on('a.account_level', '=', 'al.level')
       })
       .then(async data => {
-        let employees = {}
-        for (let i = 0; i < data.length; i++) {
-          const element = data[i]
-          employees[element._] = element
-          employees[element._].empfull_name = obj.fullName(
-            element.firstName,
-            element.lastName
-          )
-          employees[element._].manfull_name = obj.fullName(
-            element.managerFirst,
-            element.managerLast
-          )
-          employees[element._].lockedLabel = element.locked ? 'Locked' : ''
-          employees[element._].level = {
-            level: element.level,
-            name: element.level_name
-          }
-        }
-
+let employees = {}
+        
+         data.map(info => {
+          employees[info._] = {...info,
+          empfull_name: obj.fullName(info.firstName, info.lastName),
+          manfull_name: obj.fullName(info.managerFirst, info.managerLast),
+          level:{level:info.level, name:info.level_name}}
+        })
         let managers = await knex('employees as m')
           .select('m1.f_name', 'm1.l_name', 'm1.id as _')
           .leftJoin('employees as m1', function () {
@@ -68,6 +58,8 @@ router
             _m: manager._m,
             full_name: obj.fullName(manager.f_name, manager.l_name)
           }))
+         
+
         return { employees, managers }
       })
       .then(data => res.status(OK.code).json({ data, message: OK.message }))
@@ -89,7 +81,9 @@ router
   .put((req, res) => {
     call.update('employees', req.body, req.params, res)
   })
-
+  .patch((req, res) => {
+    call.update('employees', req.body, req.params, res)
+  })
   .delete((req, res) => {
     call.destroy('employees', req.params, res)
   })

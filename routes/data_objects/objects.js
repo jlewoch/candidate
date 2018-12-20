@@ -12,7 +12,7 @@ const manager = obj => ({
 })
 const applicant = obj => ({
   _: obj.id,
-  Name: obj.f_name + ' ' + obj.l_name,
+  name: obj.f_name + ' ' + obj.l_name,
   email: obj.email,
   phone: obj.phone
 })
