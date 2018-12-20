@@ -29,16 +29,14 @@ router
   })
   .put((req, res) => {
     call
-      .update('steps', req.body, req.params, res)
-      .then(data =>
+      .update('steps', obj.recieveStep(req.body), req.params, res)
+      .then(data => {
         res.status(OK.code).json({
           data: objs.convertToObject(data, obj.step),
           message: OK.message
         })
-      )
-      .catch(error => console.log(error))
+      })
   })
-
   .delete((req, res) => {
     call.destroy('steps', req.params, res)
   })

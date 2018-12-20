@@ -16,10 +16,7 @@ exports.up = async knex => {
       .boolean('enabled')
       .notNull()
       .defaultTo(true)
-    table
-      .boolean('required')
-      .notNull()
-      .defaultTo(true)
+   
     table
       .integer('level')
       .notNull()

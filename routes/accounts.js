@@ -23,6 +23,7 @@ router
       })
     )
   })
+
 router
   .route('/:id')
   .get((req, res) => {
@@ -36,9 +37,7 @@ router
       })
     )
   })
-  .patch((req, res) => {
-    call.update('accounts', req.body, req.params, res)
-  })
+
   .delete((req, res) => {
     call.destroy('accounts', req.params, res)
   })

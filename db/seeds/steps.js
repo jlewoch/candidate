@@ -9,7 +9,7 @@ exports.seed = async knex => {
           name: 'New',
           required: true,
           level: 0,
-          weight: 20,
+          weight: 0,
           created_by: 0,
           updated_by: 0
         },

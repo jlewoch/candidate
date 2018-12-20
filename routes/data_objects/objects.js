@@ -51,7 +51,13 @@ const question = obj => ({
   enabled: obj.enabled,
   step: obj.step
 })
-
+const recieveStep = obj => ({
+  name: obj.name,
+  level: obj.level,
+  enabled: obj.enabled,
+  required: obj.required,
+  weight: obj.weight
+})
 const step = obj => ({
   _: obj.id,
   name: obj.name,
@@ -112,5 +118,6 @@ module.exports = {
   manager,
   department,
   position,
-  employee
+  employee,
+  recieveStep
 }
