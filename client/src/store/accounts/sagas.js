@@ -48,8 +48,15 @@ function * UpdateAccounts (payload) {
       `accounts/${payload._a}`,
       payload.update
     )
-    yield put(actions.updateAccountsSuccess(...accounts.data))
+    yield put(
+      actions.updateAccountsSuccess({
+        _: payload._a,
+        update: { ...accounts.data }
+      })
+    )
     if (payload._) {
+      console.log(payload.update, payload._)
+
       yield put(
         updateEmployeesSuccess({ _: payload._, update: payload.update })
       )

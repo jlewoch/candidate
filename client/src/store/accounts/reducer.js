@@ -12,18 +12,18 @@ const accounts = createReducer(
 
     [types.GET_ACCOUNTS_SUCCESS]: (state, payload) => ({
       ...state,
-      payload
+      ...payload
     }),
 
     [types.DELETE_ACCOUNTS_SUCCESS]: (state, payload) => {
       let tem = state
-      delete tem[payload._a]
+      delete tem[payload._]
       return tem
     },
 
     [types.UPDATE_ACCOUNTS_SUCCESS]: (state, payload) => ({
       ...state,
-      [payload._a]: { ...state[payload._a], ...payload.update }
+      [payload._]: { ...state[payload._], ...payload.update }
     })
   },
   initialState

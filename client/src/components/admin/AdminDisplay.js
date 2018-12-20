@@ -10,8 +10,6 @@ export default class AdminDisplay extends Component {
     this.state = {}
   }
 
-  componentDidMount () {}
-
   render () {
     return (
       <div>

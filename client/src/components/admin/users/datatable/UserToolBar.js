@@ -9,12 +9,12 @@ const UserToolBar = ({ locked = true, _a, _ }, update) => {
       <Button
         onClick={() =>
           locked
-            ? update({ _a, update: { locked: false, lockedLabel: '' }, _ })
-            : update({ _a, update: { locked: true, lockedLabel: 'Locked' }, _ })
+            ? update({ _a, update: { locked: false }, _ })
+            : update({ _a, update: { locked: true }, _ })
         }
-        tooltip={locked ? 'Unlock Account' : 'Lock Account'}
+        tooltip={!locked ? 'Unlock Account' : 'Lock Account'}
         tooltipOptions={{ position: 'top' }}
-        icon={`pi ${!locked ? 'pi-lock-open' : 'pi-lock'}`}
+        icon={`pi ${locked ? 'pi-lock-open' : 'pi-lock'}`}
         className={locked && 'p-button-danger'}
         style={{ marginRight: '.25em' }}
       />

@@ -47,7 +47,7 @@ function * UpdateEmployees (payload) {
       `employees/${payload._}`,
       payload.update
     )
-    yield put(actions.updateEmployeesSuccess(employees))
+    yield put(actions.updateEmployeesSuccess(employees.data))
   } catch (error) {
     setError(types.UPDATE_EMPLOYEES, error)
   }

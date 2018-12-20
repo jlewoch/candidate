@@ -5,7 +5,7 @@ import { MultiSelect } from 'primereact/multiselect'
 import { Dropdown } from 'primereact/dropdown'
 import { UserExpandedTemplate } from '../expanded_template'
 import TableWrapper from '../../../../shared_components/datatable_wrapper/TableWrapper'
-import UserToolBar from './UserToolBar'
+import { Button } from 'primereact/button'
 import ConfirmMessage from '../../../../shared_components/dialogs/ConfirmMessage'
 
 const locked = [
@@ -131,15 +131,34 @@ export default class UserDatatableDisaply extends Component {
           <Column selectionMode='multiple' style={{ width: '2em' }} />
           <Column
             field='locked'
-            body={props => UserToolBar(props, this.props.updateAccounts)}
+            body={props => {
+              console.log(props.locked, props._)
+
+              return (
+                <Button
+                  onClick={() => {
+                    props.locked
+                      ? this.props.updateAccounts({
+                        _a: props._a,
+                        update: { locked: false },
+                        _: props._
+                      })
+                      : this.props.updateAccounts({
+                        _a: props._a,
+                        update: { locked: true },
+                        _: props._
+                      })
+                  }}
+                  tooltip={!props.locked ? 'Unlock Account' : 'Lock Account'}
+                  tooltipOptions={{ position: 'top' }}
+                  icon={`pi ${props.locked ? 'pi-lock-open' : 'pi-lock'}`}
+                  className={props.locked && 'p-button-danger'}
+                  style={{ marginRight: '.25em' }}
+                />
+              )
+            }}
           />
-          <Column
-            field='lockedLabel'
-            header='Locked Status'
-            sortable
-            filter
-            filterElement={lockedDropDown}
-          />
+
           <Column field='empfull_name' header='Name' sortable filter />
           <Column field='email' header='Email' sortable filter />
           <Column
