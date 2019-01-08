@@ -18,20 +18,24 @@ const get = async (table, params, res) => {
     )
 }
 
-const update = async (table, body, params, res) => {
+const update = async (table, body, params, res, token) => {
   return await knex(table)
     .returning('*')
-    .update(body)
+    .update({ ...body, updated_by: token.user })
     .where({ id: params.id })
     .catch(error =>
       res.status(BAD_REQUEST.code).json({ error, message: BAD_REQUEST.message })
     )
 }
 
-const create = async (table, body, res) => {
-  return await knex(table)
+const create = (table, body, res, token) => {
+  return knex(table)
     .returning('*')
-    .insert(body)
+    .insert({
+      ...body,
+      created_by: token.user,
+      updated_by: token.user
+    })
     .catch(error =>
       res.status(BAD_REQUEST.code).json({ error, message: BAD_REQUEST.message })
     )
@@ -41,7 +45,9 @@ const destroy = async (table, params, res) => {
   await knex(table)
     .where({ id: params.id })
     .del()
-    .then(data => res.status(OK.code).json({ message: OK.message }))
+    .then(data =>
+      res.status(OK.code).json({ data: { _: params.id }, message: OK.message })
+    )
     .catch(error =>
       res.status(BAD_REQUEST.code).json({ error, message: BAD_REQUEST.message })
     )

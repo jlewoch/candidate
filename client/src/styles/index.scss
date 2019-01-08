@@ -1,0 +1,299 @@
+* {
+    box-sizing: border-box;
+    font-size: 12px;
+
+
+}
+
+body {
+
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    min-height: 580px;
+    min-width: 1050px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overflow-x: auto;
+}
+
+body .fc .fc-row {
+    border: none;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+
+}
+
+
+
+.postings {
+    display: flex;
+    padding: .5em;
+    height: 100%;
+
+    .postings-left {
+        overflow-y: auto;
+        width: 25%;
+        max-width: 250px;
+    }
+
+    .postings-right {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .postings-body {
+        display: flex;
+    }
+
+    .postings-body-left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .postings-body-right {
+        width: 50%;
+        height: 100%;
+
+    }
+
+    .postings-body-left-top {
+        display: flex;
+        align-items: center;
+        padding: 1em .75em;
+        min-height: fit-content;
+
+    }
+
+    .postings-body-left-bottom {
+
+        overflow-y: auto;
+        padding: .75em;
+    }
+
+
+}
+
+.postings .side-card {
+    display: flex;
+    align-items: center;
+    padding: .5em;
+}
+
+.side-card:hover {
+    cursor: pointer;
+}
+
+.total-cir {
+    background: #007ad9;
+    border-radius: 50%;
+    color: white;
+    width: 1.2em;
+    text-align: center;
+    margin: 0 .5em
+}
+
+.jobcard {
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px 1px #a5a0a0;
+    display: flex;
+    align-items: center;
+    margin-bottom: .5em;
+
+
+
+    .jobcard-left {
+        width: 45%;
+        padding: 1em 0em 1em 1em;
+        display: flex;
+        align-items: center
+    }
+
+    .jobcard-center {
+        width: 40%;
+        padding: 1em 0em;
+
+    }
+
+    .jobcard-right {
+        width: 15%;
+        text-align: center;
+        padding: 1em 1em 1em 0em;
+
+    }
+
+    .p-card-subtitle {
+        margin: 0
+    }
+
+    .jobcard-image {
+        border-radius: 50%;
+        height: 2em;
+        margin-right: .5em;
+    }
+
+}
+
+
+
+.jobcard:hover {
+    cursor: pointer;
+    transform: scale(1.01)
+}
+
+.overview-card {
+    width: 100%;
+    padding: 1em;
+
+    .overview-card-top {
+        display: flex;
+        justify-content: center;
+        padding: 1em;
+    }
+
+
+    .overview-card-top-left {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+        padding: .5em;
+    }
+
+    .overview-card-photo {
+        border-radius: 50%;
+        height: 60px;
+    }
+
+    .overview-card-top-right {
+        width: 50%;
+        padding: .5em;
+
+    }
+
+    .overview-card-middle {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .overview-card-bottom {
+        padding: 2em
+    }
+}
+
+
+
+.profile-top {
+    box-shadow: rgb(165, 160, 160) 1px 1px 1px 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+}
+
+
+
+
+
+.profile-middle {
+    display: flex;
+}
+
+.profile-middle-left {
+    width: 70%
+}
+
+.profile-controls {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.info-section {
+    padding-left: 2em;
+    box-shadow: rgba(165, 160, 160, .15) 0px 1px 0px 0px;
+}
+
+.section-item {
+    margin: .5em;
+    width: 165px;
+}
+
+.fc-view,
+.fc-view>table {
+    z-index: 0;
+}
+
+
+.title {
+    margin: 0;
+}
+
+.fc-icon-right-double-arrow:after,
+.fc-icon-left-double-arrow:after,
+.fc-icon-right-single-arrow:after,
+.fc-icon-left-single-arrow:after {
+    /* centering icons in prev next buttons */
+    top: 0
+}
+
+
+
+span.p-column-title {
+    white-space: nowrap;
+}
+
+td:hover {
+    cursor: pointer;
+}
+
+
+.p-datatable-auto-layout>.p-datatable-wrapper {
+    overflow-x: initial;
+}
+
+.expand-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.expand-controls {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+
+
+/* custom scrollbar */
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0282e4;
+    border-radius: 10px;
+}

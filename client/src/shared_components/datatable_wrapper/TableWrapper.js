@@ -7,7 +7,6 @@ import { ContextMenu } from 'primereact/contextmenu'
 export default class TableWrapper extends Component {
   static propTypes = {
     list: PropTypes.array.isRequired,
-    addNew: PropTypes.func.isRequired,
     menu: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
     checkSelectionState: PropTypes.array.isRequired,
     checkSelectionChange: PropTypes.func.isRequired,
@@ -56,12 +55,7 @@ export default class TableWrapper extends Component {
     ]
     let footer = (
       <div className='p-clearfix' style={{ width: '100%' }}>
-        <Button
-          style={{ float: 'left' }}
-          label='Add'
-          icon='pi pi-plus'
-          onClick={this.props.addNew}
-        />
+        {this.props.addNew}
       </div>
     )
     return (

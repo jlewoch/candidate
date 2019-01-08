@@ -10,7 +10,7 @@ router
   .get((req, res) => {
     call.all('account_levels').then(data =>
       res.status(OK.code).json({
-        data: data.map(item => obj.account_level(item)),
+        data: data.map(item => obj.outAccountLevel(item)),
         message: OK.message
       })
     )
@@ -18,7 +18,7 @@ router
   .post((req, res) => {
     call.create('account_levels', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.account_level(item)),
+        data: data.map(item => obj.outAccountLevel(item)),
         message: CREATED.message
       })
     )

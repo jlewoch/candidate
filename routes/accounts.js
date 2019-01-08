@@ -10,7 +10,7 @@ router
   .get((req, res) => {
     call.all('accounts').then(data =>
       res.status(OK.code).json({
-        data: objs.convertToObject(data, obj.account),
+        data: objs.convertToObject(data, obj.outAccount),
         message: OK.message
       })
     )

@@ -9,7 +9,7 @@ router
   .get((req, res) => {
     call.all('applications').then(data =>
       res.status(OK.code).json({
-        data: data.map(item => obj.application(item)),
+        data: objs.convertToObject(data, obj.application),
         message: OK.message
       })
     )

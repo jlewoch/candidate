@@ -10,19 +10,17 @@ import { getAccountLevels } from '../../../store/account_levels/actions'
 
 const mapStateToProps = state => ({
   employees: state.employees.employees,
+  managers: state.employees.managers,
   account_levels: state.account_levels.account_levels,
-  accounts: state.accounts,
-  managers: state.employees.managers
+  departments: state.departments
 })
 const mapDispatchToProps = dispatch => ({
-  getEmployees: () => dispatch(getEmployees()),
-  getAccountLevels: () => dispatch(getAccountLevels()),
-  getDepartments: () => dispatch(getDepartments()),
-  getAccounts: () => dispatch(getAccounts()),
   updateAccounts: e => dispatch(updateAccounts(e)),
   updateEmployees: e => dispatch(updateEmployees(e)),
-  updateDepartments: () => dispatch(updateDepartments()),
-  changeLockedStatus: e => dispatch(updateAccounts())
+  updateDepartments: e => dispatch(updateDepartments(e)),
+  getEmployees: () => dispatch(getEmployees()),
+  getAccountLevels: () => dispatch(getAccountLevels()),
+  getDepartments: () => dispatch(getDepartments())
 })
 
 export const UserAdmin = connect(

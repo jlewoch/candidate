@@ -1,52 +1,61 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { get, update, create, destroy } from '../api/api'
+import { setProcessing } from '../api/processing/actions'
+import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * GetPositions () {
-  yield put(actions.getPositionsRequest())
+function * getPositions (payload) {
+  setProcessing(types.GET_POSITIONS, true)
   try {
-    const positions = yield call(get, 'positions')
-    yield put(actions.getPositionsSuccess(positions))
+    const positions = yield call(get, `positions`)
+    yield put(actions.getPositionsSuccess(positions.data))
   } catch (error) {
-    yield put(actions.getPositionsFailed(error))
+    setError(types.GET_POSITIONS, error)
   }
-  yield put(actions.getPositionsComplete)
+  setProcessing(types.GET_POSITIONS, false)
 }
 
-function * DeletePosition () {
-  yield put(actions.deletePositionRequest())
+function * deletePositions (payload) {
+  setProcessing(types.DELETE_POSITIONS, true)
+
   try {
-    const positions = yield call(destroy, 'positions')
-    yield put(actions.deletePositionSuccess(positions))
+    const positions = yield call(destroy, `positions/${payload._}`)
+    yield put(actions.deletePositionsSuccess(positions))
   } catch (error) {
-    yield put(actions.deletePositionFailed(error))
+    setError(types.DELETE_POSITIONS, error)
   }
-  yield put(actions.deletePositionComplete)
+  setProcessing(types.DELETE_POSITIONS, false)
 }
-function * AddPosition () {
-  yield put(actions.addPositionRequest())
+function * addPositions (payload) {
+  setProcessing(types.ADD_POSITIONS, true)
+
   try {
-    const positions = yield call(create, 'positions')
-    yield put(actions.addPositionSuccess(positions))
+    const positions = yield call(create, `positions`, payload)
+    yield put(actions.addPositionsSuccess(positions.data))
   } catch (error) {
-    yield put(actions.addPositionFailed(error))
+    setError(types.ADD_POSITIONS, error)
   }
-  yield put(actions.addPositionComplete)
+  setProcessing(types.ADD_POSITIONS, false)
 }
-function * UpdatePosition () {
-  yield put(actions.updatePositionRequest())
+function * updatePositions (payload) {
+  setProcessing(types.UPDATE_POSITIONS, true)
+
   try {
-    const positions = yield call(update, 'positions')
-    yield put(actions.updatePositionSuccess(positions))
+    const positions = yield call(
+      update,
+      `positions/${payload._}`,
+      payload.update
+    )
+    yield put(actions.updatePositionsSuccess(positions.data))
   } catch (error) {
-    yield put(actions.updatePositionFailed(error))
+    setError(types.UPDATE_POSITIONS, error)
   }
-  yield put(actions.updatePositionComplete)
+  setProcessing(types.UPDATE_POSITIONS, false)
 }
 export const positionSagas = function * () {
-  yield takeEvery(types.GET_POSITIONS, () => GetPositions())
-  yield takeEvery(types.DELETE_POSITION, e => DeletePosition(e.payload))
-  yield takeEvery(types.ADD_POSITION, e => AddPosition(e.payload))
-  yield takeEvery(types.UPDATE_POSITION, e => UpdatePosition(e.payload))
+  yield takeEvery(types.GET_POSITIONS, () => getPositions())
+  yield takeEvery(types.DELETE_POSITIONS, e => deletePositions(e.payload))
+  yield takeEvery(types.ADD_POSITIONS, e => addPositions(e.payload))
+  yield takeEvery(types.UPDATE_POSITIONS, e => updatePositions(e.payload))
 }

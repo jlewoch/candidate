@@ -6,8 +6,19 @@ import { Admin } from '../components/admin'
 import { Applicants } from '../components/applicants'
 import { Dashboard } from '../components/dashboard'
 import CalendarDispaly from '../components/calendar/Calendar'
+import Profile from '../components/applicants/profile/Profile'
+import { JobPostings } from '../components/job_postings'
+import { StepsForm } from '../components/admin/forms/steps'
 
 class Routes extends Component {
+  componentDidMount = () => {
+    if (!localStorage.getItem('authToken')) {
+      fetch('http://localhost:8000/db')
+        .then(res => res.json())
+        .then(data => localStorage.setItem('authToken', data))
+        .catch(error => console.log(error))
+    }
+  }
   render () {
     const items = [
       {
@@ -49,7 +60,7 @@ class Routes extends Component {
     ]
 
     return (
-      <div>
+      <div id='main'>
         <Menubar model={items}>
           <Button
             label={localStorage.getItem('session') ? 'Logout' : 'Login'}
@@ -60,9 +71,11 @@ class Routes extends Component {
           />
         </Menubar>
         <Switch>
+          <Route path='/' exact component={StepsForm} />
           <Route path='/admin' component={Admin} />
           <Route path='/dashboard' exact component={Dashboard} />
-          <Route path='/calendar' exact render={() => <CalendarDispaly />} />
+          <Route path='/calendar' exact component={CalendarDispaly} />
+          <Route path='/jobPostings' exact component={JobPostings} />
         </Switch>
       </div>
     )

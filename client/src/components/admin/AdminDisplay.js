@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { UserAdmin } from './users'
-import { QuestionsAdmin } from './evaluations/questions_admin'
-import { StepsAdmin } from './evaluations/steps_admin'
+import { QuestionsAdmin } from './questions'
+import { StepsAdmin } from './steps'
 
 export default class AdminDisplay extends Component {
   constructor (props) {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { TabView, TabPanel } from 'primereact/tabview'
 import { Chart } from 'primereact/chart'
+import TaskCard from './tasks/TaskCard'
+
 class DashboardDisplay extends Component {
   constructor (props) {
     super(props)
@@ -24,16 +26,25 @@ class DashboardDisplay extends Component {
       ]
     }
     return (
-      <div className='p-grid p-fluid'>
-        <div className='p-col-12'>top overview</div>
-        <div className='p-col-12 p-xl-8 p-lg-7 p-md-6'>
-          <Chart type='pie' data={data} />
+      <div className='p-col'>
+        <div className='p-grid p-fluid p-col'>
+          <div className='p-col-12 p-lg-3 p-md-4 p-sm-6'>stat1</div>
+          <div className='p-col-12 p-lg-3 p-md-4 p-sm-6'>stat2</div>
+          <div className='p-col-12 p-lg-3 p-md-4 p-sm-6'>stat3</div>
+          <div className='p-col-12 p-lg-3 p-md-4 p-sm-6'>stat4</div>
         </div>
-        <TabView className='p-col-12 p-xl-4 p-lg-5 p-md-6'>
-          <TabPanel header='Tasks'>Content I</TabPanel>
-          <TabPanel header='Appointments'>Content II</TabPanel>
-          <TabPanel header='Recent Activities'>Content III</TabPanel>
-        </TabView>
+        <div className='p-grid p-fluid'>
+          <div className='p-col-12 p-xl-8 p-lg-7 p-md-6'>
+            <Chart type='pie' data={data} />
+          </div>
+          <TabView className='p-col-12 p-xl-4 p-lg-5 p-md-6'>
+            <TabPanel header='Tasks'>
+              <TaskCard />
+            </TabPanel>
+            <TabPanel header='Appointments'>Content II</TabPanel>
+            <TabPanel header='Recent Activities'>Content III</TabPanel>
+          </TabView>
+        </div>
       </div>
     )
   }

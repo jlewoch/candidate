@@ -31,7 +31,7 @@ function * AddEmployees (payload) {
   setProcessing(types.ADD_EMPLOYEES, true)
 
   try {
-    const employees = yield call(create, `employees`)
+    const employees = yield call(create, `employees`, payload)
     yield put(actions.addEmployeesSuccess(employees.data))
   } catch (error) {
     setError(types.ADD_EMPLOYEES, error)

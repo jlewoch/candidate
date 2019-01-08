@@ -21,7 +21,7 @@ function * deleteSteps (payload) {
 
   try {
     const steps = yield call(destroy, `steps/${payload._}`)
-    yield put(actions.deleteStepsSuccess(steps))
+    yield put(actions.deleteStepsSuccess(steps.data))
   } catch (error) {
     setError(types.DELETE_STEPS, error)
   }

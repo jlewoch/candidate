@@ -8,6 +8,7 @@ import { questionSagas } from './questions/sagas'
 import { positionSagas } from './positions/sagas'
 import { jobPostingSagas } from './job_postings/sagas'
 import { applicantSagas } from './applicants/sagas'
+import { applicationSagas } from './applications/sagas'
 
 import steps from './steps/reducer'
 import users from './users/reducer'
@@ -47,4 +48,5 @@ export function rootSaga (saga) {
   saga.run(questionSagas)
   saga.run(positionSagas)
   saga.run(applicantSagas)
+  saga.run(applicationSagas)
 }

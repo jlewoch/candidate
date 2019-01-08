@@ -1,52 +1,61 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { get, update, create, destroy } from '../api/api'
+import { setProcessing } from '../api/processing/actions'
+import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * GetApplications () {
-  yield put(actions.getApplicationsRequest())
+function * getApplication (payload) {
+  setProcessing(types.GET_APPLICATIONS, true)
   try {
-    const applications = yield call(get, 'applications')
-    yield put(actions.getApplicationsSuccess(applications))
+    const applications = yield call(get, `applications`)
+    yield put(actions.getApplicationsSuccess(applications.data))
   } catch (error) {
-    yield put(actions.getApplicationsFailed(error))
+    setError(types.GET_APPLICATIONS, error)
   }
-  yield put(actions.getApplicationsComplete)
+  setProcessing(types.GET_APPLICATIONS, false)
 }
 
-function * DeleteApplication () {
-  yield put(actions.deleteApplicationRequest())
+function * deleteApplication (payload) {
+  setProcessing(types.DELETE_APPLICATIONS, true)
+
   try {
-    const applications = yield call(destroy, 'applications')
-    yield put(actions.deleteApplicationSuccess(applications))
+    const applications = yield call(destroy, `applications/${payload._}`)
+    yield put(actions.deleteApplicationsSuccess(applications))
   } catch (error) {
-    yield put(actions.deleteApplicationFailed(error))
+    setError(types.DELETE_APPLICATIONS, error)
   }
-  yield put(actions.deleteApplicationComplete)
+  setProcessing(types.DELETE_APPLICATIONS, false)
 }
-function * AddApplication () {
-  yield put(actions.addApplicationRequest())
+function * addApplication (payload) {
+  setProcessing(types.ADD_APPLICATIONS, true)
+
   try {
-    const applications = yield call(create, 'applications')
-    yield put(actions.addApplicationSuccess(applications))
+    const applications = yield call(create, `applications`, payload)
+    yield put(actions.addApplicationsSuccess(applications.data))
   } catch (error) {
-    yield put(actions.addApplicationFailed(error))
+    setError(types.ADD_APPLICATIONS, error)
   }
-  yield put(actions.addApplicationComplete)
+  setProcessing(types.ADD_APPLICATIONS, false)
 }
-function * UpdateApplication () {
-  yield put(actions.updateApplicationRequest())
+function * updateApplication (payload) {
+  setProcessing(types.UPDATE_APPLICATIONS, true)
+
   try {
-    const applications = yield call(update, 'applications')
-    yield put(actions.updateApplicationSuccess(applications))
+    const applications = yield call(
+      update,
+      `applications/${payload._}`,
+      payload.update
+    )
+    yield put(actions.updateApplicationsSuccess(applications.data))
   } catch (error) {
-    yield put(actions.updateApplicationFailed(error))
+    setError(types.UPDATE_APPLICATIONS, error)
   }
-  yield put(actions.updateApplicationComplete)
+  setProcessing(types.UPDATE_APPLICATIONS, false)
 }
-export const requestApplicationsSaga = function * () {
-  yield takeEvery(types.GET_APPLICATIONS, () => GetApplications(e.payload))
-  yield takeEvery(types.DELETE_APPLICATION, e => DeleteApplication())
-  yield takeEvery(types.ADD_APPLICATION, e => AddApplication(e.payload))
-  yield takeEvery(types.UPDATE_APPLICATION, e => UpdateApplication(e.payload))
+export const applicationSagas = function * () {
+  yield takeEvery(types.GET_APPLICATIONS, () => getApplication())
+  yield takeEvery(types.DELETE_APPLICATIONS, e => deleteApplication(e.payload))
+  yield takeEvery(types.ADD_APPLICATIONS, e => addApplication(e.payload))
+  yield takeEvery(types.UPDATE_APPLICATIONS, e => updateApplication(e.payload))
 }

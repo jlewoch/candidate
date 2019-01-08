@@ -10,22 +10,21 @@ router
   .get((req, res) => {
     knex('employees as e')
       .select(
-        'e.id as _',
+        'e.id as id',
         'e.email',
         'e.phone',
-        'e.enabled as activeEmployee',
-        'e.f_name as firstName',
-        'e.l_name as lastName',
+        'e.enabled',
+        'e.f_name',
+        'e.l_name',
         'a.locked',
         'al.level',
-        'al.name as level_name',
+        'al.name',
         'e.department',
         'e1.f_name as managerFirst',
         'e1.l_name as managerLast',
-        'd.name as deptName',
+        'd.name as dept',
         'a.enabled as accountStatus',
-        'e.account as _a'
-        
+        'e.account'
       )
       .leftJoin('departments as d', function () {
         this.on('e.department', '=', 'd.id')
@@ -40,25 +39,14 @@ router
         this.on('a.account_level', '=', 'al.level')
       })
       .then(async data => {
-let employees = {}
-        
-         data.map(info => {
-          employees[info._] = {...info,
-          empfull_name: obj.fullName(info.firstName, info.lastName),
-          manfull_name: obj.fullName(info.managerFirst, info.managerLast),
-          level:{level:info.level, name:info.level_name}}
-        })
+        let employees = objs.convertToObject(data, obj.outEmployee)
         let managers = await knex('employees as m')
           .select('m1.f_name', 'm1.l_name', 'm1.id as _')
           .leftJoin('employees as m1', function () {
             this.on('m.manager', '=', 'm1.id')
           })
           .distinct('m1.id')
-          .map(manager => ({
-            _m: manager._m,
-            full_name: obj.fullName(manager.f_name, manager.l_name)
-          }))
-         
+        managers = objs.convertToObject(managers, obj.manager)
 
         return { employees, managers }
       })
@@ -66,26 +54,29 @@ let employees = {}
       .catch(err => console.log(err))
   })
   .post((req, res) => {
-    call.create('employees', req.body, res).then(data =>
-      res.status(CREATED.code).json({
-        data: data.map(item => obj.employee(item)),
-        message: CREATED.message
+    call
+      .create('employees', obj.inEmployee(req.body), res, req.token)
+      .then(data => {
+        res.status(CREATED.code).json({
+          data: objs.convertToObject(data, obj.outEmployee),
+          message: CREATED.message
+        })
       })
-    )
   })
+
 router
   .route('/:id')
-  .get((req, res) => {
-    call.get('employees', req.params, res)
-  })
+
   .put((req, res) => {
-    call.update('employees', req.body, req.params, res)
-  })
-  .patch((req, res) => {
-    call.update('employees', req.body, req.params, res)
+    call.update(
+      'employees',
+      obj.inEmployee(req.body),
+      req.params,
+      res,
+      req.token
+    )
   })
   .delete((req, res) => {
     call.destroy('employees', req.params, res)
   })
-
 module.exports = router

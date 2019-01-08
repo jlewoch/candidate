@@ -1,40 +1,22 @@
 import * as types from './actionTypes'
 import { createAction } from 'redux-act'
 
-export const getApplicationsRequest = createAction(types.GET_APPLICATIONS)
+export const getApplications = createAction(types.GET_APPLICATIONS)
 export const getApplicationsSuccess = createAction(
   types.GET_APPLICATIONS_SUCCESS
 )
-export const getApplicationsFailed = createAction(types.GET_APPLICATIONS_FAILED)
-export const getApplicationsComplete = createAction(
-  types.GET_APPLICATIONS_COMPLETE
+
+export const addApplications = createAction(types.ADD_APPLICATIONS)
+export const addApplicationsSuccess = createAction(
+  types.ADD_APPLICATIONS_SUCCESS
 )
 
-export const addApplicationRequest = createAction(types.ADD_APPLICATION)
-export const addApplicationSuccess = createAction(types.ADD_APPLICATION_SUCCESS)
-export const addApplicationFailed = createAction(types.ADD_APPLICATION_FAILED)
-export const addApplicationComplete = createAction(
-  types.ADD_APPLICATION_COMPLETE
+export const deleteApplications = createAction(types.DELETE_APPLICATIONS)
+export const deleteApplicationsSuccess = createAction(
+  types.DELETE_APPLICATIONS_SUCCESS
 )
 
-export const deleteApplicationRequest = createAction(types.DELETE_APPLICATION)
-export const deleteApplicationSuccess = createAction(
-  types.DELETE_APPLICATION_SUCCESS
-)
-export const deleteApplicationFailed = createAction(
-  types.DELETE_APPLICATION_FAILED
-)
-export const deleteApplicationComplete = createAction(
-  types.DELETE_APPLICATION_COMPLETE
-)
-
-export const updateApplicationRequest = createAction(types.UPDATE_APPLICATION)
-export const updateApplicationSuccess = createAction(
-  types.UPDATE_APPLICATION_SUCCESS
-)
-export const updateApplicationFailed = createAction(
-  types.UPDATE_APPLICATION_FAILED
-)
-export const updateApplicationComplete = createAction(
-  types.UPDATE_APPLICATION_COMPLETE
+export const updateApplications = createAction(types.UPDATE_APPLICATIONS)
+export const updateApplicationsSuccess = createAction(
+  types.UPDATE_APPLICATIONS_SUCCESS
 )

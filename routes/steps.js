@@ -6,21 +6,24 @@ const obj = require('./data_objects/objects')
 const knex = require('../db/knex/knex')
 
 const { checkRequiredFields } = require('../middleware/api/router_middleware')
-const { OK, CREATED, BAD_REQUEST } = require('./api_service_helpers/status_codes')
+const {
+  OK,
+  CREATED,
+  BAD_REQUEST
+} = require('./api_service_helpers/status_codes')
 
 router.route('/').get((req, res) => {
-    knex('steps').select('enabled', 'id', 'name', 'level', 'weight').whereNot({name:'New'}).then(data=>{
-      res.status(OK.code).json({
-        data: objs.convertToObject(data, obj.step),
-        message: OK.message
-      })
-    }).catch(error=>res.status(BAD_REQUEST.code).json(BAD_REQUEST.message))
-   
+  call.all('steps').then(data =>
+    res.status(OK.code).json({
+      data: objs.convertToObject(data, obj.outStep),
+      message: OK.message
+    })
+  )
 })
 router.post('/', (req, res) => {
-  call.create('steps', req.body, res).then(data =>
+  call.create('steps', req, res).then(data =>
     res.status(CREATED.code).json({
-      data: data.map(item => obj.step(item)),
+      data: objs.convertToObject(data, obj.outStep),
       message: CREATED.message
     })
   )
@@ -35,7 +38,7 @@ router
       .update('steps', obj.recieveStep(req.body), req.params, res)
       .then(data => {
         res.status(OK.code).json({
-          data: objs.convertToObject(data, obj.step),
+          data: objs.convertToObject(data, obj.outStep),
           message: OK.message
         })
       })

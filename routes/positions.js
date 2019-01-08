@@ -10,7 +10,7 @@ router
   .get((req, res) => {
     call.all('positions').then(data =>
       res.status(OK.code).json({
-        data: data.map(item => obj.position(item)),
+        data: objs.convertToObject(data, obj.outPosition),
         message: OK.message
       })
     )

@@ -9,18 +9,15 @@ exports.up = async knex => {
       .notNull()
       .unique()
     table
-      .integer('weight')
+      .integer('points')
       .notNull()
       .defaultTo(0)
     table
       .boolean('enabled')
       .notNull()
       .defaultTo(true)
-   
-    table
-      .integer('level')
-      .notNull()
-      .unique()
+
+    table.integer('level').notNull()
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table
