@@ -7,7 +7,7 @@ import * as types from './actionTypes'
 import { log } from 'util'
 
 function * getJobPostings () {
-  setProcessing(types.GET_JOB_POSTINGS, true)
+  yield put(setProcessing(types.GET_JOB_POSTINGS, true))
   try {
     const job_postings = yield call(get, `job_postings`)
 
@@ -15,11 +15,11 @@ function * getJobPostings () {
   } catch (error) {
     setError(types.GET_JOB_POSTINGS, error)
   }
-  setProcessing(types.GET_JOB_POSTINGS, false)
+  yield put(setProcessing(types.GET_JOB_POSTINGS, false))
 }
 
 function * deleteJobPostings (payload) {
-  setProcessing(types.DELETE_JOB_POSTINGS, true)
+  yield put(setProcessing(types.DELETE_JOB_POSTINGS, true))
 
   try {
     const job_postings = yield call(destroy, `job_postings/${payload.id}`)
@@ -27,10 +27,10 @@ function * deleteJobPostings (payload) {
   } catch (error) {
     setError(types.DELETE_JOB_POSTINGS, error)
   }
-  setProcessing(types.DELETE_JOB_POSTINGS, false)
+  yield put(setProcessing(types.DELETE_JOB_POSTINGS, false))
 }
 function * addJobPostings (payload) {
-  setProcessing(types.ADD_JOB_POSTINGS, true)
+  yield put(setProcessing(types.ADD_JOB_POSTINGS, true))
 
   try {
     const job_postings = yield call(create, `job_postings`)
@@ -38,10 +38,10 @@ function * addJobPostings (payload) {
   } catch (error) {
     setError(types.ADD_JOB_POSTINGS, error)
   }
-  setProcessing(types.ADD_JOB_POSTINGS, false)
+  yield put(setProcessing(types.ADD_JOB_POSTINGS, false))
 }
 function * updateJobPostings (payload) {
-  setProcessing(types.UPDATE_JOB_POSTINGS, true)
+  yield put(setProcessing(types.UPDATE_JOB_POSTINGS, true))
 
   try {
     const job_postings = yield call(update, `job_postings/${payload.id}`)
@@ -49,7 +49,7 @@ function * updateJobPostings (payload) {
   } catch (error) {
     setError(types.UPDATE_JOB_POSTINGS, error)
   }
-  setProcessing(types.UPDATE_JOB_POSTINGS, false)
+  yield put(setProcessing(types.UPDATE_JOB_POSTINGS, false))
 }
 export const jobPostingSagas = function * () {
   yield takeEvery(types.GET_JOB_POSTINGS, () => getJobPostings())

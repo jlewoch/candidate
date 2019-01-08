@@ -1,66 +1,16 @@
 import React, { Component } from 'react'
 import { ScrollPanel } from 'primereact/scrollpanel'
 import { MultiSelect } from 'primereact/multiselect'
-import OverviewCard from './cards/overview/OverviewCard'
+import { OverviewPanel } from './overview_panel'
 import JobApplicationCard from './cards/JobApplicationCard'
-import SideOption from './SideOption'
+import SideOption from './cards/SideOption'
+import PostingHeading from './PostingHeading'
 export default class JobPostingsDisplay extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      selectedValues: [],
-      selectedJob: {},
-      selectedSub: 'Applications',
-      selectedApplicant: {}
-    }
-  }
-  jobFilter = () => {
-    const { selectedValues, selectedJob } = this.state
-    const { applications, steps } = this.props
-    if (selectedValues.length > 0) {
-      return selectedValues.reduce((acc, nexts) => {
-        acc = acc.concat(
-          Object.keys(applications)
-            .filter(key =>
-              selectedJob
-                ? applications[key].status === nexts.level &&
-                  applications[key].job_posting === selectedJob._
-                : applications[key].status === nexts.level
-            )
-            .map(key => {
-              let temp = applications[key] ? applications[key] : []
-              temp.statusTitle = Object.values(steps).find(
-                step => step.level === temp.status
-              ).name
-              return temp
-            })
-        )
-        return acc
-      }, [])
-    } else if (selectedJob) {
-      return Object.keys(applications)
-        .filter(key => applications[key].job_posting === selectedJob._)
-        .map(key => {
-          let temp = applications[key] ? applications[key] : []
-          temp.statusTitle = Object.values(steps).find(
-            step => step.level === temp.status
-          ).name
-          return temp
-        })
-    } else if (applications) {
-      return Object.keys(applications).map(key => {
-        let temp = applications[key] ? applications[key] : []
-        temp.statusTitle = Object.values(steps).find(
-          step => step.level === temp.status
-        ).name
-        return temp
-      })
-    }
+    this.state = {}
   }
 
-  selectedJobChange = e => {
-    this.setState({ selectedJob: e })
-  }
   componentDidMount () {
     this.props.getSteps()
     this.props.getJobPostings()
@@ -69,31 +19,95 @@ export default class JobPostingsDisplay extends Component {
     this.props.getPositions()
   }
 
+  jobFilter = () => {
+    const { selectedValues, selectedJob } = this.state
+    const { applications, steps } = this.props
+
+    if (selectedValues) {
+      return selectedValues.map(value => {
+        return Object.values(applications)
+          .filter(application =>
+            selectedJob
+              ? application.status === value.level &&
+                application.job_posting === selectedJob._
+              : application.status === value.level
+          )
+          .map(application => {
+            application.statusTitle = value.name
+            return application
+          })
+      })
+    } else if (selectedJob) {
+      return Object.values(applications)
+        .filter(application => application.job_posting === selectedJob._)
+        .map(application => {
+          application.statusTitle = Object.values(steps).find(
+            step => step.level === application.status
+          ).name
+          return application
+        })
+    } else if (applications) {
+      return Object.values(applications).map(application => {
+        application.statusTitle = Object.values(steps).find(
+          step => step.level === application.status
+        ).name
+        return application
+      })
+    }
+  }
+
+  selectedJobChange = e => {
+    this.setState({ selectedJob: e })
+  }
+
   selectApp = e => {
-    this.setState({ selectedApplicant: this.props.applicants[e] })
+    this.setState({
+      selectedApplicant: e.applicant,
+      selectedApplication: e.application
+    })
   }
   render () {
+    const { selectedJob, selectedApplicant, selectedApplication } = this.state
+    const {
+      positions,
+      applications,
+      job_postings,
+      steps,
+      applicants
+    } = this.props
+
+    if (
+      this.props.fetchingApplicants ||
+      this.props.fetchingPositions ||
+      this.props.fetchingSteps ||
+      this.props.fetchingPostings ||
+      this.props.fetchingApplications
+    ) {
+      return <h1>Loading</h1>
+    }
+
     return (
       <div className='postings'>
         <div className='postings-left'>
-          {Object.keys(this.props.job_postings).map(key => (
+          {Object.values(job_postings).map(posting => (
             <SideOption
-              key={key}
-              onClick={this.selectedJobChange}
-              positions={this.props.positions}
-              posting={this.props.job_postings[key]}
+              key={posting._}
+              clickHandler={this.selectedJobChange}
+              postingTitle={
+                positions[posting.position] && positions[posting.position].title
+              }
+              posting={posting}
               applications={
-                Object.keys(this.props.applications).filter(
-                  akey =>
-                    this.props.applications[akey].job_posting ===
-                    this.props.job_postings[key]._
+                Object.values(applications).filter(
+                  app => app.job_posting === posting._
                 ).length
               }
             />
           ))}
         </div>
+
         <div className='postings-right'>
-          <h3>{}</h3>
+          <PostingHeading selectedJob={selectedJob} />
 
           <div className='postings-body'>
             <div className='postings-body-left'>
@@ -103,9 +117,7 @@ export default class JobPostingsDisplay extends Component {
                   multiple
                   dataKey='level'
                   value={this.state.selectedValues}
-                  options={Object.keys(this.props.steps).map(
-                    key => this.props.steps[key]
-                  )}
+                  options={Object.keys(steps).map(key => steps[key])}
                   onChange={e => this.setState({ selectedValues: e.value })}
                   defaultLabel='Filter by Stage'
                 />
@@ -115,9 +127,15 @@ export default class JobPostingsDisplay extends Component {
                   return (
                     <JobApplicationCard
                       key={index}
-                      {...info}
-                      steps={this.props.steps}
-                      select={this.selectApp}
+                      application={info}
+                      positions={positions}
+                      job_posting={job_postings[info.job_posting]}
+                      select={() =>
+                        this.selectApp({
+                          applicant: applicants[info.applicant],
+                          application: info
+                        })
+                      }
                     />
                   )
                 })}
@@ -125,9 +143,11 @@ export default class JobPostingsDisplay extends Component {
             </div>
 
             <div className='postings-body-right'>
-              {OverviewCard(
-                this.state.selectedApplicant,
-                this.state.selectedSub
+              {selectedApplicant && (
+                <OverviewPanel
+                  selectedApplicant={selectedApplicant}
+                  selectedApplication={selectedApplication}
+                />
               )}
             </div>
           </div>

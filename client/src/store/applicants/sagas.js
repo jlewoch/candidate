@@ -6,18 +6,18 @@ import * as actions from './actions'
 import * as types from './actionTypes'
 
 function * getApplicants () {
-  setProcessing(types.GET_APPLICANTS, true)
+  yield put(setProcessing(types.GET_APPLICANTS, true))
   try {
     const applicants = yield call(get, `applicants`)
     yield put(actions.getApplicantsSuccess(applicants.data))
   } catch (error) {
     setError(types.GET_APPLICANTS, error)
   }
-  setProcessing(types.GET_APPLICANTS, false)
+  yield put(setProcessing(types.GET_APPLICANTS, false))
 }
 
 function * deleteApplicants (payload) {
-  setProcessing(types.DELETE_APPLICANTS, true)
+  yield put(setProcessing(types.DELETE_APPLICANTS, true))
 
   try {
     const applicants = yield call(destroy, `applicants/${payload._}`)
@@ -25,7 +25,7 @@ function * deleteApplicants (payload) {
   } catch (error) {
     setError(types.DELETE_APPLICANTS, error)
   }
-  setProcessing(types.DELETE_APPLICANTS, false)
+  yield put(setProcessing(types.DELETE_APPLICANTS, false))
 }
 function * addApplicants (payload) {
   setProcessing(types.ADD_APPLICANTS, true)

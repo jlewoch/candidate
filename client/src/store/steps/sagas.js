@@ -6,18 +6,18 @@ import * as actions from './actions'
 import * as types from './actionTypes'
 
 function * getSteps () {
-  setProcessing(types.GET_STEPS, true)
+  yield put(setProcessing(types.GET_STEPS, true))
   try {
     const steps = yield call(get, `steps`)
     yield put(actions.getStepsSuccess(steps.data))
   } catch (error) {
     setError(types.GET_STEPS, error)
   }
-  setProcessing(types.GET_STEPS, false)
+  yield put(setProcessing(types.GET_STEPS, false))
 }
 
 function * deleteSteps (payload) {
-  setProcessing(types.DELETE_STEPS, true)
+  yield put(setProcessing(types.DELETE_STEPS, true))
 
   try {
     const steps = yield call(destroy, `steps/${payload._}`)
@@ -25,10 +25,10 @@ function * deleteSteps (payload) {
   } catch (error) {
     setError(types.DELETE_STEPS, error)
   }
-  setProcessing(types.DELETE_STEPS, false)
+  yield put(setProcessing(types.DELETE_STEPS, false))
 }
 function * addSteps (payload) {
-  setProcessing(types.ADD_STEPS, true)
+  yield put(setProcessing(types.ADD_STEPS, true))
 
   try {
     const steps = yield call(create, `steps`, payload)
@@ -36,10 +36,10 @@ function * addSteps (payload) {
   } catch (error) {
     setError(types.ADD_STEPS, error)
   }
-  setProcessing(types.ADD_STEPS, false)
+  yield put(setProcessing(types.ADD_STEPS, false))
 }
 function * updateSteps (payload) {
-  setProcessing(types.UPDATE_STEPS, true)
+  yield put(setProcessing(types.UPDATE_STEPS, true))
 
   try {
     const steps = yield call(update, `steps/${payload._}`, payload.update)
@@ -47,7 +47,7 @@ function * updateSteps (payload) {
   } catch (error) {
     setError(types.UPDATE_STEPS, error)
   }
-  setProcessing(types.UPDATE_STEPS, false)
+  yield put(setProcessing(types.UPDATE_STEPS, false))
 }
 export const stepSagas = function * () {
   yield takeEvery(types.GET_STEPS, () => getSteps())

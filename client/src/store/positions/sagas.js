@@ -6,18 +6,18 @@ import * as actions from './actions'
 import * as types from './actionTypes'
 
 function * getPositions (payload) {
-  setProcessing(types.GET_POSITIONS, true)
+  yield put(setProcessing(types.GET_POSITIONS, true))
   try {
     const positions = yield call(get, `positions`)
     yield put(actions.getPositionsSuccess(positions.data))
   } catch (error) {
     setError(types.GET_POSITIONS, error)
   }
-  setProcessing(types.GET_POSITIONS, false)
+  yield put(setProcessing(types.GET_POSITIONS, false))
 }
 
 function * deletePositions (payload) {
-  setProcessing(types.DELETE_POSITIONS, true)
+  yield put(setProcessing(types.DELETE_POSITIONS, true))
 
   try {
     const positions = yield call(destroy, `positions/${payload._}`)
@@ -25,10 +25,10 @@ function * deletePositions (payload) {
   } catch (error) {
     setError(types.DELETE_POSITIONS, error)
   }
-  setProcessing(types.DELETE_POSITIONS, false)
+  yield put(setProcessing(types.DELETE_POSITIONS, false))
 }
 function * addPositions (payload) {
-  setProcessing(types.ADD_POSITIONS, true)
+  yield put(setProcessing(types.ADD_POSITIONS, true))
 
   try {
     const positions = yield call(create, `positions`, payload)
@@ -36,10 +36,10 @@ function * addPositions (payload) {
   } catch (error) {
     setError(types.ADD_POSITIONS, error)
   }
-  setProcessing(types.ADD_POSITIONS, false)
+  yield put(setProcessing(types.ADD_POSITIONS, false))
 }
 function * updatePositions (payload) {
-  setProcessing(types.UPDATE_POSITIONS, true)
+  yield put(setProcessing(types.UPDATE_POSITIONS, true))
 
   try {
     const positions = yield call(
@@ -51,7 +51,7 @@ function * updatePositions (payload) {
   } catch (error) {
     setError(types.UPDATE_POSITIONS, error)
   }
-  setProcessing(types.UPDATE_POSITIONS, false)
+  yield put(setProcessing(types.UPDATE_POSITIONS, false))
 }
 export const positionSagas = function * () {
   yield takeEvery(types.GET_POSITIONS, () => getPositions())

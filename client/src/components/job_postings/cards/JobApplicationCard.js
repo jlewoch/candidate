@@ -1,18 +1,14 @@
 import React from 'react'
 
 const JobApplicationCard = ({
-  applicantFull,
-  title,
-  upFull,
-  updated_at,
+  application,
   select,
-  statusTitle
+  job_posting,
+  positions
 }) => {
-  console.log(updated_at)
-
   const timeSpan = () => {
     const date = Date.now()
-    const timelaps = date - Date.parse(updated_at)
+    const timelaps = date - Date.parse(application.updated_at)
     const years = Math.floor(timelaps / 31556952000)
     const months = Math.floor(timelaps / 2629746000)
     const days = Math.floor(timelaps / 86400000)
@@ -39,21 +35,24 @@ const JobApplicationCard = ({
       return value + ' ' + intervalname + ' ago'
     }
   }
-
   return (
-    <div className='jobcard' onClick={() => select()}>
+    <div className='jobcard' onClick={select}>
       <div className='jobcard-left'>
         <img src={require('./1.jpg')} alt='' className='jobcard-image ' />
         <div>
-          <h4 className='title'>{applicantFull}</h4>
-          <p className='p-card-subtitle'>{title}</p>
+          <h4 className='title'>
+            {`${positions[job_posting.position].title} App#${application._}`}
+          </h4>
+          <p className='subtitle'>
+            {'Submitted ' + application.date_submitted}
+          </p>
         </div>
       </div>
       <div className='jobcard-center'>
-        <p className='p-card-subtitle'>{upFull}</p>
-        <p className='p-card-subtitle'>{timeSpan()}</p>
+        <p className='subtitle'>{'Updated By Jake Lewochko'}</p>
+        <p className='subtitle'>{timeSpan()}</p>
       </div>
-      <div className='jobcard-right'>{statusTitle}</div>
+      <p className='jobcard-right'>{application.statusTitle}</p>
     </div>
   )
 }

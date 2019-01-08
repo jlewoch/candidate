@@ -16,7 +16,27 @@ body {
     padding: 0;
     overflow: hidden;
     overflow-x: auto;
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    h4 {
+        font-size: .95em;
+    }
+
+    p {
+        font-size: .90em;
+    }
+
+    .subtitle {
+        opacity: .7;
+        margin: .2em;
+
+    }
 }
+
+
 
 body .fc .fc-row {
     border: none;
@@ -44,10 +64,21 @@ body .fc .fc-row {
     padding: .5em;
     height: 100%;
 
+    .p-card-subtitle {
+        padding: 0 .5em;
+    }
+
+    .posting-header {
+        padding-left: 1em;
+    }
+
+    .posting-heading-bottom {
+        display: flex
+    }
+
     .postings-left {
         overflow-y: auto;
-        width: 25%;
-        max-width: 250px;
+        width: 170px;
     }
 
     .postings-right {
@@ -65,6 +96,7 @@ body .fc .fc-row {
         display: flex;
         flex-direction: column;
 
+
     }
 
     .postings-body-right {
@@ -76,13 +108,12 @@ body .fc .fc-row {
     .postings-body-left-top {
         display: flex;
         align-items: center;
-        padding: 1em .75em;
         min-height: fit-content;
+        padding: .75em 1em;
 
     }
 
     .postings-body-left-bottom {
-
         overflow-y: auto;
         padding: .75em;
     }
@@ -90,14 +121,24 @@ body .fc .fc-row {
 
 }
 
-.postings .side-card {
-    display: flex;
-    align-items: center;
-    padding: .5em;
-}
 
-.side-card:hover {
-    cursor: pointer;
+.side-card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: .5em;
+
+    .side-card-top {
+        display: flex;
+        align-items: center
+    }
+
+    :hover {
+        cursor: pointer;
+    }
+
+
+
 }
 
 .total-cir {
@@ -105,6 +146,8 @@ body .fc .fc-row {
     border-radius: 50%;
     color: white;
     width: 1.2em;
+    height: 1.2em;
+
     text-align: center;
     margin: 0 .5em
 }

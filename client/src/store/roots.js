@@ -22,10 +22,12 @@ import account_levels from './account_levels/reducer'
 import accounts from './accounts/reducer'
 import departments from './departments/reducer'
 import job_postings from './job_postings/reducer'
+import api from './api/processing/reducer'
 
 export const rootReducer = combineReducers({
   steps,
   users,
+  api,
   positions,
   authentication,
   questions,

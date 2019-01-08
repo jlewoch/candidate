@@ -10,7 +10,12 @@ const mapStateToProps = state => ({
   steps: state.steps,
   applicants: state.applicants,
   applications: state.applications,
-  positions: state.positions
+  positions: state.positions,
+  fetchingApplicants: state.api.GET_APPLICANTS,
+  fetchingPositions: state.api.GET_POSITIONS,
+  fetchingSteps: state.api.GET_STEPS,
+  fetchingPostings: state.api.GET_POSTINGS,
+  fetchingApplications: state.api.GET_APPLICATIONS
 })
 const mapDispatchToProps = dispatch => ({
   getApplicants: () => dispatch(getApplicants()),
