@@ -134,7 +134,7 @@ const application = obj => ({
   status: obj.status,
   updated_at: obj.updated_at,
   updated_by: obj.updated_by,
-  date_submitted: obj.created_at.toLocaleString('en-us')
+  date_submitted: obj.created_at.toLocaleDateString('en-us')
 })
 
 const section_evaluation = obj => ({

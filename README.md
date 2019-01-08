@@ -26,25 +26,6 @@ This is an applicantion that tries to remove some of the sub contionus bias from
     - Using NPM you can use the following ```npm run dev``` for development.
 
 
-
-## Being Worked on before it can be deployed
-
-#### Backend
-1. Routes
-2. Services
-3. Status Codes
-
-#### Client
-1. Forms
-2. Applicants
-3. Grading
-4. Dashboard
-5. Redux implimentation and restructure
-6. Routes
-
-
-
-
 ## Prerequisites
 must have mysql nodejs, and knexjs installed
 
@@ -63,6 +44,8 @@ to be added later
 - JWT
 - Nodejs
 - Knexjs
+- Redux
+- Redux Saga
 - React-redux
 - PostgreSql
 
@@ -71,3 +54,22 @@ to be added later
 
 ## Authors
 Jake Lewochko
+
+##License
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
