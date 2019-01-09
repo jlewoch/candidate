@@ -20,20 +20,6 @@ export default class UserExpandedTemplateDisplay extends Component {
       selectedUser: this.props.selectedUser
     })
   }
-  componentWillUnmount () {
-    console.log({
-      ...Object.keys(this.state.selectedUser)
-        .filter(key => !this.props.selectedUser[key])
-        .map(i => ({ [i]: this.state.selectedUser[i] }))
-    })
-
-    if (this.state.selectedUser !== this.props.selectedUser) {
-      this.props.save({
-        _: this.state.selectedUser._,
-        update: 's'
-      })
-    }
-  }
 
   managerSuggestions = e => {
     let results = this.props.managers.filter(item =>

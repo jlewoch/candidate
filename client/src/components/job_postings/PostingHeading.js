@@ -1,20 +1,13 @@
 import React from 'react'
 
-const PostingHeading = ({ selectedJob }) => {
-  if (selectedJob) {
-    return (
-      <div className='posting-header'>
-        <h1>{selectedJob.postingTitle}</h1>
-        <div className='posting-heading-bottom'>
-          <p className='subtitle'>Date Posted {selectedJob.open_date}</p>
-          <p className='subtitle'>Closing Date{selectedJob.closing_date}</p>
-        </div>
-      </div>
-    )
-  }
+const PostingHeading = ({ postingTitle, open_date, closing_date }) => {
   return (
     <div className='posting-header'>
-      <h1>All Job Postings</h1>
+      <h1>{postingTitle}</h1>
+      <div className='posting-heading-bottom'>
+        <p className='subtitle'>Date Posted {open_date}</p>
+        <p className='subtitle'>Closing Date{closing_date}</p>
+      </div>
     </div>
   )
 }

@@ -13,8 +13,6 @@ export default class EmployeeCard extends Component {
   componentDidMount () {}
 
   render () {
-    console.log(this.state)
-
     const { phone, email, full_name } = this.props.employee
     return (
       <tr>

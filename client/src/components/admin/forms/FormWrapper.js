@@ -6,7 +6,6 @@ export default class FormWrapper extends Component {
   state = { visible: false }
   submit = e => {
     e.preventDefault()
-    console.log(this.props.canSubmit())
 
     if (this.props.canSubmit()) {
       this.props.submit()
@@ -15,7 +14,6 @@ export default class FormWrapper extends Component {
   }
 
   render () {
-    console.log(this.props)
 
     return (
       <div>

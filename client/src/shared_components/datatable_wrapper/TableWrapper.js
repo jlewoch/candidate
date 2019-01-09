@@ -79,7 +79,6 @@ export default class TableWrapper extends Component {
           footer={footer}
           onRowClick={this.props.rowClick}
           autoLayout
-          onRowCollapse={e => console.log(e, 'cola')}
           globalFilter={this.state.globalFilter}
           selection={this.props.checkSelectionState}
           onSelectionChange={this.props.checkSelectionChange}

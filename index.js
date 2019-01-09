@@ -13,10 +13,14 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
 // app.use(express.static(path.join(__dirname, 'client/build')))
-
 app.use((req, res, next) => {
-  console.log(req.headers.authtoken)
-
+  if (req.headers.authtoken) {
+    next()
+  } else {
+    res.json(jwt.sign({ user: 0 }, process.env.KEY))
+  }
+})
+app.use((req, res, next) => {
   if (req.url === '/db/login') next()
   else {
     const sessionToken = req.headers.authtoken.split(' ')[0]
@@ -34,12 +38,6 @@ app.use((req, res, next) => {
   }
 })
 
-// app.use((req, res, next) => {
-//   if (req.body.authtoken) next()
-//   else {
-//     res.json(jwt.sign({ user: 0 }, process.env.KEY))
-//   }
-// })
 app.use('/db', require('./routes/index'))
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname + '/client/build/index.html'))

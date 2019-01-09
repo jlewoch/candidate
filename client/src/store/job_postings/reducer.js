@@ -1,7 +1,10 @@
 import * as types from './actionTypes'
 import { createReducer } from 'redux-act'
 
-const initialState = {}
+const initialState = {
+  postings: {},
+  selected: null
+}
 
 const job_postings = createReducer(
   {
@@ -11,7 +14,12 @@ const job_postings = createReducer(
     }),
 
     [types.GET_JOB_POSTINGS_SUCCESS]: (state, payload) => ({
-      ...payload
+      ...state,
+      postings: { ...state.postings, ...payload },
+      selected:
+        !state.selected && Object.keys(payload).length > 0
+          ? Object.keys(payload)[0]
+          : state.selected
     }),
 
     [types.DELETE_JOB_POSTINGS_SUCCESS]: (state, payload) => {
@@ -23,6 +31,10 @@ const job_postings = createReducer(
     [types.UPDATE_JOB_POSTINGS_SUCCESS]: (state, payload) => ({
       ...state,
       [payload._]: { ...state[payload._], ...payload }
+    }),
+    [types.CHANGE_SELECTED_POSTING]: (state, payload) => ({
+      ...state,
+      selected: payload
     })
   },
   initialState

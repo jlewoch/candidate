@@ -35,7 +35,6 @@ export default class UserAdminDisplay extends Component {
   }
 
   lockedFilter = e => {
-    console.log(e)
 
     this.dt.filter(e.value, 'lockedLabel', 'equals')
     this.setState({ locked: e.value === '' ? null : e.value })

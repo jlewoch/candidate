@@ -43,12 +43,10 @@ export default class QuestionsAdminDisaply extends Component {
     this.setState({ enabled: e.value === '' ? null : e.value })
   }
   stepsFilter = e => {
-    console.log(e)
     this.dt.filter(e.value.level, 'step', 'equals')
     this.setState({ step: e.value.level === '' ? null : e.value.level })
   }
   expand = e => {
-    console.log(e)
     if (e.originalEvent.target.className) {
       return
     }

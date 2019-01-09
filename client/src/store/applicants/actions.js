@@ -16,3 +16,7 @@ export const updateApplicants = createAction(types.UPDATE_APPLICANTS)
 export const updateApplicantsSuccess = createAction(
   types.UPDATE_APPLICANTS_SUCCESS
 )
+
+export const changeSelectedApplicant = createAction(
+  types.CHANGE_SELECTED_APPLICANT
+)

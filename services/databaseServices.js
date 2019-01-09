@@ -265,7 +265,6 @@ async function updateApplication(applicationId, employee) {
         stepeval => stepeval.status === "Complete" || stepeval.skipped === 1
       )
       .map(item => item);
-    console.log(allEval.length, step.length);
 
     obj.totalProvidedPoints = step
       .filter(item => item.skipped === 0)

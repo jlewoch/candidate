@@ -55,8 +55,6 @@ function * UpdateAccounts (payload) {
       })
     )
     if (payload._) {
-      console.log(payload.update, payload._)
-
       yield put(
         updateEmployeesSuccess({ _: payload._, update: payload.update })
       )

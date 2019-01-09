@@ -20,3 +20,9 @@ export const updateApplications = createAction(types.UPDATE_APPLICATIONS)
 export const updateApplicationsSuccess = createAction(
   types.UPDATE_APPLICATIONS_SUCCESS
 )
+
+export const changeSelectedApplication = createAction(
+  types.CHANGE_SELECTED_APPLICATION
+)
+
+export const changeFilterValues = createAction(types.CHANGE_FILTER_VALUES)

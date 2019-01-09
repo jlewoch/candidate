@@ -5,6 +5,23 @@
 
 }
 
+/* 
+hex colors
+#2c303a
+#007ad9
+#bad1cd
+#e6e6e6
+#ffffff
+*/
+
+/* 
+rgba(44, 48, 58, 1);
+rgba(0, 122, 217, 1);
+rgba(186, 209, 205, 1);
+rgba(230, 230, 230, 1);
+rgba(255, 255, 255, 1); 
+*/
+
 body {
 
     width: 100vw;
@@ -22,12 +39,10 @@ body {
     }
 
     h4 {
-        font-size: .95em;
+        font-size: 1.1em;
     }
 
-    p {
-        font-size: .90em;
-    }
+
 
     .subtitle {
         opacity: .7;
@@ -61,7 +76,6 @@ body .fc .fc-row {
 
 .postings {
     display: flex;
-    padding: .5em;
     height: 100%;
 
     .p-card-subtitle {
@@ -78,13 +92,14 @@ body .fc .fc-row {
 
     .postings-left {
         overflow-y: auto;
-        width: 170px;
+        width: 20%;
+        max-width: 250px;
     }
 
     .postings-right {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: stretch;
     }
 
     .postings-body {
@@ -92,7 +107,7 @@ body .fc .fc-row {
     }
 
     .postings-body-left {
-        width: 50%;
+        min-width: 400px;
         display: flex;
         flex-direction: column;
 
@@ -128,17 +143,21 @@ body .fc .fc-row {
     flex-direction: column;
     padding: .5em;
 
+    background: #a5a0a0;
+
     .side-card-top {
         display: flex;
         align-items: center
     }
 
-    :hover {
-        cursor: pointer;
-    }
 
 
 
+
+}
+
+.side-card:hover {
+    cursor: pointer;
 }
 
 .total-cir {
@@ -158,6 +177,7 @@ body .fc .fc-row {
     display: flex;
     align-items: center;
     margin-bottom: .5em;
+    height: 70px;
 
 
 
@@ -187,7 +207,7 @@ body .fc .fc-row {
 
     .jobcard-image {
         border-radius: 50%;
-        height: 2em;
+        height: 3em;
         margin-right: .5em;
     }
 
@@ -241,6 +261,38 @@ body .fc .fc-row {
 }
 
 
+.submenu-selector {
+    display: flex;
+
+    justify-content: space-evenly;
+
+    .submenu-selector-option {
+        display: flex;
+        width: stretch;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        background: #e6e6e6;
+
+
+    }
+
+
+
+    .submenu-selector-option-title {
+        margin: 1em;
+    }
+
+    :hover {
+        cursor: pointer;
+    }
+}
+
+.selected {
+    opacity: .75;
+
+}
 
 .profile-top {
     box-shadow: rgb(165, 160, 160) 1px 1px 1px 1px;
@@ -296,7 +348,43 @@ body .fc .fc-row {
     top: 0
 }
 
+.form {
 
+
+    .form-bottom {
+        display: flex;
+        justify-content: center;
+    }
+
+    .form-field {
+        padding: .5em;
+
+    }
+
+    .form-control {
+
+        padding: 1em;
+    }
+
+    .form-group {
+        display: flex;
+    }
+
+    .p-autocomplete {
+        display: flex;
+    }
+}
+
+.p-autocomplete .p-autocomplete-dropdown {
+    height: auto;
+}
+
+body .p-message.p-message-error {
+    background-color: rgba(233, 18, 36, .5);
+    position: absolute;
+    margin-left: .5em;
+    white-space: nowrap;
+}
 
 span.p-column-title {
     white-space: nowrap;

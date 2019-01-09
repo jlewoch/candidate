@@ -26,8 +26,6 @@ const employees = createReducer(
     },
 
     [types.UPDATE_EMPLOYEES_SUCCESS]: (state, payload) => {
-      console.log(payload, state.employees[payload._])
-
       return {
         ...state,
         employees: {

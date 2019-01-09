@@ -1,16 +1,19 @@
 import React from 'react'
 
-const SideOption = ({ posting, postingTitle, applications, clickHandler }) => {
+const SideOption = ({
+  closing_date,
+  _,
+  postingTitle,
+  totalApps,
+  clickHandler
+}) => {
   return (
-    <div
-      className='side-card'
-      onClick={() => clickHandler({ ...posting, postingTitle })}
-    >
+    <div className='side-card' onClick={() => clickHandler(_)}>
       <div className='side-card-top'>
         <h2>{postingTitle}</h2>
-        <div className='total-cir'>{applications}</div>
+        <div className='total-cir'>{totalApps}</div>
       </div>
-      <p className='subtitle'>Closing {posting.closing_date}</p>
+      <p className='subtitle'>Closing {closing_date}</p>
     </div>
   )
 }

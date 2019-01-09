@@ -10,7 +10,6 @@ import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
 import 'fullcalendar/dist/fullcalendar.css'
 import './styles/index.scss'
-import './styles/forms.scss'
 
 import Routes from './routes/Routes'
 

@@ -1,3 +1,4 @@
+// sagas
 import { combineReducers } from 'redux'
 import { stepSagas } from './steps/sagas'
 import { employeeSagas } from './employees/sagas'
@@ -10,6 +11,7 @@ import { jobPostingSagas } from './job_postings/sagas'
 import { applicantSagas } from './applicants/sagas'
 import { applicationSagas } from './applications/sagas'
 
+// reducers
 import steps from './steps/reducer'
 import users from './users/reducer'
 import positions from './positions/reducer'

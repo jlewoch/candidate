@@ -20,3 +20,5 @@ export const updateJobPostings = createAction(types.UPDATE_JOB_POSTINGS)
 export const updateJobPostingsSuccess = createAction(
   types.UPDATE_JOB_POSTINGS_SUCCESS
 )
+
+export const changeSelectedJob = createAction(types.CHANGE_SELECTED_POSTING)

@@ -48,8 +48,6 @@ async function getGrade (application, table, step) {
       )
     )
     .catch(error)
-
-  console.log(x)
 }
 function totalProvidedPoints (data) {
   return data.reduce((prev, next) => prev + next.providedGrade, 0)
