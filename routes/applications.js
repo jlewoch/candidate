@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const call = require('./api_service_helpers/general_api')
+const call = require('./api/general_api')
 const obj = require('./data_objects/objects')
 const objs = require('./data_objects/objectServices')
-const { OK, CREATED } = require('./api_service_helpers/status_codes')
+const { OK, CREATED } = require('./api/status_codes')
 router
   .route('/')
   .get((req, res) => {

@@ -23,8 +23,6 @@ router.use('/departments', require('./departments'))
 router.use('/employees', require('./employees'))
 router.use('/positions', require('./positions'))
 router.use('/account_levels', require('./account_levels'))
-router.use('/session', require('./session'))
 router.use('/accounts', require('./accounts'))
-router.use('/login', require('./login'))
 
 module.exports = router

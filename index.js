@@ -39,7 +39,5 @@ app.use((req, res, next) => {
 })
 
 app.use('/db', require('./routes/index'))
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
-// })
+
 app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))

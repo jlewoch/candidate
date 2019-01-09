@@ -1,11 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const call = require('./api_service_helpers/general_api')
+const call = require('./api/general_api')
 const obj = require('./data_objects/objects')
 const objs = require('./data_objects/objectServices')
 
-const { confirmValid } = require('../middleware/api/router_middleware')
-const { OK, CREATED } = require('./api_service_helpers/status_codes')
+const { OK, CREATED } = require('./api/status_codes')
 
 router.get('/', (req, res) => {
   call.all('questions', res).then(data => {
@@ -16,7 +15,7 @@ router.get('/', (req, res) => {
   })
 })
 
-router.post('/', confirmValid, (req, res) => {
+router.post('/', (req, res) => {
   call.create('questions', req.body, res).then(data =>
     res.status(CREATED.code).json({
       data: objs.convertToObject(data, obj.question),
