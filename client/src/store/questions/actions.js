@@ -16,3 +16,6 @@ export const updateQuestions = createAction(types.UPDATE_QUESTIONS)
 export const updateQuestionsSuccess = createAction(
   types.UPDATE_QUESTIONS_SUCCESS
 )
+export const chnageSelectedQuestion = createAction(
+  types.CHANGE_SELECTED_QUESTION
+)

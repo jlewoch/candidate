@@ -7,12 +7,18 @@ import {
   updateDepartments
 } from '../../../store/departments/actions'
 import { getAccountLevels } from '../../../store/account_levels/actions'
+import {
+  selectManagers,
+  selectEmployees,
+  selectDepartments,
+  selectAccountLevels
+} from '../../../store/selectors'
 
 const mapStateToProps = state => ({
-  employees: state.employees.employees,
-  managers: state.employees.managers,
-  account_levels: state.account_levels.account_levels,
-  departments: state.departments
+  employees: selectEmployees(state),
+  managers: selectManagers(state),
+  account_levels: selectAccountLevels(state),
+  departments: selectDepartments(state)
 })
 const mapDispatchToProps = dispatch => ({
   updateAccounts: e => dispatch(updateAccounts(e)),

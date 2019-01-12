@@ -12,24 +12,13 @@ export default class QuestionsFormDisaply extends Component {
     this.state = {
       enabled: true,
       question: '',
-      weight: 0,
-      step: null,
-      max: 100
+      points: 0,
+      step: null
     }
-  }
-  sliderChange = e => {
-    var newValue
-    if (e.target && e.target.nodeName === 'INPUT') {
-      newValue = e.target.value
-    } else {
-      newValue = e.value
-    }
-
-    this.setState({ weight: newValue })
   }
 
   render () {
-    const { question, step, max, weight, enabled } = this.state
+    const { question, step, max, points, enabled } = this.state
     return (
       <FormWrapper
         submit={() => this.props.submit(this.state)}
@@ -41,9 +30,7 @@ export default class QuestionsFormDisaply extends Component {
               optionLabel='name'
               dataKey='level'
               value={step}
-              options={Object.keys(this.props.steps).map(
-                key => this.props.steps[key]
-              )}
+              options={this.props.steps}
               onChange={e => {
                 this.setState({ step: e.value })
               }}
@@ -56,21 +43,13 @@ export default class QuestionsFormDisaply extends Component {
                 keyfilter='int'
                 max={max}
                 min={0}
-                value={weight}
+                value={points}
                 style={{ width: '10em' }}
                 type='number'
                 onChange={this.sliderChange}
               />
-              <label>Weight</label>
+              <label>Points</label>
             </span>
-
-            <Slider
-              max={max}
-              min={0}
-              value={weight}
-              onChange={this.sliderChange}
-              style={{ width: '10em' }}
-            />
           </div>
           <div className='form-field'>
             <ToggleButton

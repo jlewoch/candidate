@@ -12,3 +12,4 @@ export const deleteStepsSuccess = createAction(types.DELETE_STEPS_SUCCESS)
 
 export const updateSteps = createAction(types.UPDATE_STEPS)
 export const updateStepsSuccess = createAction(types.UPDATE_STEPS_SUCCESS)
+export const chnageSelectedStep = createAction(types.CHANGE_SELECTED_STEP)

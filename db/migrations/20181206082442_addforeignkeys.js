@@ -303,13 +303,6 @@ exports.up = async knex => {
       .notNullable()
       .onDelete('cascade')
       .onUpdate('cascade')
-    table
-      .bigInteger('position')
-      .references('id')
-      .inTable('positions')
-      .notNullable()
-      .onDelete('cascade')
-      .onUpdate('cascade')
   })
   knex.schema.alterTable('second_interview_evaluations', table => {
     table

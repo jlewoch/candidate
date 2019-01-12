@@ -31,28 +31,7 @@ export default class TableWrapper extends Component {
       </div>
     )
 
-    /*
-    to add a label to rowOptions you will need to modify the values assigned in the RowsPerPageDropdown.js in the _createClass method
-    to look like the example below. The file is located here node_moduels\primereact\components\datatable\RowsPerPageDropdown.js
-
-    value: function render () {
-        if (this.props.options) {
-          var options = this.props.options.map(function (opt, i) {
-            return {
-              label: opt.label,
-              value: opt.value
-            }
-          })
-    */
-
-    const rowOptions = [
-      { value: 10, label: '10 Rows' },
-      { value: 20, label: '20 Rows' },
-      { value: 30, label: '30 Rows' },
-      { value: 40, label: '40 Rows' },
-      { value: 50, label: '50 Rows' },
-      { value: this.props.list.length, label: 'All' }
-    ]
+    const rowOptions = [10, 20, 30, 40, 50]
     let footer = (
       <div className='p-clearfix' style={{ width: '100%' }}>
         {this.props.addNew}

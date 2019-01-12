@@ -15,12 +15,6 @@ export const enabled = [
 ]
 
 export default class QuestionsAdminDisaply extends Component {
-  static propTypes = {
-    questions: PropTypes.object.isRequired,
-    updateQuestions: PropTypes.func.isRequired,
-    steps: PropTypes.object.isRequired
-  }
-
   constructor (props) {
     super(props)
     this.state = {
@@ -59,18 +53,17 @@ export default class QuestionsAdminDisaply extends Component {
   }
   componentDidMount = () => {
     this.props.getQuestions()
+    this.props.getSteps()
   }
 
   render () {
-    const { steps } = this.props
-
     const stepsDropdown = (
       <Dropdown
         optionLabel='name'
         dataKey='level'
         style={{ width: '100%' }}
         value={this.state.step}
-        options={Object.keys(steps).map(i => steps[i])}
+        options={this.props.steps}
         onChange={this.stepsFilter}
       />
     )
@@ -134,11 +127,9 @@ export default class QuestionsAdminDisaply extends Component {
           )}
           checkSelectionChange={e => this.setState({ checkboxItems: e.value })}
           checkSelectionState={this.state.checkboxItems}
-          list={Object.keys(this.props.questions).map(
-            key => this.props.questions[key]
-          )}
+          list={this.props.questions}
           menu={menu}
-          addNew={() => <QuestionsForm />}
+          addNew={<QuestionsForm />}
         >
           <Column selectionMode='multiple' style={{ width: '2em' }} />
 

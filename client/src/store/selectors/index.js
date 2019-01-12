@@ -1,92 +1,119 @@
+import { createSelector } from 'reselect'
+
 // Postings
-export const selectPostings = ({ job_postings, applications, positions }) => {
-  let job = Object.values(job_postings.postings)
-  if (
-    objLengthCheck(job_postings.postings) &&
-    objLengthCheck(positions) &&
-    objLengthCheck(applications.apps)
-  ) {
-    job = Object.values(job_postings.postings).map(post => {
-      let temp = post
-      temp.postingTitle = positions[post.position].title
-      temp.totalApps = Object.values(applications.apps).filter(
-        app => app.job_posting === post._
-      ).length
-      return temp
-    })
-  }
-  return job
-}
-export const selectPosting = ({ job_postings, positions }) => {
-  if (objLengthCheck(job_postings.postings) && objLengthCheck(positions)) {
-    let job = job_postings.postings[job_postings.selected]
-    job.postingTitle = positions[job.position].title
-    return job
-  }
-}
+const getAllPostings = ({ job_postings }) => job_postings.postings
+const getSelectedPosting = ({ job_postings }) => job_postings.selected
+export const selectPostings = createSelector(
+  getAllPostings,
+  postings => Object.values(postings)
+)
+export const selectPosting = createSelector(
+  getAllPostings,
+  getSelectedPosting,
+  (postings, selected) => postings[selected]
+)
 export const selectAssigned = state => {}
 
 // Employees
-export const selectDirectReports = state => {}
+const getAllEmployees = ({ employees }) => employees.employees
+const getSelectedEmployee = ({ employees }) => employees.selected
+
+export const selectManagers = createSelector(
+  getAllEmployees,
+  employees => [
+    ...new Set(Object.values(employees).map(i => employees[i.manager]))
+  ]
+)
+export const selectEmployees = createSelector(
+  getAllEmployees,
+  employees => Object.values(employees)
+)
 
 // Applications
-export const selectFilteredApps = state => {
-  const { apps, filterValues } = state.applications
-  const { postings, selected } = state.job_postings
-  return filterValues.length === 0
-    ? Object.values(apps)
-      .filter(app => app.job_posting === selected)
-      .map(app => addTitlesToApp(state, app))
-    : Object.values(apps).reduce((acc, next) => {
-      if (
-        filterValues.find(val => next.status === val.level) &&
-          next.job_posting === selected
-      ) {
-        acc = acc.concat(addTitlesToApp(state, next))
-      }
-      return acc
-    }, [])
-}
-const addTitlesToApp = ({ steps, job_postings, positions }, obj) => {
-  if (
-    objLengthCheck(job_postings.postings) &&
-    objLengthCheck(positions) &&
-    objLengthCheck(steps)
-  ) {
-    obj.jobTitle =
-      positions[job_postings.postings[obj.job_posting].position].title
-    obj.statusTitle = Object.values(steps).find(
-      step => step.level === obj.status
-    ).name
-  }
-  return obj
-}
-// Applicants
-export const selectApplicant = ({ applicants, applications }) => {
-  if (
-    objLengthCheck(applicants.applicants) &&
-    objLengthCheck(applications.apps)
-  ) {
-    let temp = applicants.applicants[applicants.selected]
-    temp.applications = Object.values(applications.apps).filter(
-      app => app.applicant === applicants.selected
-    )
+const getAllApplications = ({ applications }) => applications.apps
+const getSelectedApplication = ({ applications }) => applications.selected
+export const getFilterValues = ({ applications }) => applications.filterValues
+export const selectApplications = createSelector(
+  getAllApplications,
+  applications => Object.values(applications)
+)
 
-    temp.phone = formatPhoneNumber(temp.phone)
-    return temp
-  }
-}
-const formatPhoneNumber = phone => {
-  if (phone.length === 10) {
-    let temp = phone.match(/^(\d{3})(\d{3})(\d{4})$/)
-    return '1 ' + '(' + temp[1] + ') ' + temp[2] + '-' + temp[3]
-  } else {
-    return phone
-  }
-}
+const postingsFilter = createSelector(
+  selectApplications,
+  getSelectedPosting,
+  (applications, selectedPosting) =>
+    applications.filter(app => app.job_posting === selectedPosting)
+)
+
+export const selectApplication = createSelector(
+  getAllApplications,
+  getSelectedApplication,
+  (applications, selected) => applications[selected]
+)
+export const selectFilteredApps = createSelector(
+  postingsFilter,
+  getFilterValues,
+  (applications, filterValues) =>
+    objLengthCheck(filterValues)
+      ? applications.filter(app =>
+        filterValues.find(val => val.level === app.status)
+      )
+      : applications
+)
+
+// Applicants
+
+const getAllApplicants = ({ applicants }) => applicants.applicants
+const getSelectedApplicant = ({ applicants }) => applicants.selected
+export const selectApplicant = createSelector(
+  getAllApplicants,
+  getSelectedApplicant,
+  (applicants, selected) => applicants[selected]
+)
+
+// Steps
+const getAllSteps = ({ steps }) => steps.steps
+const getSelectedStep = ({ steps }) => steps.selected
+export const selectSteps = createSelector(
+  getAllSteps,
+  steps => Object.values(steps)
+)
+export const selectStep = createSelector(
+  getAllSteps,
+  getSelectedStep,
+  (steps, selected) => steps[selected]
+)
+// Departments
+const getAllDepartments = ({ departments }) => departments
+export const selectDepartments = createSelector(
+  getAllDepartments,
+  departments => Object.values(departments)
+)
 // Documents
+// Account_Levels
+const getAllAccountLevels = ({ account_levels }) => account_levels
+export const selectAccountLevels = createSelector(
+  getAllAccountLevels,
+  accountLevels => Object.values(accountLevels)
+)
+// Questions
+const getAllQuestions = ({ questions }) => questions.questions
+const getSelectedQuestion = ({ questions }) => questions.selected
+export const selectQuestions = createSelector(
+  getAllQuestions,
+  questions => Object.values(questions)
+)
+export const selectQuestion = createSelector(
+  getAllQuestions,
+  getSelectedQuestion,
+  (questions, selected) => questions[selected]
+)
+// resume evaluations
+// first interview evaluations
+// second interview evaluations
+// phone evaluations
 
 // Misc
 const objLengthCheck = obj => {
-  return Object.keys(obj).length > 0
+  return obj && (Object.keys(obj).length > 0 || obj.length > 0)
 }

@@ -23,22 +23,6 @@ export default class QuestionsExpandedTemplate extends Component {
     })
   }
 
-  componentWillUnmount () {
-    // if (
-    //   this.state.selectedQuestion &&
-    //   this.state.selectedQuestion !== this.props.selectedQuestion
-    // ) {
-    //   this.props.save({
-    //     _: this.state.selectedQuestion._,
-    //     update: {
-    //       ...Object.keys(this.state.selectedQuestion)
-    //         .filter(key => !this.props.selectedQuestion[key])
-    //         .map(i => ({ [i]: this.state.selectedQuestion[i] }))
-    //     }
-    //   })
-    // }
-  }
-
   render () {
     const { selectedQuestion } = this.state
     if (!selectedQuestion) {
@@ -101,9 +85,7 @@ export default class QuestionsExpandedTemplate extends Component {
             <Dropdown
               optionLabel='name'
               dataKey='step'
-              options={Object.keys(this.props.steps).map(
-                i => this.props.steps[i]
-              )}
+              options={this.props.steps}
               onChange={e =>
                 this.setState({
                   selectedQuestion: {

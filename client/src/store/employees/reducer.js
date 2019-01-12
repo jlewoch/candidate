@@ -3,7 +3,7 @@ import { createReducer } from 'redux-act'
 
 const initialState = {
   employees: {},
-  managers: []
+  selected: null
 }
 
 const employees = createReducer(
@@ -15,8 +15,7 @@ const employees = createReducer(
 
     [types.GET_EMPLOYEES_SUCCESS]: (state, payload) => ({
       ...state,
-      employees: { ...payload.employees },
-      managers: payload.managers
+      employees: { ...payload }
     }),
 
     [types.DELETE_EMPLOYEES_SUCCESS]: (state, payload) => {
@@ -33,7 +32,11 @@ const employees = createReducer(
           [payload._]: { ...state.employees[payload._], ...payload.update }
         }
       }
-    }
+    },
+    [types.CHANGE_SELECTED_EMPLOYEE]: (state, payload) => ({
+      ...state,
+      selected: payload
+    })
   },
   initialState
 )

@@ -1,29 +1,39 @@
 import * as types from './actionTypes'
 import { createReducer } from 'redux-act'
 
-const initialState = {}
+const initialState = {
+  questions: {},
+  selected: null
+}
 
 const questions = createReducer(
   {
     [types.ADD_QUESTIONS_SUCCESS]: (state, payload) => ({
       ...state,
-      payload
+      questions: { ...state.questions, payload }
     }),
 
     [types.GET_QUESTIONS_SUCCESS]: (state, payload) => ({
       ...state,
-      ...payload
+      questions: payload
     }),
 
     [types.DELETE_QUESTIONS_SUCCESS]: (state, payload) => {
-      let temp = state
+      let temp = state.questions
       delete temp[payload._]
-      return temp
+      return { ...state, questions: temp }
     },
 
     [types.UPDATE_QUESTIONS_SUCCESS]: (state, payload) => ({
       ...state,
-      [payload._]: { ...state[payload._], ...payload }
+      questions: {
+        ...state.questions,
+        [payload._]: { ...state.questions[payload._], ...payload }
+      }
+    }),
+    [types.CHANGE_SELECTED_QUESTION]: (state, payload) => ({
+      ...state,
+      selected: payload
     })
   },
   initialState

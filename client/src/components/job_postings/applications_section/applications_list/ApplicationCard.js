@@ -1,31 +1,32 @@
 import React from 'react'
-import { timeSpan } from '../../../shared_components/misc_functions'
+import PropTypes from 'prop-types'
 
-const JobApplicationCard = ({
+const ApplicationCard = ({
   _,
   updated_at,
   date_submitted,
-  jobTitle,
   statusTitle,
-  applicant,
-  select
+  clickHandler
 }) => {
   return (
-    <div className='jobcard' onClick={() => select({ applicant, _ })}>
+    <div className='jobcard' onClick={clickHandler}>
       <div className='jobcard-left'>
         <img src={require('./1.jpg')} alt='' className='jobcard-image ' />
         <div>
-          <h4 className='title'>{`${jobTitle} App#${_}`}</h4>
+          <h4 className='title'>{`App#${_}`}</h4>
           <p className='subtitle'>{'Submitted ' + date_submitted}</p>
         </div>
       </div>
       <div className='jobcard-center'>
         <p className='subtitle'>{'Updated By Jake Lewochko'}</p>
-        <p className='subtitle'>{timeSpan(updated_at)}</p>
+        <p className='subtitle'>{updated_at}</p>
       </div>
       <p className='jobcard-right'>{statusTitle}</p>
     </div>
   )
 }
+ApplicationCard.propTypes = {
+  clickHandler: PropTypes.func.isRequired
+}
 
-export default JobApplicationCard
+export default ApplicationCard

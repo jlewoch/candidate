@@ -8,11 +8,21 @@ const { OK, CREATED } = require('./api/status_codes')
 router
   .route('/')
   .get((req, res) => {
-    call.all('applicants').then(data =>
-      res.status(OK.code).json({
-        data: objs.convertToObject(data, obj.applicant),
-        message: OK.message
-      })
+    Promise.all([call.all('applicants'), call.all('applications')]).then(
+      data => {
+        let applicants = data[0].map(applicant => {
+          applicant.applications = data[1]
+            .filter(app => app.applicant === applicant.id)
+            .map(i => i.id)
+          return applicant
+        })
+        console.log(applicants)
+
+        res.status(OK.code).json({
+          data: objs.convertToObject(applicants, obj.applicant),
+          message: OK.message
+        })
+      }
     )
   })
   .post((req, res) => {

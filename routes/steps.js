@@ -4,7 +4,7 @@ const call = require('./api/general_api')
 const objs = require('./data_objects/objectServices')
 const obj = require('./data_objects/objects')
 const knex = require('../db/knex/knex')
-
+// call.all('resume_evaluations'),call.all('first_interview_evaluations'),call.all('second_interview_evaluations'),call.all('phone_evaluations')
 const { OK, CREATED, BAD_REQUEST } = require('./api/status_codes')
 
 router.route('/').get((req, res) => {

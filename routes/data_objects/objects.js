@@ -1,3 +1,8 @@
+const {
+  fullName,
+  formatPhoneNumber,
+  formatToDate
+} = require('./objectServices')
 // incoming
 const inEmployee = obj => ({
   enabled: obj.enabled,
@@ -90,16 +95,16 @@ const outDepartment = obj => ({
 })
 const outJob = obj => ({
   _: obj.id,
-  position: obj.position,
-  closing_date: new Date(obj.closing_date).toLocaleDateString('en-us'),
-  open_date: new Date(obj.open_date).toLocaleDateString('en-us'),
+  title: obj.title,
+  closing_date: formatToDate(obj.closing_date),
+  open_date: formatToDate(obj.open_date),
   priority: obj.priority,
   assigned_to: obj.assigned_to,
   updated_at: obj.updated_at
 })
 const outQuestion = obj => ({
   _: obj.id,
-  question: obj.question + '?',
+  question: obj.question,
   weight: obj.weight,
   enabled: obj.enabled,
   step: obj.step
@@ -122,9 +127,10 @@ const outAccount = obj => ({
 
 const applicant = obj => ({
   _: obj.id,
-  name: obj.f_name + ' ' + obj.l_name,
+  name: fullName(obj.f_name, obj.l_name),
   email: obj.email,
-  phone: obj.phone
+  phone: formatPhoneNumber(obj.phone),
+  applications: obj.applications
 })
 const application = obj => ({
   _: obj.id,
@@ -134,7 +140,9 @@ const application = obj => ({
   status: obj.status,
   updated_at: obj.updated_at,
   updated_by: obj.updated_by,
-  date_submitted: obj.created_at.toLocaleDateString('en-us')
+  statusTitle: obj.statusTitle,
+  title: obj.title,
+  date_submitted: formatToDate(obj.created_at)
 })
 
 const section_evaluation = obj => ({
@@ -154,10 +162,6 @@ const single_evalution = obj => ({
   updated_at: obj.updated_at.toLocaleString('en-us'),
   updated_by: obj.updated_by
 })
-
-const fullName = (fname, lname) => {
-  return fname + ' ' + lname
-}
 
 module.exports = {
   manager,

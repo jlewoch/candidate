@@ -24,7 +24,8 @@ router
         'e1.l_name as managerLast',
         'd.name as dept',
         'a.enabled as accountStatus',
-        'e.account'
+        'e.account',
+        'e1.id as manager'
       )
       .leftJoin('departments as d', function () {
         this.on('e.department', '=', 'd.id')
@@ -38,19 +39,13 @@ router
       .leftJoin('account_levels as al', function () {
         this.on('a.account_level', '=', 'al.level')
       })
-      .then(async data => {
-        let employees = objs.convertToObject(data, obj.outEmployee)
-        let managers = await knex('employees as m')
-          .select('m1.f_name', 'm1.l_name', 'm1.id as _')
-          .leftJoin('employees as m1', function () {
-            this.on('m.manager', '=', 'm1.id')
-          })
-          .distinct('m1.id')
-        managers = objs.convertToObject(managers, obj.manager)
 
-        return { employees, managers }
-      })
-      .then(data => res.status(OK.code).json({ data, message: OK.message }))
+      .then(data =>
+        res.status(OK.code).json({
+          data: objs.convertToObject(data, obj.outEmployee),
+          message: OK.message
+        })
+      )
       .catch(err => console.log(err))
   })
   .post((req, res) => {

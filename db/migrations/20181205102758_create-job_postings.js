@@ -4,10 +4,8 @@ exports.up = async knex => {
       .bigIncrements('id')
       .unsigned()
       .primary()
-    table
-      .bigInteger('position')
-      .notNull()
-      .unique()
+    table.string('title').notNull()
+
     table
       .integer('openings')
       .notNull()

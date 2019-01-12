@@ -9,7 +9,7 @@ const { OK, CREATED } = require('./api/status_codes')
 router.get('/', (req, res) => {
   call.all('questions', res).then(data => {
     res.status(OK.code).json({
-      data: objs.convertToObject(data, obj.question),
+      data: objs.convertToObject(data, obj.outQuestion),
       message: OK.message
     })
   })
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   call.create('questions', req.body, res).then(data =>
     res.status(CREATED.code).json({
-      data: objs.convertToObject(data, obj.question),
+      data: objs.convertToObject(data, obj.outQuestion),
       message: CREATED.message
     })
   )
@@ -31,7 +31,7 @@ router
   .put((req, res) => {
     call.update('questions', req.body, req.params, res).then(data =>
       res.status(OK.code).json({
-        data: objs.convertToObject(data, obj.question),
+        data: objs.convertToObject(data, obj.outQuestion),
         message: OK.message
       })
     )

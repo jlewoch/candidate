@@ -8,9 +8,6 @@ import { InputMask } from 'primereact/inputmask'
 import { Dropdown } from 'primereact/dropdown'
 
 export default class UserExpandedTemplateDisplay extends Component {
-  static propTypes = {
-    employees: PropTypes.object.isRequired
-  }
   constructor (props) {
     super(props)
     this.state = { editing: false, showDialog: false }
@@ -22,16 +19,15 @@ export default class UserExpandedTemplateDisplay extends Component {
   }
 
   managerSuggestions = e => {
+    console.log(e, this.props.managers)
+
     let results = this.props.managers.filter(item =>
       item.full_name.toLowerCase().includes(e.query.toLowerCase())
     )
     this.setState({ managerSuggestions: results })
   }
   departmentSuggestions = e => {
-    let temp = Object.keys(this.props.departments).map(
-      i => this.props.departments[i]
-    )
-    let results = temp.filter(item =>
+    let results = this.props.departments.filter(item =>
       item.name.toLowerCase().includes(e.query.toLowerCase())
     )
 
@@ -129,9 +125,7 @@ export default class UserExpandedTemplateDisplay extends Component {
             <span className='p-float-label'>
               <AutoComplete
                 field='name'
-                options={Object.keys(this.props.departments).map(
-                  i => this.props.departments[i]
-                )}
+                options={this.props.departments}
                 suggestions={this.state.deptSuggestions}
                 onChange={e =>
                   this.setState({

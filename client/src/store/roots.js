@@ -13,7 +13,6 @@ import { applicationSagas } from './applications/sagas'
 
 // reducers
 import steps from './steps/reducer'
-import users from './users/reducer'
 import positions from './positions/reducer'
 import questions from './questions/reducer'
 import authentication from './authentication/reducer'
@@ -28,7 +27,6 @@ import api from './api/processing/reducer'
 
 export const rootReducer = combineReducers({
   steps,
-  users,
   api,
   positions,
   authentication,

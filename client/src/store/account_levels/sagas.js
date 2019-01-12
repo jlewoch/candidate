@@ -5,7 +5,7 @@ import { setError } from '../api/error/actions'
 import * as actions from './actions'
 import * as types from './actionTypes'
 
-function * GetAccountLevels () {
+function * getAccountLevels () {
   setProcessing(types.GET_ACCOUNT_LEVELS, true)
   try {
     const account_levels = yield call(get, `account_levels`)
@@ -16,7 +16,7 @@ function * GetAccountLevels () {
   setProcessing(types.GET_ACCOUNT_LEVELS, false)
 }
 
-function * DeleteAccountLevels (payload) {
+function * deleteAccountLevels (payload) {
   setProcessing(types.DELETE_ACCOUNT_LEVELS, true)
 
   try {
@@ -27,22 +27,26 @@ function * DeleteAccountLevels (payload) {
   }
   setProcessing(types.DELETE_ACCOUNT_LEVELS, false)
 }
-function * AddAccountLevels (payload) {
+function * addAccountLevels (payload) {
   setProcessing(types.ADD_ACCOUNT_LEVELS, true)
 
   try {
-    const account_levels = yield call(create, `account_levels`)
+    const account_levels = yield call(create, `account_levels`, payload)
     yield put(actions.addAccountLevelsSuccess(account_levels))
   } catch (error) {
     setError(types.ADD_ACCOUNT_LEVELS, error)
   }
   setProcessing(types.ADD_ACCOUNT_LEVELS, false)
 }
-function * UpdateAccountLevels (payload) {
+function * updateAccountLevels (payload) {
   setProcessing(types.UPDATE_ACCOUNT_LEVELS, true)
 
   try {
-    const account_levels = yield call(update, `account_levels/${payload._}`)
+    const account_levels = yield call(
+      update,
+      `account_levels/${payload._}`,
+      payload
+    )
     yield put(actions.updateAccountLevelsSuccess(account_levels))
   } catch (error) {
     setError(types.UPDATE_ACCOUNT_LEVELS, error)
@@ -50,12 +54,12 @@ function * UpdateAccountLevels (payload) {
   setProcessing(types.UPDATE_ACCOUNT_LEVELS, false)
 }
 export const accountLevelSagas = function * () {
-  yield takeEvery(types.GET_ACCOUNT_LEVELS, () => GetAccountLevels())
+  yield takeEvery(types.GET_ACCOUNT_LEVELS, () => getAccountLevels())
   yield takeEvery(types.DELETE_ACCOUNT_LEVELS, e =>
-    DeleteAccountLevels(e.payload)
+    deleteAccountLevels(e.payload)
   )
-  yield takeEvery(types.ADD_ACCOUNT_LEVELS, e => AddAccountLevels(e.payload))
+  yield takeEvery(types.ADD_ACCOUNT_LEVELS, e => addAccountLevels(e.payload))
   yield takeEvery(types.UPDATE_ACCOUNT_LEVELS, e =>
-    UpdateAccountLevels(e.payload)
+    updateAccountLevels(e.payload)
   )
 }

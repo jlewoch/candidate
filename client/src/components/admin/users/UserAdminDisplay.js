@@ -14,11 +14,6 @@ const locked = [
   { label: 'Clear', value: '' }
 ]
 export default class UserAdminDisplay extends Component {
-  static propTypes = {
-    employees: PropTypes.object.isRequired,
-    account_levels: PropTypes.array.isRequired,
-    departments: PropTypes.object.isRequired
-  }
   componentDidMount = () => {
     this.props.getEmployees()
     this.props.getAccountLevels()
@@ -29,13 +24,13 @@ export default class UserAdminDisplay extends Component {
     this.state = {
       checkboxItems: [],
       contextItem: {},
-      showDialog: false
+      showDialog: false,
+      expandedRow: []
     }
     this.dt = createRef()
   }
 
   lockedFilter = e => {
-
     this.dt.filter(e.value, 'lockedLabel', 'equals')
     this.setState({ locked: e.value === '' ? null : e.value })
   }
@@ -52,6 +47,17 @@ export default class UserAdminDisplay extends Component {
     this.dt.filter(x, 'level_name', 'in')
     this.setState({ accessGroups: e.value })
   }
+  expand = e => {
+    if (e.originalEvent.target.className) {
+      return
+    }
+
+    let row =
+      this.state.expandedRow && this.state.expandedRow[0] === e.data
+        ? []
+        : [e.data]
+    this.setState({ expandedRow: row })
+  }
 
   notSaved = e => {
     this.setState({ tempHolder: e })
@@ -61,23 +67,13 @@ export default class UserAdminDisplay extends Component {
     this.setState({ showDialog: !this.state.showDialog })
   }
   render () {
-    const lockedDropDown = (
-      <Dropdown
-        style={{ width: '100%' }}
-        value={this.state.locked}
-        options={locked}
-        onChange={this.lockedFilter}
-      />
-    )
     const departmentDropDown = (
       <div>
         <MultiSelect
           optionLabel='name'
           dataKey='name'
           value={this.state.departments}
-          options={Object.keys(this.props.departments).map(
-            i => this.props.departments[i]
-          )}
+          options={this.props.departments}
           onChange={this.departmentFilter}
           style={{ maxWidth: '250px' }}
         />
@@ -126,14 +122,18 @@ export default class UserAdminDisplay extends Component {
           }
           checkSelectionChange={e => this.setState({ checkboxItems: e.value })}
           checkSelectionState={this.state.checkboxItems}
-          list={Object.keys(this.props.employees).map(
-            key => this.props.employees[key]
-          )}
+          list={this.props.employees}
           menu={menu}
           addNew={<EmployeeForm />}
           expandedTemplate={e => (
-            <UserExpandedTemplate save={this.notSaved} selectedUser={e} />
+            <UserExpandedTemplate
+              save={this.notSaved}
+              selectedUser={e}
+              managers={this.props.managers}
+            />
           )}
+          expandedRows={this.state.expandedRow}
+          rowClick={this.expand}
         >
           <Column selectionMode='multiple' style={{ width: '2em' }} />
           <Column

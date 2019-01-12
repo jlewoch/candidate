@@ -16,3 +16,6 @@ export const updateEmployees = createAction(types.UPDATE_EMPLOYEES)
 export const updateEmployeesSuccess = createAction(
   types.UPDATE_EMPLOYEES_SUCCESS
 )
+export const changeSelectedEmployee = createAction(
+  types.CHANGE_SELECTED_EMPLOYEE
+)

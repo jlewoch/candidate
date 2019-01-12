@@ -1,3 +1,5 @@
+// general
+
 * {
     box-sizing: border-box;
     font-size: 12px;
@@ -72,8 +74,13 @@ body .fc .fc-row {
 
 }
 
+// actions
+.submenu-selector:hover,
+.side-card:hover {
+    cursor: pointer;
+}
 
-
+// specific
 .postings {
     display: flex;
     height: 100%;
@@ -94,6 +101,7 @@ body .fc .fc-row {
         overflow-y: auto;
         width: 20%;
         max-width: 250px;
+        background: #e6e6e6;
     }
 
     .postings-right {
@@ -143,8 +151,6 @@ body .fc .fc-row {
     flex-direction: column;
     padding: .5em;
 
-    background: #a5a0a0;
-
     .side-card-top {
         display: flex;
         align-items: center
@@ -156,9 +162,7 @@ body .fc .fc-row {
 
 }
 
-.side-card:hover {
-    cursor: pointer;
-}
+
 
 .total-cir {
     background: #007ad9;
@@ -260,10 +264,15 @@ body .fc .fc-row {
     }
 }
 
+.summary-card {
+    display: flex;
+    align-items: center;
+    padding: .15em;
+}
 
 .submenu-selector {
     display: flex;
-
+    background: #e6e6e6;
     justify-content: space-evenly;
 
     .submenu-selector-option {
@@ -273,9 +282,6 @@ body .fc .fc-row {
         justify-content: center;
         align-items: center;
         height: fit-content;
-        background: #e6e6e6;
-
-
     }
 
 
@@ -284,15 +290,14 @@ body .fc .fc-row {
         margin: 1em;
     }
 
-    :hover {
-        cursor: pointer;
-    }
+
 }
 
 .selected {
-    opacity: .75;
-
+    background: #007ad9;
 }
+
+
 
 .profile-top {
     box-shadow: rgb(165, 160, 160) 1px 1px 1px 1px;
