@@ -9,17 +9,26 @@ import { getApplicants } from '../../store/applicants/actions'
 import { getApplications } from '../../store/applications/actions'
 import { getPositions } from '../../store/positions/actions'
 import { selectPostings, selectFilteredApps } from '../../store/selectors'
+import { getResumeEvaluations } from '../../store/resume_evaluations/actions'
+import { getFirstInterviewEvaluations } from '../../store/first_interview_evaluations/actions'
+import { getPhoneEvaluations } from '../../store/phone_evaluations/actions'
+import { getSecondInterviewEvaluations } from '../../store/second_interview_evaluations/actions'
 const mapStateToProps = state => ({
   job_postings: selectPostings(state),
-  applications: selectFilteredApps(state),
   selectedPosting: state.job_postings.selected
 })
 const mapDispatchToProps = dispatch => ({
-  getApplicants: () => dispatch(getApplicants()),
-  getPositions: () => dispatch(getPositions()),
-  getSteps: () => dispatch(getSteps()),
-  getJobPostings: () => dispatch(getJobPostings()),
-  getApplications: () => dispatch(getApplications()),
+  getAll: () => {
+    dispatch(getApplicants())
+    dispatch(getPositions())
+    dispatch(getSteps())
+    dispatch(getJobPostings())
+    dispatch(getApplications())
+    dispatch(getResumeEvaluations())
+    dispatch(getPhoneEvaluations())
+    dispatch(getFirstInterviewEvaluations())
+    dispatch(getSecondInterviewEvaluations())
+  },
   changeSelectedPosting: e => dispatch(changeSelectedJob(e))
 })
 

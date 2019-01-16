@@ -16,10 +16,9 @@ router
             .map(i => i.id)
           return applicant
         })
-        console.log(applicants)
 
         res.status(OK.code).json({
-          data: objs.convertToObject(applicants, obj.applicant),
+          data: objs.convertToObject(applicants),
           message: OK.message
         })
       }
@@ -28,7 +27,7 @@ router
   .post((req, res) => {
     call.create('applicants', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.applicant(item)),
+        data: objs.convertToObject(data),
         message: CREATED.message
       })
     )

@@ -10,7 +10,7 @@ exports.up = async knex => {
       .notNull()
       .unique()
     table
-      .integer('weight')
+      .integer('points')
       .notNull()
       .defaultTo(10)
 
@@ -22,11 +22,11 @@ exports.up = async knex => {
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table
-      .timestamp('created_at')
+      .datetime('created_at')
       .notNull()
       .defaultTo(knex.fn.now())
     table
-      .timestamp('updated_at')
+      .datetime('updated_at')
       .notNull()
       .defaultTo(knex.fn.now())
   })

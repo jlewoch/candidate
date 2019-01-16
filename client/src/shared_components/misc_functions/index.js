@@ -1,5 +1,5 @@
 export const timeSpan = providedTime => {
-  const date = Date.now()
+  const date = new Date()
   const timelaps = date - Date.parse(providedTime)
   const years = Math.floor(timelaps / 31556952000)
   const months = Math.floor(timelaps / 2629746000)

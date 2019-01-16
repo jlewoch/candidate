@@ -11,7 +11,7 @@ router
   .get((req, res) => {
     call.all('job_postings', res).then(data =>
       res.status(OK.code).json({
-        data: objs.convertToObject(data, obj.outJob),
+        data: objs.convertToObject(data),
         message: OK.message
       })
     )
@@ -19,7 +19,7 @@ router
   .post((req, res) => {
     call.create('job_postings', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.job(item)),
+        data: objs.convertToObject(data),
         message: CREATED.message
       })
     )

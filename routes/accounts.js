@@ -10,7 +10,7 @@ router
   .get((req, res) => {
     call.all('accounts').then(data =>
       res.status(OK.code).json({
-        data: objs.convertToObject(data, obj.outAccount),
+        data: objs.convertToObject(data),
         message: OK.message
       })
     )
@@ -18,7 +18,7 @@ router
   .post((req, res) => {
     call.create('accounts', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.account(item)),
+        data: objs.convertToObject(data),
         message: CREATED.message
       })
     )

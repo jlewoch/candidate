@@ -4,13 +4,12 @@ const call = require('./api/general_api')
 const obj = require('./data_objects/objects')
 const objs = require('./data_objects/objectServices')
 const { OK, CREATED } = require('./api/status_codes')
-
 router
   .route('/')
   .get((req, res) => {
     call.all('phone_evaluations').then(data =>
       res.status(OK.code).json({
-        data: data.map(item => obj.single_evalution(item)),
+        data: objs.convertToObject(data),
         message: OK.message
       })
     )
@@ -18,7 +17,7 @@ router
   .post((req, res) => {
     call.create('phone_evaluations', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.single_evalution(item)),
+        data: objs.convertToObject(data),
         message: CREATED.message
       })
     )

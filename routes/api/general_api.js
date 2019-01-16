@@ -3,16 +3,16 @@ const { OK, BAD_REQUEST } = require('./status_codes')
 
 const all = (table, res) => {
   return knex(table)
-    .select('*')
+    .select(`${table}.id as _`, `${table}.*`)
     .catch(error =>
       res.status(BAD_REQUEST.code).json({ error, message: BAD_REQUEST.message })
     )
 }
 
-const get = async (table, params, res) => {
+const get = async (table, params, res, where) => {
   return await knex(table)
     .select('*')
-    .where({ id: params.id })
+    .where({ id: params.id, ...where })
     .catch(error =>
       res.status(BAD_REQUEST.code).json({ error, message: BAD_REQUEST.message })
     )

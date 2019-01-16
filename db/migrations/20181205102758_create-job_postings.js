@@ -19,19 +19,19 @@ exports.up = async knex => {
     table.bigInteger('updated_by').notNull()
     table.bigInteger('created_by').notNull()
     table
-      .timestamp('created_at')
+      .datetime('created_at')
       .notNull()
       .defaultTo(knex.fn.now())
     table
-      .timestamp('updated_at')
+      .datetime('updated_at')
       .notNull()
       .defaultTo(knex.fn.now())
     table
-      .timestamp('open_date')
+      .datetime('open_date')
       .notNull()
       .defaultTo(knex.fn.now())
     table
-      .timestamp('closing_date')
+      .datetime('closing_date')
       .notNull()
       .defaultTo(knex.fn.now())
   })

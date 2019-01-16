@@ -5,26 +5,55 @@ const obj = require('./data_objects/objects')
 const objs = require('./data_objects/objectServices')
 const { OK, CREATED } = require('./api/status_codes')
 const knex = require('../db/knex/knex')
+knex('phone_evaluations').whereIn()
 router
   .route('/')
   .get((req, res) => {
-    knex('applications as a')
-      .select(
-        'a.id',
-        'a.job_posting',
-        'a.applicant',
-        'a.status',
-        'a.updated_at',
-        'a.updated_by',
-        's.name as statusTitle',
-        'a.created_at',
-        'j.title'
-      )
-      .leftJoin('steps as s', 's.id', 'a.status')
-      .leftJoin('job_postings as j', 'j.id', 'a.job_posting')
-      .then(data => {
+    knex('apps')
+      // .select(
+      //   'a.id',
+      //   'a.job_posting',
+      //   'a.applicant',
+      //   'a.status',
+      //   'a.updated_at',
+      //   'a.updated_by',
+      //   's.name as statusTitle',
+      //   'a.created_at',
+      //   'j.title'
+      // )
+      // .leftJoin('steps as s', 's.level', 'a.status')
+      // .join('job_postings as j', 'j.id', 'a.job_posting')
+      .then(async data => {
+        let apps = objs.convertToObject(data)
+        let qt = await knex('questions')
+          .select('step as _')
+          .sum('points as qt')
+          .groupBy('_')
+        qt = objs.convertToObject(qt)
+        await objs.getEvaluations().then(res => {
+          res.map(data => {
+            data.map(i => {
+              apps[i.application] = {
+                ...apps[i.application],
+                [i.step]: apps[i.application][i.step]
+                  ? [...apps[i.application][i.step], i.qid]
+                  : [i.qid],
+                [i.name + '_rank']: apps[i.application][i.name + '_rank']
+                  ? objs.calc(
+                    apps[i.application][i.name + '_rank'],
+                    i.provided_points,
+                    i.qa,
+                    qt[i.step].qt
+                  )
+                  : objs.calc(0, i.provided_points, i.qa, qt[i.step].qt)
+              }
+            })
+          })
+        })
+        console.log(apps[1])
+
         res.status(OK.code).json({
-          data: objs.convertToObject(data, obj.application),
+          data: apps,
           message: OK.message
         })
       })

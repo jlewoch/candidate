@@ -29,6 +29,7 @@ exports.seed = async knex => {
           created_by: 4,
           updated_by: 10
         },
+
         {
           f_name: 'Cleveland',
           l_name: 'Fitzpatrick',

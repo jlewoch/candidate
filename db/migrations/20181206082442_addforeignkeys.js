@@ -334,36 +334,6 @@ exports.up = async knex => {
       .onDelete('cascade')
       .onUpdate('cascade')
   })
-  knex.schema.alterTable('section_evaluations', table => {
-    table
-      .bigInteger('updated_by')
-      .references('id')
-      .inTable('employees')
-      .notNullable()
-      .onDelete('cascade')
-      .onUpdate('cascade')
-    table
-      .bigInteger('created_by')
-      .references('id')
-      .inTable('employees')
-      .notNullable()
-      .onDelete('cascade')
-      .onUpdate('cascade')
-    table
-      .bigInteger('application')
-      .references('id')
-      .inTable('applications')
-      .notNullable()
-      .onDelete('cascade')
-      .onUpdate('cascade')
-    table
-      .bigInteger('step')
-      .references('id')
-      .inTable('steps')
-      .notNullable()
-      .onDelete('cascade')
-      .onUpdate('cascade')
-  })
 }
 
 exports.down = async knex => {}

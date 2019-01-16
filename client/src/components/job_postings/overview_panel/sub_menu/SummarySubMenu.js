@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 export default class SummarySubMenu extends Component {
   render () {
+    console.log(this.props.selectedApplication)
+
     return (
       <div>
         <div>
@@ -14,10 +16,17 @@ export default class SummarySubMenu extends Component {
           <div>
             {this.props.steps.map(step => {
               return (
-                <div className='summary-card'>
-                  <p>{step.name}</p>
-                  <p>points: 127/350</p> <p>steprank: {8.7}</p>
-                </div>
+                step.name !== 'New' && (
+                  <div className='summary-card'>
+                    <p>{step.name}:</p>
+                    <p>
+                      {this.props.selectedApplication[step.level]
+                        ? 'rank: ' +
+                          this.props.selectedApplication[step.name + '_rank']
+                        : 'Pending'}
+                    </p>
+                  </div>
+                )
               )
             })}
           </div>

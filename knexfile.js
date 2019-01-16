@@ -2,13 +2,13 @@
 
 module.exports = {
   development: {
-    client: 'pg',
+    client: 'mysql2',
     connection: {
       host: '127.0.0.1',
-      port: 5432,
-      user: 'development',
-      password: 'development',
-      database: 'tool'
+      port: 3306,
+      user: 'jlewoch',
+      password: 'Dragons21',
+      database: 'Candidate'
     },
     migrations: {
       directory: __dirname + '/db/migrations'

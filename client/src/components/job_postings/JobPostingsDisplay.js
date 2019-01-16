@@ -5,11 +5,7 @@ import { OverviewPanel } from './overview_panel'
 
 export default class JobPostingsDisplay extends Component {
   componentDidMount () {
-    this.props.getSteps()
-    this.props.getJobPostings()
-    this.props.getApplicants()
-    this.props.getApplications()
-    this.props.getPositions()
+    this.props.getAll()
   }
 
   render () {

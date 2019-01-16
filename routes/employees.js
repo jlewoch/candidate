@@ -42,7 +42,7 @@ router
 
       .then(data =>
         res.status(OK.code).json({
-          data: objs.convertToObject(data, obj.outEmployee),
+          data: objs.convertToObject(data),
           message: OK.message
         })
       )
@@ -53,7 +53,7 @@ router
       .create('employees', obj.inEmployee(req.body), res, req.token)
       .then(data => {
         res.status(CREATED.code).json({
-          data: objs.convertToObject(data, obj.outEmployee),
+          data: objs.convertToObject(data),
           message: CREATED.message
         })
       })

@@ -39,10 +39,11 @@ export const selectApplications = createSelector(
 )
 
 const postingsFilter = createSelector(
-  selectApplications,
   getSelectedPosting,
-  (applications, selectedPosting) =>
-    applications.filter(app => app.job_posting === selectedPosting)
+  selectApplications,
+
+  (selectedPosting, applications) =>
+    applications.filter(app => app.job_posting == selectedPosting)
 )
 
 export const selectApplication = createSelector(

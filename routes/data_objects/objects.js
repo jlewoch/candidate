@@ -1,7 +1,8 @@
 const {
   fullName,
   formatPhoneNumber,
-  formatToDate
+  formatToDate,
+  formatToTime
 } = require('./objectServices')
 // incoming
 const inEmployee = obj => ({
@@ -142,6 +143,10 @@ const application = obj => ({
   updated_by: obj.updated_by,
   statusTitle: obj.statusTitle,
   title: obj.title,
+  'First Interview': obj['First Interview'],
+  'Second Interview': obj['Second Interview'],
+  'Resume Review': obj.Resume,
+  'Phone Screening': obj.Phone,
   date_submitted: formatToDate(obj.created_at)
 })
 
@@ -159,11 +164,17 @@ const single_evalution = obj => ({
   notes: obj.notes,
   application: obj.application,
   question: obj.question,
-  updated_at: obj.updated_at.toLocaleString('en-us'),
+  updated_at: obj.updated_at,
   updated_by: obj.updated_by
 })
-
+const hello = obj => ({
+  _: obj.id,
+  step: obj.name,
+  provided: obj.provided,
+  total: obj.total
+})
 module.exports = {
+  hello,
   manager,
   outAccountLevel,
   inAccountLevel,
@@ -181,7 +192,6 @@ module.exports = {
   inEmployee,
   outStep,
   inStep,
-
   section_evaluation,
   applicant,
   application,

@@ -17,7 +17,9 @@ const PostingsCard = ({
         <h2>{title}</h2>
         <div className='total-cir'>{totalApps}</div>
       </div>
-      <p className='subtitle'>Closing {closing_date}</p>
+      <p className='subtitle'>
+        Closing {new Date(closing_date).toLocaleDateString('en-us')}
+      </p>
     </div>
   )
 }

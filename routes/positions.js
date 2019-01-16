@@ -10,7 +10,7 @@ router
   .get((req, res) => {
     call.all('positions').then(data =>
       res.status(OK.code).json({
-        data: objs.convertToObject(data, obj.outPosition),
+        data: objs.convertToObject(data),
         message: OK.message
       })
     )
@@ -18,7 +18,7 @@ router
   .post((req, res) => {
     call.create('positions', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.position(item)),
+        data: objs.convertToObject(data),
         message: CREATED.message
       })
     )

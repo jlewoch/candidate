@@ -16,7 +16,6 @@ router.use(
   require('./second_interview_evaluations')
 )
 router.use('/resume_evaluations', require('./resume_evaluations'))
-router.use('/section_evaluations', require('./section_evaluations'))
 router.use('/steps', require('./steps'))
 
 router.use('/departments', require('./departments'))

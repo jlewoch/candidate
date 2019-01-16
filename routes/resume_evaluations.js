@@ -10,7 +10,7 @@ router
   .get((req, res) => {
     call.all('resume_evaluations').then(data =>
       res.status(OK.code).json({
-        data: data.map(item => obj.single_evalution(item)),
+        data: objs.convertToObject(data),
         message: OK.message
       })
     )
@@ -18,7 +18,7 @@ router
   .post((req, res) => {
     call.create('resume_evaluations', req.body, res).then(data =>
       res.status(CREATED.code).json({
-        data: data.map(item => obj.single_evalution(item)),
+        data: objs.convertToObject(data),
         message: CREATED.message
       })
     )

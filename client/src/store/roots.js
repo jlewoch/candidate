@@ -10,7 +10,10 @@ import { positionSagas } from './positions/sagas'
 import { jobPostingSagas } from './job_postings/sagas'
 import { applicantSagas } from './applicants/sagas'
 import { applicationSagas } from './applications/sagas'
-
+import { firstInterviewEvaluationSagas } from './first_interview_evaluations/sagas'
+import { secondInterviewEvaluationSagas } from './second_interview_evaluations/sagas'
+import { phoneEvaluationSagas } from './phone_evaluations/sagas'
+import { resumeEvaluationSagas } from './resume_evaluations/sagas'
 // reducers
 import steps from './steps/reducer'
 import positions from './positions/reducer'
@@ -24,8 +27,15 @@ import accounts from './accounts/reducer'
 import departments from './departments/reducer'
 import job_postings from './job_postings/reducer'
 import api from './api/processing/reducer'
-
+import first_interview_evaluations from './first_interview_evaluations/reducer'
+import second_interview_evaluations from './second_interview_evaluations/reducer'
+import phone_evaluations from './phone_evaluations/reducer'
+import resume_evaluations from './resume_evaluations/reducer'
 export const rootReducer = combineReducers({
+  resume_evaluations,
+  phone_evaluations,
+  first_interview_evaluations,
+  second_interview_evaluations,
   steps,
   api,
   positions,
@@ -51,4 +61,8 @@ export function rootSaga (saga) {
   saga.run(positionSagas)
   saga.run(applicantSagas)
   saga.run(applicationSagas)
+  saga.run(firstInterviewEvaluationSagas)
+  saga.run(secondInterviewEvaluationSagas)
+  saga.run(phoneEvaluationSagas)
+  saga.run(resumeEvaluationSagas)
 }

@@ -6,7 +6,8 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const jwt = require('jsonwebtoken')
 const knex = require('./db/knex/knex')
-
+const objs = require('./routes/data_objects/objectServices')
+const obj = require('./routes/data_objects/objects')
 const PORT = process.env.PORT || 8000
 app.use(require('cors')())
 app.use(logger('dev'))
@@ -39,5 +40,4 @@ app.use((req, res, next) => {
 })
 
 app.use('/db', require('./routes/index'))
-
 app.listen(PORT, () => console.log(`The server is up and listening on ${PORT}`))
